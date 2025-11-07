@@ -1,0 +1,41 @@
+{
+  "name": "@legible-sync/monorepo",
+  "version": "1.0.0",
+  "description": "Monorepo for LegibleSync - What You See Is What It Does",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "lerna run build",
+    "test": "lerna run test",
+    "lint": "lerna run lint",
+    "typecheck": "lerna run typecheck",
+    "clean": "lerna clean",
+    "bootstrap": "lerna bootstrap",
+    "publish": "lerna publish",
+    "dev:console": "lerna run --scope @legible-sync/example-console start",
+    "dev:express": "lerna run --scope @legible-sync/example-express start"
+  },
+  "keywords": [
+    "monorepo",
+    "wysiwid",
+    "legible-software",
+    "software-architecture",
+    "typescript"
+  ],
+  "author": "Mauro Stepanoski <https://maurostepanoski.ar>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mastepanoski/legiblesync.git"
+  },
+  "homepage": "https://github.com/mastepanoski/legiblesync",
+  "devDependencies": {
+    "lerna": "^8.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
+  }
+}

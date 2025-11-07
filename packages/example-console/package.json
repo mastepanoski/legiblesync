@@ -1,0 +1,50 @@
+{
+  "name": "@legible-sync/example-console",
+  "version": "0.1.0",
+  "description": "Console example application using LegibleSync framework",
+  "main": "dist/index.js",
+  "scripts": {
+    "start": "ts-node src/index.ts",
+    "dev": "ts-node --watch src/index.ts",
+    "build": "tsc",
+    "test": "jest",
+    "lint": "eslint src/**/*.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": [
+    "example",
+    "console",
+    "legible-sync",
+    "wysiwyg",
+    "demo"
+  ],
+  "author": "Mauro Stepanoski <mauro@stepanoski.ar>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mastepanoski/legiblesync.git",
+    "directory": "packages/example-console"
+  },
+  "homepage": "https://github.com/mastepanoski/legiblesync",
+  "dependencies": {
+    "@legible-sync/core": "^1.0.0",
+    "uuid": "^9.0.0",
+    "bcrypt": "^5.1.0",
+    "jsonwebtoken": "^9.0.0",
+    "rdflib": "^2.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/uuid": "^9.0.0",
+    "@types/bcrypt": "^5.0.0",
+    "@types/jsonwebtoken": "^9.0.0",
+    "ts-node": "^10.9.0",
+    "typescript": "^5.0.0",
+    "jest": "^29.0.0",
+    "@types/jest": "^29.0.0",
+    "eslint": "^8.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
