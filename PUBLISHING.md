@@ -28,11 +28,8 @@ npm org ls @legible-sync
 # Clean previous builds
 npm run clean
 
-# Install dependencies
+# Install dependencies (workspaces handle linking automatically)
 npm install
-
-# Bootstrap packages
-npm run bootstrap
 
 # Build all packages
 npm run build
@@ -166,9 +163,8 @@ jobs:
         with:
           node-version: '18'
           registry-url: 'https://registry.npmjs.org'
-      - run: npm ci
-      - run: npm run bootstrap
-      - run: npm run build
+       - run: npm ci
+       - run: npm run build
       - run: npm run test
       - run: npx lerna publish from-package --yes
         env:

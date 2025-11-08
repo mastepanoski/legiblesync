@@ -26,7 +26,7 @@ The framework is built as a TypeScript monorepo and includes the core engine, a 
     ```
 
 2. **Install dependencies:**
-    This project uses Lerna to manage the monorepo. The bootstrap command will install all dependencies and link the local packages.
+    This project uses npm workspaces to manage the monorepo. Install all dependencies:
     ```bash
     npm install
     ```

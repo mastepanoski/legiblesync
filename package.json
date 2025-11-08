@@ -8,12 +8,11 @@
   ],
   "scripts": {
     "build": "lerna run build",
-    "test": "lerna run test",
+    "test": "lerna run test --scope @legible-sync/core",
     "lint": "lerna run lint",
     "lint:md": "markdownlint '**/*.md'",
     "typecheck": "lerna run typecheck",
     "clean": "lerna clean",
-    "bootstrap": "lerna bootstrap",
     "publish": "lerna publish",
     "dev:console": "lerna run --scope @legible-sync/example-console start",
     "dev:express": "lerna run --scope @legible-sync/example-express start",

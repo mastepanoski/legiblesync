@@ -38,11 +38,6 @@ echo ""
 echo "📦 Installing root dependencies..."
 npm install
 
-# Bootstrap Lerna packages
-echo ""
-echo "🔗 Bootstrapping packages..."
-npm run bootstrap
-
 # Build all packages
 echo ""
 echo "🔨 Building packages..."

@@ -31,7 +31,6 @@ npm run dev:console        # Run console example with ts-node
 npm run dev:express        # Run Express example
 
 # Package management
-npm run bootstrap          # Bootstrap packages (install dependencies)
 npm run clean              # Clean all packages
 
 # Per-package commands (run from packages/core, packages/example-console, etc.)
