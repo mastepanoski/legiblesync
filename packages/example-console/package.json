@@ -1,6 +1,6 @@
 {
   "name": "@legible-sync/example-console",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Console example application using LegibleSync framework",
   "main": "dist/index.js",
   "scripts": {
@@ -26,7 +26,7 @@
   },
   "homepage": "https://github.com/mastepanoski/legiblesync",
   "dependencies": {
-    "@legible-sync/core": "^1.0.3",
+    "@legible-sync/core": "^1.0.4",
     "bcrypt": "^5.1.0",
     "jsonwebtoken": "^9.0.0",
     "rdflib": "^2.2.0",
