@@ -1,4 +1,4 @@
-# WYSIWYG Legible Software
+# WYSIWID Legible Software
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue.svg)](https://www.typescriptlang.org/)
@@ -6,7 +6,7 @@
 
 > "What You See Is What It Does" - A Structural Pattern for Legible Software
 
-This repository implements the WYSIWYG (What You See Is What It Does) architectural pattern for creating maintainable, legible software systems. The pattern separates business logic into independent **Concepts** and declarative **Synchronizations** that orchestrate interactions between concepts.
+This repository implements the WYSIWID (What You See Is What It Does) architectural pattern for creating maintainable, legible software systems. The pattern separates business logic into independent **Concepts** and declarative **Synchronizations** that orchestrate interactions between concepts.
 
 **Implementation by:** [Mauro Stepanoski](https://maurostepanoski.ar)  
 **Based on research by:** Eagon Meng and Daniel Jackson
