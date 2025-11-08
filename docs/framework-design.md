@@ -2,7 +2,7 @@
 
 ## Visión General
 
-WYSIWID Legible Software es un framework que implementa el patrón "What You See Is What It Does" propuesto en el paper de Meng y Jackson. El framework facilita la creación de software legible, modular y mantenible mediante la separación clara entre **Concepts** (lógica de negocio independiente) y **Synchronizations** (reglas declarativas de orquestación).
+LegibleSync es un framework que implementa el patrón "What You See Is What It Does" propuesto en el paper de Meng y Jackson. El framework facilita la creación de software legible, modular y mantenible mediante la separación clara entre **Concepts** (lógica de negocio independiente) y **Synchronizations** (reglas declarativas de orquestación).
 
 ## Arquitectura Core
 
@@ -158,4 +158,4 @@ legiblesync ai infer-syncs --from-concept User --from-concept Auth
 
 ## Conclusión
 
-WYSIWID Legible Software representa una evolución en el desarrollo de software, haciendo que los sistemas sean inherentemente legibles y mantenibles. Al separar claramente la lógica de negocio (Concepts) de la orquestación (Synchronizations), el framework permite crear software que es "what you see is what it does", facilitando tanto el desarrollo humano como la integración con LLMs.
+LegibleSync representa una evolución en el desarrollo de software, haciendo que los sistemas sean inherentemente legibles y mantenibles. Al separar claramente la lógica de negocio (Concepts) de la orquestación (Synchronizations), el framework permite crear software que es "what you see is what it does", facilitando tanto el desarrollo humano como la integración con LLMs.

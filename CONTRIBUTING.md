@@ -1,6 +1,6 @@
-# Contributing to WYSIWID Legible Software
+# Contributing to LegibleSync
 
-Thank you for your interest in contributing to WYSIWID Legible Software!
+Thank you for your interest in contributing to LegibleSync!
 
 ## Commit Convention
 

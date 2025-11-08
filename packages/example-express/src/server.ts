@@ -212,5 +212,5 @@ app.get('/audit/:flowId', async (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`WYSIWID Legible Software Express server running on port ${port}`);
+  console.log(`LegibleSync Express server running on port ${port}`);
 });

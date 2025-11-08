@@ -4,7 +4,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue.svg)](https://www.typescriptlang.org/)
 
-Core framework for WYSIWID Legible Software - implementing the "What You See Is What It Does" architectural pattern.
+Core framework for LegibleSync - implementing the "What You See Is What It Does" architectural pattern.
 
 ## Installation
 

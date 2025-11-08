@@ -3,7 +3,7 @@
 [![npm version](https://badge.fury.io/js/%40legible-sync%2Fexample-express.svg)](https://badge.fury.io/js/%40legible-sync%2Fexample-express)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-Express.js REST API example demonstrating the WYSIWID Legible Software framework in a web application.
+Express.js REST API example demonstrating the LegibleSync framework in a web application.
 
 ## Installation
 
@@ -102,7 +102,7 @@ src/
 
 ## Learning Points
 
-- Building REST APIs with WYSIWID Legible Software
+- Building REST APIs with LegibleSync
 - Authentication and authorization patterns
 - Social features implementation
 - HTTP request/response handling

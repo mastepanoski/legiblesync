@@ -2,7 +2,7 @@ MIT License
 
 Copyright (c) 2025 Mauro Stepanoski
 
-Implementation of the WYSIWID "What You See Is What It Does" architectural pattern
+Implementation of the "What You See Is What It Does" architectural pattern
 based on the research paper by Eagon Meng and Daniel Jackson.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy

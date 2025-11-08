@@ -1,4 +1,4 @@
-# Agent Guidelines for WYSIWID Legible Software
+# Agent Guidelines for LegibleSync
 
 ## Build/Lint/Test Commands
 

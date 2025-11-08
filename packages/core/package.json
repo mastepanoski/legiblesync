@@ -1,7 +1,7 @@
 {
   "name": "@legible-sync/core",
   "version": "0.1.0",
-  "description": "Core framework for WYSIWID Legible Software - What You See Is What It Does",
+  "description": "Core framework for LegibleSync - What You See Is What It Does",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {

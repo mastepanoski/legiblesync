@@ -1,6 +1,6 @@
-# WYSIWID Legible Software Documentation
+# LegibleSync Documentation
 
-WYSIWID Legible Software is a framework that implements the "What You See Is What It Does" architectural pattern for creating legible, modular software systems.
+LegibleSync is a framework that implements the "What You See Is What It Does" architectural pattern for creating legible, modular software systems.
 
 ## Architecture
 

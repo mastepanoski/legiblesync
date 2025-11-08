@@ -3,7 +3,7 @@
 [![npm version](https://badge.fury.io/js/%40legible-sync%2Fexample-console.svg)](https://badge.fury.io/js/%40legible-sync%2Fexample-console)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-Console-based example application demonstrating the WYSIWID Legible Software framework.
+Console-based example application demonstrating the LegibleSync framework.
 
 ## Installation
 

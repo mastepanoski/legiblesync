@@ -1,8 +1,8 @@
 #!/bin/bash
 
-# WYSIWID Legible Software Monorepo Setup Script
+# LegibleSync Monorepo Setup Script
 
-echo "🚀 Setting up WYSIWID Legible Software Monorepo"
+echo "🚀 Setting up LegibleSync Monorepo"
 echo "=================================="
 
 # Check Node.js version

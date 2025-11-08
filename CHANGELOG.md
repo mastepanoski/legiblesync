@@ -24,7 +24,7 @@ This changelog is automatically generated using [conventional-changelog](https:/
 ## [0.1.0] - 2025-11-07
 
 ### Added
-- Initial release of WYSIWID Legible Software framework
+- Initial release of LegibleSync framework
 - Concept registration and execution
 - Synchronization rules with variable binding
 - Flow tracking
