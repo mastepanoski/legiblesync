@@ -10,12 +10,23 @@
     "build": "lerna run build",
     "test": "lerna run test",
     "lint": "lerna run lint",
+    "lint:md": "markdownlint '**/*.md'",
     "typecheck": "lerna run typecheck",
     "clean": "lerna clean",
     "bootstrap": "lerna bootstrap",
     "publish": "lerna publish",
     "dev:console": "lerna run --scope @legible-sync/example-console start",
-    "dev:express": "lerna run --scope @legible-sync/example-express start"
+    "dev:express": "lerna run --scope @legible-sync/example-express start",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "eslint --fix",
+      "npm run typecheck"
+    ],
+    "*.md": [
+      "markdownlint --fix"
+    ]
   },
   "keywords": [
     "monorepo",
@@ -32,7 +43,10 @@
   },
   "homepage": "https://github.com/mastepanoski/legiblesync",
   "devDependencies": {
-    "lerna": "^8.0.0"
+    "husky": "^9.1.7",
+    "lerna": "^8.0.0",
+    "lint-staged": "^16.2.6",
+    "markdownlint-cli": "^0.45.0"
   },
   "engines": {
     "node": ">=18.0.0",

@@ -1,6 +1,6 @@
 {
   "name": "@legible-sync/example-express",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Express.js REST API example using LegibleSync framework",
   "main": "dist/server.js",
   "scripts": {
