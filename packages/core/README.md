@@ -68,6 +68,33 @@ interface SyncRule {
 }
 ```
 
+#### Query Example
+```typescript
+const userFilterSync: SyncRule = {
+  name: "PremiumUserNotification",
+  when: [
+    {
+      concept: "User",
+      action: "register"
+    }
+  ],
+  where: {
+    filter: (bindings) => {
+      // Filter bindings before executing then clauses
+      const email = bindings.email as string;
+      return email?.endsWith('@premium.com') || false;
+    }
+  },
+  then: [
+    {
+      concept: "Email",
+      action: "send",
+      input: { to: "?email", subject: "Welcome Premium User!" }
+    }
+  ]
+};
+```
+
 ### Engine
 Runtime that orchestrates concept execution and synchronization triggering.
 

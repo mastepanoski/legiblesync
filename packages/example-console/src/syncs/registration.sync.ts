@@ -1,6 +1,12 @@
 // syncs/registration.sync.ts
-import { SyncRule } from '@legible-sync/core';
+import { SyncRule, Query, Invocation } from '@legible-sync/core';
 
+/**
+ * Example demonstrating Query and Invocation usage:
+ *
+ * Query allows filtering bindings before executing Invocations.
+ * Invocation is the new type for then clauses (same structure as before).
+ */
 export const registrationSyncs: SyncRule[] = [
   {
     name: "HandleRegistration",
@@ -48,6 +54,13 @@ export const registrationSyncs: SyncRule[] = [
         action: "register"
       }
     ],
+    where: {
+      filter: (bindings) => {
+        // Example: Only complete registration for users with valid email
+        const email = bindings.email as string;
+        return typeof email === 'string' && email.includes('@');
+      }
+    },
     then: [
       {
         concept: "Password",
@@ -60,6 +73,34 @@ export const registrationSyncs: SyncRule[] = [
         input: { user: "?user" }
       }
     ]
+  },
+  // Example sync rule demonstrating Query usage
+  {
+    name: "FilteredUserNotification",
+    when: [
+      {
+        concept: "User",
+        action: "register"
+      }
+    ],
+    where: {
+      filter: (bindings) => {
+        // Only send notifications for premium users (example filter)
+        const email = bindings.email as string;
+        return typeof email === 'string' && email.endsWith('@premium.com');
+      }
+    } as Query,
+    then: [
+      {
+        concept: "Web",
+        action: "respond",
+        input: {
+          request: "?request",
+          code: 200,
+          body: { message: "Welcome premium user: ?username" }
+        }
+      }
+    ] as Invocation[]
   },
   {
     name: "HandleLogin",

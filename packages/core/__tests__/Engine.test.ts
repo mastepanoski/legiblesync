@@ -204,6 +204,52 @@ describe('LegibleEngine', () => {
 
       expect(syncConcept.execute).toHaveBeenCalledWith('notify', { userId: 456, userName: 'Jane' });
     });
+
+    it('should filter bindings using Query.where', async () => {
+      const triggerExecute = jest.fn();
+      const triggerConcept: Concept = {
+        state: {},
+        execute: triggerExecute
+      };
+
+      const syncConcept: Concept = {
+        state: {},
+        execute: jest.fn().mockResolvedValue({ notified: true })
+      };
+
+      engine.registerConcept('user', triggerConcept);
+      engine.registerConcept('notifier', syncConcept);
+
+      const syncRule: SyncRule = {
+        name: 'premiumNotification',
+        when: [{ concept: 'user', action: 'register' }],
+        where: {
+          filter: (bindings) => {
+            const email = bindings.email as string;
+            return email?.endsWith('@premium.com') || false;
+          }
+        },
+        then: [{
+          concept: 'notifier',
+          action: 'notify',
+          input: { email: '?email' }
+        }]
+      };
+
+      engine.registerSync(syncRule);
+
+      // Mock first call to return premium email (should trigger)
+      triggerExecute.mockResolvedValueOnce({ email: 'user@premium.com' });
+      await engine.invoke('user', 'register', {}, 'flow1');
+      expect(syncConcept.execute).toHaveBeenCalledTimes(1);
+      expect(syncConcept.execute).toHaveBeenCalledWith('notify', { email: 'user@premium.com' });
+
+      // Mock second call to return free email (should not trigger for this user)
+      triggerExecute.mockResolvedValueOnce({ email: 'user@free.com' });
+      await engine.invoke('user', 'register', {}, 'flow2');
+      // The sync should not have triggered for the free user, so still 1 call
+      expect(syncConcept.execute).toHaveBeenCalledTimes(1);
+    });
   });
 
   describe('Flow Management', () => {

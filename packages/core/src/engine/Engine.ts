@@ -68,7 +68,7 @@ export class LegibleEngine {
     // Collect matching actions for each pattern
     const allMatchingActions: ActionRecord[][] = [];
     for (const pattern of sync.when) {
-      const matching = this.matchWhen(pattern);
+      const matching = this.matchWhen(pattern, sync.name);
       if (matching.length === 0) {
         return false; // All patterns must have at least one match
       }
@@ -134,12 +134,14 @@ export class LegibleEngine {
     return fired;
   }
 
-  private matchWhen(pattern: Pattern): ActionRecord[] {
+  private matchWhen(pattern: Pattern, syncName?: string): ActionRecord[] {
     return this.actions.filter(a => {
       if (a.syncTriggered) return false; // Prevent triggering syncs on sync-triggered actions
       if (a.concept !== pattern.concept || a.action !== pattern.action) return false;
       if (!this.matchRecord(a.input, pattern.input)) return false;
       if (!this.matchRecord(a.output || {}, pattern.output)) return false;
+      // If syncName is provided, exclude actions that already participated in this sync
+      if (syncName && a.syncEdges?.[syncName]) return false;
       return true;
     });
   }
