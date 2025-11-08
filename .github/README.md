@@ -1,330 +1,150 @@
-# WYSIWID Legible Software
+# LegibleSync
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue.svg)](https://www.typescriptlang.org/)
-[![Node.js](https://img.shields.io/badge/Node.js-18+-green.svg)](https://nodejs.org/)
+What You See Is What It Does - A framework for building legible software through concepts and synchronizations.
 
-> "What You See Is What It Does" - A Structural Pattern for Legible Software
+*Note: This is WYSIWID (What You See Is What It Does), not to be confused with WYSIWYG (What You See Is What You Get).*
 
-This repository implements the WYSIWID (What You See Is What It Does) architectural pattern for creating maintainable, legible software systems. The pattern separates business logic into independent **Concepts** and declarative **Synchronizations** that orchestrate interactions between concepts.
+## Overview
 
-**Implementation by:** [Mauro Stepanoski](https://maurostepanoski.ar)  
-**Based on research by:** Eagon Meng and Daniel Jackson
+This repository implements the "What You See Is What It Does" (WYSIWID) architectural pattern. The goal is to create highly legible and maintainable software systems by separating business logic into independent **Concepts** and orchestrating their interactions through declarative **Synchronizations**.
 
-## 📚 Table of Contents
+The framework is built as a TypeScript monorepo and includes the core engine, a console example, and an Express.js example.
 
-- [Overview](#overview)
-- [Architecture](#architecture)
-- [Quick Start](#quick-start)
-- [Concepts](#concepts)
-- [Synchronizations](#synchronizations)
-- [API Reference](#api-reference)
-- [Examples](#examples)
-- [Contributing](#contributing)
-- [Research](#research)
-- [License](#license)
-
-## 🎯 Overview
-
-Traditional software architecture often mixes business logic with orchestration code, making systems hard to understand and maintain. The WYSIWYG pattern addresses this by:
-
-- **Concepts**: Independent, self-contained modules that encapsulate state and behavior
-- **Synchronizations**: Declarative rules that define when and how concepts interact
-- **Engine**: A runtime that executes concepts and manages synchronizations
-
-This separation makes software behavior visible and modifiable through explicit, declarative rules rather than implicit, imperative code.
-
-## 🏗️ Architecture
-
-```
-src/
-├── concepts/          # Independent business logic modules
-│   ├── User.ts       # User management
-│   ├── Article.ts    # Article/blog post management
-│   ├── Favorite.ts   # Favorites functionality
-│   ├── Comment.ts    # Comments system
-│   ├── Password.ts   # Password validation and storage
-│   ├── JWT.ts        # JWT token handling
-│   ├── Web.ts        # HTTP request/response handling
-│   └── Persistence.ts # RDF/SPARQL state persistence
-├── engine/           # Core synchronization engine
-│   ├── Engine.ts     # Main synchronization engine
-│   └── types.ts      # TypeScript type definitions
-├── syncs/            # Declarative synchronization rules
-│   ├── registration.sync.ts  # User registration flow
-│   ├── article.sync.ts       # Article creation flow
-│   ├── favorite.sync.ts      # Favorites management
-│   ├── comment.sync.ts       # Comments management
-│   └── persistence.sync.ts   # State persistence rules
-└── utils/            # Utility functions
-    └── audit.ts      # Flow auditing utilities
-```
-
-## 🚀 Quick Start
+## Getting Started
 
 ### Prerequisites
 
-- Node.js 18+
-- npm or yarn
+- Node.js (v18 or higher)
+- npm (v8 or higher)
 
 ### Installation
 
-```bash
-# Clone the repository
-git clone https://github.com/yourusername/wysiwyg-legible-software.git
-cd wysiwyg-legible-software
+1. **Clone the repository:**
+    ```bash
+    git clone https://github.com/maurostepanoski/legiblesync.git
+    cd legiblesync
+    ```
 
-# Install dependencies
-npm install
+2. **Install dependencies:**
+    This project uses Lerna to manage the monorepo. The bootstrap command will install all dependencies and link the local packages.
+    ```bash
+    npm install
+    ```
 
-# Run the demo
-npm start
+### Running the Examples
 
-# Run with file watching
-npm run dev
+You can run the included examples from the root directory:
 
-# Run tests
-npm test
+- **Console Example:**
+    ```bash
+    npm run dev:console
+    ```
+    This demonstrates a complete user registration flow, including validation, JWT generation, and state persistence, all logged to the console.
 
-# Type checking
-npm run typecheck
+- **Express.js Example:**
+    ```bash
+    npm run dev:express
+    ```
+    This starts a REST API server on `http://localhost:3000` and demonstrates how to integrate LegibleSync in a web application context.
 
-# Linting
-npm run lint
-```
+## Core Concepts
 
-### Express.js Version
+The WYSIWID pattern is built on three main components:
 
-```bash
-# Navigate to Express app
-cd express-app
+### 1. Concepts
 
-# Install dependencies
-npm install
+A **Concept** is a self-contained module that encapsulates a piece of business logic and its state. It's like a small, independent service focused on a single responsibility.
 
-# Run the server
-npm start
+- **State**: Each concept manages its own internal state.
+- **Actions**: Concepts expose an `execute` function that takes an `action` object. This is the only way to interact with a concept and change its state.
 
-# The API will be available at http://localhost:3000
-```
+Example concepts from the examples include `User`, `Article`, `Password`, and `JWT`.
 
-## 🎨 Concepts
+### 2. Synchronizations
 
-Each concept is an independent module with its own state and actions:
+**Synchronizations** are declarative rules that define how concepts interact. They are the "glue" that connects the independent concepts into a functioning application.
 
-### Core Concepts
+A synchronization consists of one or more `SyncRule` objects, each with two parts:
 
-- **User**: Manages user registration and profiles
-- **Article**: Handles blog posts/articles with automatic slug generation
-- **Password**: Validates and securely stores passwords using bcrypt
-- **JWT**: Generates and verifies JSON Web Tokens for authentication
+- `when`: A pattern that matches against actions dispatched to the engine. It can match on `concept`, `action`, and `status`.
+- `then`: A function that receives the matched action and can dispatch new actions to other concepts.
 
-### Extended Concepts
+This declarative approach makes the system's behavior explicit and easy to follow. Instead of calling other services directly, a concept simply performs its action, and the synchronization rules determine what happens next.
 
-- **Favorite**: Manages user favorites for articles
-- **Comment**: Handles article comments and discussions
-- **Web**: Simulates HTTP request/response handling
-- **Persistence**: RDF/SPARQL-based state persistence
+### 3. The LegibleEngine
 
-### Creating a New Concept
+The `LegibleEngine` is the heart of the framework. Its responsibilities are:
 
-```typescript
-import { ConceptImpl } from '../engine/types';
+- **Registering Concepts and Synchronizations**: You tell the engine which concepts and sync rules to use.
+- **Dispatching Actions**: The engine receives an initial action and sends it to the target concept.
+- **Triggering Synchronizations**: After a concept executes an action, the engine checks all registered `SyncRule`s. If a rule's `when` clause matches the completed action, its `then` clause is executed.
+- **Managing State**: The engine holds the state of all registered concepts.
 
-export const MyConcept: ConceptImpl = {
-  state: {
-    myData: new Map(),
-  },
+## How It Works
 
-  async execute(action: string, input: any) {
-    if (action === 'myAction') {
-      // Implement your logic here
-      return { result: 'success' };
-    }
+1. **Initialization**: The `LegibleEngine` is instantiated with a set of concepts and synchronization rules.
+2. **Initial Action**: An external trigger (like an HTTP request or a CLI command) creates an initial `action` object and sends it to the engine using `engine.dispatch()`.
+3. **Concept Execution**: The engine finds the concept targeted by the action (e.g., `User`) and calls its `execute` method with the action. The concept performs its logic and returns a result (e.g., `{ status: 'SUCCESS', data: newUser }`).
+4. **Synchronization Matching**: The engine takes the result of the execution and checks it against all `SyncRule`s.
+5. **Triggering New Actions**: For every matching rule, the engine executes the `then` function, which typically dispatches new actions. For example, a successful user registration might trigger actions to the `JWT` concept (to create a token) and the `Persistence` concept (to save the user).
+6. **Completion**: The flow continues until no more actions are dispatched. The engine returns the result of the last executed action.
 
-    throw new Error(`Unknown action: ${action}`);
-  }
-};
-```
+## Project Structure
 
-## 🔄 Synchronizations
-
-Synchronizations are declarative rules that define system behavior:
-
-```typescript
-export const mySyncs: SyncRule[] = [
-  {
-    name: "MySynchronization",
-    when: [
-      {
-        concept: "SourceConcept",
-        action: "someAction"
-      }
-    ],
-    then: [
-      {
-        concept: "TargetConcept",
-        action: "anotherAction",
-        input: {
-          param: "?outputParam"
-        }
-      }
-    ]
-  }
-];
-```
-
-## 📡 API Reference
-
-### REST API Endpoints (Express Version)
+The project is a Lerna monorepo with the following high-level structure:
 
 ```
-POST   /users              # Register a new user
-POST   /login              # User login
-POST   /articles           # Create a new article
-POST   /articles/:id/favorite    # Favorite an article
-DELETE /articles/:id/favorite    # Unfavorite an article
-POST   /articles/:id/comments    # Add a comment
-GET    /audit/:flowId      # Audit a flow
+.
+├── packages/
+│   ├── core/               # The core LegibleSync framework
+│   ├── example-console/    # A command-line application example
+│   └── example-express/    # An Express.js web server example
+├── docs/                   # Project documentation
+└── ...                     # Other configuration files and scripts
 ```
 
-### Engine API
+## Development
 
-```typescript
-import { SyncEngine } from './engine/Engine';
+### Available Scripts
 
-// Create engine instance
-const engine = new SyncEngine();
+These commands should be run from the root of the monorepo:
 
-// Register concepts
-engine.registerConcept("MyConcept", MyConcept);
+- `npm run build`: Build all packages.
+- `npm run test`: Run tests for all packages.
+- `npm run lint`: Lint all packages.
+- `npm run typecheck`: Run TypeScript type checking for all packages.
 
-// Register synchronizations
-engine.registerSync(mySyncRule);
+### Adding a New Feature
 
-// Execute actions
-const result = await engine.invoke("MyConcept", "myAction", input, flowId);
+To add a new feature to one of the examples, you would typically:
 
-// Audit flows
-const actions = engine.getActionsByFlow(flowId);
-```
+1. **Create or Modify a Concept**:
+    - Add a new file in the `packages/example-*/src/concepts/` directory.
+    - Implement the `ConceptImpl` interface from `@legible-sync/core`.
+    - Define the concept's state and the logic within its `execute` function.
 
-## 💡 Examples
+2. **Create or Modify a Synchronization**:
+    - Add a new file in the `packages/example-*/src/syncs/` directory.
+    - Define an array of `SyncRule`s that describe how the new feature interacts with other concepts.
 
-### User Registration Flow
+3. **Register with the Engine**:
+    - In the main application file (e.g., `packages/example-*/src/index.ts`), import the new concept and synchronization.
+    - Add them to the `LegibleEngine`'s configuration.
 
-```typescript
-// Trigger user registration
-await engine.invoke("Web", "request", {
-  method: "POST",
-  path: "/users",
-  body: {
-    username: "alice",
-    email: "alice@example.com",
-    password: "secure123"
-  }
-}, "registration-flow");
-```
+## Packages
 
-This single action triggers:
-1. Password validation
-2. User registration
-3. Password hashing and storage
-4. JWT token generation
-5. State persistence to RDF store
+- [`@legible-sync/core`](./packages/core): The core framework containing the `LegibleEngine`.
+- [`@legible-sync/example-console`](./packages/example-console): A command-line application demonstrating the framework.
+- [`@legible-sync/example-express`](./packages/example-express): An Express.js web server demonstrating the framework in a web context.
 
-### Article Creation with Authentication
+## Research Background
 
-```typescript
-// Create article (requires authentication)
-await engine.invoke("Web", "request", {
-  method: "POST",
-  path: "/articles",
-  body: {
-    title: "My Article",
-    body: "Article content...",
-    token: "jwt-token-here"
-  }
-}, "article-flow");
-```
+This implementation is based on the paper ["What You See Is What It Does: A Structural Pattern for Legible Software"](https://arxiv.org/html/2508.14511v2) by Eagon Meng and Daniel Jackson.
 
-## 🤝 Contributing
+## Contributing
 
-We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for details.
+See [CONTRIBUTING.md](./CONTRIBUTING.md) for contribution guidelines.
 
-### Development Workflow
+## License
 
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Add tests
-5. Run the linter: `npm run lint`
-6. Run tests: `npm test`
-7. Submit a pull request
-
-### Adding New Features
-
-1. **New Concepts**: Create in `src/concepts/`
-2. **New Synchronizations**: Create in `src/syncs/`
-3. **Update Tests**: Add test cases
-4. **Update Documentation**: Update this README
-
-## 🔬 Research
-
-This implementation is based on the paper:
-
-> **"What You See Is What It Does: A Structural Pattern for Legible Software"**
->
-> Eagon Meng, Daniel Jackson
->
-> [arXiv:2508.14511](https://arxiv.org/html/2508.14511v2)
-
-The WYSIWYG pattern provides:
-- **Legibility**: System behavior is explicitly declared
-- **Modularity**: Concepts are independent and reusable
-- **Maintainability**: Changes are localized to specific rules
-- **Testability**: Each concept and synchronization can be tested independently
-
-## 🤖 AI Assessment Scale
-
-This project demonstrates **co-creation with AI agents** using the [AI Assessment Scale](https://aiassessmentscale.com/) framework.
-
-### AI Participation Level: **4 - AI as Leader**
-
-**AI Contributions:**
-- **Research Synthesis**: Analyzed academic paper and extracted architectural patterns
-- **Framework Design**: Created complete LegibleSync framework architecture
-- **Code Implementation**: Generated all TypeScript code and examples
-- **Documentation**: Produced comprehensive bilingual documentation
-- **Quality Engineering**: Implemented testing strategies and code optimization
-
-**Human Contributions:**
-- **Project Vision**: Mauro Stepanoski defined the project scope and goals
-- **Domain Validation**: Ensured technical accuracy and research fidelity
-- **Ethical Framework**: Maintained responsible AI implementation standards
-
-**Assessment Rationale:**
-- AI drove the technical creation and implementation process
-- Human provided strategic direction and quality assurance
-- Collaboration resulted in accelerated development with human oversight
-
-## 👨‍💻 Author & Attribution
-
-**Implementation by:** [Mauro Stepanoski](https://maurostepanoski.ar) with AI co-creation
-
-**Original Research:** Eagon Meng and Daniel Jackson - ["What You See Is What It Does: A Structural Pattern for Legible Software"](https://arxiv.org/html/2508.14511v2)
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🙏 Acknowledgments
-
-- Daniel Jackson and Eagon Meng for the original research
-- The MIT Software Design Group for their work on software architecture patterns
-
----
-
-**⭐ Star this repository if you find it useful!**
-
-For questions or discussions, please [open an issue](https://github.com/yourusername/wysiwyg-legible-software/issues).
+MIT - Copyright (c) 2025 Mauro Stepanoski
