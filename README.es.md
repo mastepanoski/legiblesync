@@ -1,16 +1,40 @@
-# LegibleSync: What You See Is What It Does - Un Patrón Estructural para Software Legible
+# WYSIWYG Legible Software
 
-Este repositorio implementa el patrón arquitectónico "What You See Is What It Does" para crear sistemas de software legibles. El patrón separa la lógica de negocio en **Conceptos** independientes y **Sincronizaciones** declarativas que orquestan las interacciones entre conceptos.
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue.svg)](https://www.typescriptlang.org/)
+[![Node.js](https://img.shields.io/badge/Node.js-18+-green.svg)](https://nodejs.org/)
 
-## Visión General de la Arquitectura
+> "What You See Is What It Does" - Un Patrón Estructural para Software Legible
 
-El patrón "What You See Is What It Does" consiste en:
+Este repositorio implementa el patrón arquitectónico WYSIWYG (What You See Is What It Does) para crear sistemas de software mantenibles y legibles. El patrón separa la lógica de negocio en **Conceptos** independientes y **Sincronizaciones** declarativas que orquestan las interacciones entre conceptos.
 
-- **Conceptos**: Módulos independientes que encapsulan estado y comportamiento
-- **Sincronizaciones**: Reglas declarativas que activan acciones cuando se cumplen ciertas condiciones
-- **Motor**: El runtime que ejecuta conceptos y gestiona sincronizaciones
+**Implementación por:** [Mauro Stepanoski](https://maurostepanoski.ar)  
+**Basado en investigación de:** Eagon Meng y Daniel Jackson
 
-## Estructura del Proyecto
+## Tabla de Contenidos
+
+- [Visión General](#visión-general)
+- [Arquitectura](#arquitectura)
+- [Inicio Rápido](#inicio-rápido)
+- [Conceptos](#conceptos)
+- [Sincronizaciones](#sincronizaciones)
+- [Referencia de API](#referencia-de-api)
+- [Ejemplos](#ejemplos)
+- [Contribuyendo](#contribuyendo)
+- [Investigación](#investigación)
+- [Licencia](#licencia)
+
+## Visión General
+
+La arquitectura de software tradicional a menudo mezcla lógica de negocio con código de orquestación, haciendo que los sistemas sean difíciles de entender y mantener. El patrón WYSIWYG aborda esto mediante:
+
+- **Conceptos**: Módulos independientes y autocontenidos que encapsulan estado y comportamiento
+- **Sincronizaciones**: Reglas declarativas que definen cuándo y cómo interactúan los conceptos
+- **Motor**: Un runtime que ejecuta conceptos y gestiona sincronizaciones
+
+Esta separación hace que el comportamiento del software sea visible y modificable a través de reglas explícitas y declarativas en lugar de código imperativo implícito.
+
+## Arquitectura
 
 ```
 src/
@@ -18,113 +42,271 @@ src/
 │   ├── User.ts       # Gestión de usuarios
 │   ├── Article.ts    # Gestión de artículos/posts del blog
 │   ├── Favorite.ts   # Funcionalidad de favoritos
+│   ├── Comment.ts    # Sistema de comentarios
 │   ├── Password.ts   # Validación y almacenamiento de contraseñas
 │   ├── JWT.ts        # Manejo de tokens JWT
-│   └── Web.ts        # Manejo de peticiones/respuestas HTTP
+│   ├── Web.ts        # Manejo de peticiones/respuestas HTTP
+│   └── Persistence.ts # Persistencia de estado RDF/SPARQL
 ├── engine/           # Motor central de sincronización
 │   ├── Engine.ts     # Motor principal de sincronización
 │   └── types.ts      # Definiciones de tipos TypeScript
-└── syncs/            # Reglas declarativas de sincronización
-    ├── registration.sync.ts  # Flujo de registro de usuario
-    └── article.sync.ts       # Flujo de creación de artículos
+├── syncs/            # Reglas declarativas de sincronización
+│   ├── registration.sync.ts  # Flujo de registro de usuario
+│   ├── article.sync.ts       # Flujo de creación de artículos
+│   ├── favorite.sync.ts      # Gestión de favoritos
+│   ├── comment.sync.ts       # Gestión de comentarios
+│   └── persistence.sync.ts   # Reglas de persistencia de estado
+└── utils/            # Funciones de utilidad
+    └── audit.ts      # Utilidades de auditoría de flujos
 ```
 
 ## Inicio Rápido
 
-Ver [QUICK_START.md](./QUICK_START.md) para una guía rápida de inicio.
+### Prerrequisitos
+
+- Node.js 18+
+- npm o yarn
+
+### Instalación
+
+```bash
+# Clonar el repositorio
+git clone https://github.com/yourusername/wysiwyg-legible-software.git
+cd wysiwyg-legible-software
+
+# Instalar dependencias
+npm install
+
+# Ejecutar la demo
+npm start
+
+# Ejecutar con observación de archivos
+npm run dev
+
+# Ejecutar pruebas
+npm test
+
+# Verificación de tipos
+npm run typecheck
+
+# Linting
+npm run lint
+```
+
+### Versión Express.js
+
+```bash
+# Navegar a la aplicación Express
+cd express-app
+
+# Instalar dependencias
+npm install
+
+# Ejecutar el servidor
+npm start
+
+# La API estará disponible en http://localhost:3000
+```
 
 ## Conceptos
 
 Cada concepto es un módulo independiente con su propio estado y acciones:
 
-### Concepto User
-Maneja el registro y gestión de usuarios.
+### Conceptos Core
 
-### Concepto Article
-Gestiona artículos/posts del blog con generación automática de slugs.
+- **User**: Gestiona registro de usuarios y perfiles
+- **Article**: Maneja artículos/posts del blog con generación automática de slugs
+- **Password**: Valida y almacena contraseñas de forma segura usando bcrypt
+- **JWT**: Genera y verifica tokens JSON Web para autenticación
 
-### Concepto Favorite
-Gestiona los favoritos de usuarios para artículos.
+### Conceptos Extendidos
 
-### Concepto Password
-Valida y almacena contraseñas (simplificado para demo).
+- **Favorite**: Gestiona favoritos de usuarios para artículos
+- **Comment**: Maneja comentarios de artículos y discusiones
+- **Web**: Simula manejo de peticiones/respuestas HTTP
+- **Persistence**: Persistencia de estado basada en RDF/SPARQL
 
-### Concepto JWT
-Maneja la generación y verificación de tokens JWT (simplificado para demo).
+### Creando un Nuevo Concepto
 
-### Concepto Web
-Simula el manejo de peticiones/respuestas HTTP.
+```typescript
+import { ConceptImpl } from '../engine/types';
+
+export const MyConcept: ConceptImpl = {
+  state: {
+    myData: new Map(),
+  },
+
+  async execute(action: string, input: any) {
+    if (action === 'myAction') {
+      // Implementa tu lógica aquí
+      return { result: 'success' };
+    }
+
+    throw new Error(`Unknown action: ${action}`);
+  }
+};
+```
 
 ## Sincronizaciones
 
-Las sincronizaciones son reglas declarativas que definen cuándo y cómo interactúan los conceptos:
+Las sincronizaciones son reglas declarativas que definen el comportamiento del sistema:
 
-### Sincronización de Registro
-Orquesta el proceso de registro de usuario:
-1. Valida los requisitos de contraseña
-2. Registra al usuario
-3. Establece la contraseña
-4. Genera un token JWT
+```typescript
+export const mySyncs: SyncRule[] = [
+  {
+    name: "MySynchronization",
+    when: [
+      {
+        concept: "SourceConcept",
+        action: "someAction"
+      }
+    ],
+    then: [
+      {
+        concept: "TargetConcept",
+        action: "anotherAction",
+        input: {
+          param: "?outputParam"
+        }
+      }
+    ]
+  }
+];
+```
 
-### Sincronización de Artículos
-Maneja la creación de artículos con autenticación:
-1. Verifica el token JWT
-2. Crea el artículo con el slug apropiado
+## Referencia de API
 
-## Desarrollo
+### Endpoints REST API (Versión Express)
 
-### Scripts Disponibles
+```
+POST   /users              # Registrar un nuevo usuario
+POST   /login              # Inicio de sesión de usuario
+POST   /articles           # Crear un nuevo artículo
+POST   /articles/:id/favorite    # Favorito de un artículo
+DELETE /articles/:id/favorite    # Quitar favorito de un artículo
+POST   /articles/:id/comments    # Agregar un comentario
+GET    /audit/:flowId      # Auditar un flujo
+```
 
-- `npm start` - Ejecuta la aplicación principal
-- `npm run dev` - Ejecuta con observación de archivos
-- `npm run build` - Compila TypeScript
-- `npm test` - Ejecuta las pruebas
-- `npm run lint` - Revisa el código
-- `npm run typecheck` - Verifica tipos sin emitir archivos
+### API del Motor
 
-### Agregar Nuevos Conceptos
+```typescript
+import { SyncEngine } from './engine/Engine';
 
-1. Crear un nuevo archivo en `src/concepts/`
-2. Implementar la interfaz `ConceptImpl`
-3. Registrar el concepto en la aplicación principal
+// Crear instancia del motor
+const engine = new SyncEngine();
 
-### Agregar Nuevas Sincronizaciones
+// Registrar conceptos
+engine.registerConcept("MyConcept", MyConcept);
 
-1. Crear un nuevo archivo en `src/syncs/`
-2. Definir reglas de sincronización usando el tipo `SyncRule`
-3. Registrar las sincronizaciones en la aplicación principal
+// Registrar sincronizaciones
+engine.registerSync(mySyncRule);
 
-## Antecedentes de Investigación
+// Ejecutar acciones
+const result = await engine.invoke("MyConcept", "myAction", input, flowId);
 
-Esta implementación se basa en el artículo ["What You See Is What It Does: A Structural Pattern for Legible Software"](https://arxiv.org/html/2508.14511v2) de Eagon Meng y Daniel Jackson.
+// Auditar flujos
+const actions = engine.getActionsByFlow(flowId);
+```
 
-El patrón "What You See Is What It Does" busca hacer los sistemas de software más legibles mediante:
-- Separar las preocupaciones en conceptos independientes
-- Usar sincronizaciones declarativas en lugar de orquestación imperativa
-- Hacer el comportamiento del sistema visible a través de reglas explícitas
+## Ejemplos
+
+### Flujo de Registro de Usuario
+
+```typescript
+// Activar registro de usuario
+await engine.invoke("Web", "request", {
+  method: "POST",
+  path: "/users",
+  body: {
+    username: "alice",
+    email: "alice@example.com",
+    password: "secure123"
+  }
+}, "registration-flow");
+```
+
+Esta única acción activa:
+1. Validación de contraseña
+2. Registro de usuario
+3. Hashing y almacenamiento de contraseña
+4. Generación de token JWT
+5. Persistencia de estado al almacén RDF
+
+### Creación de Artículo con Autenticación
+
+```typescript
+// Crear artículo (requiere autenticación)
+await engine.invoke("Web", "request", {
+  method: "POST",
+  path: "/articles",
+  body: {
+    title: "Mi Artículo",
+    body: "Contenido del artículo...",
+    token: "jwt-token-aqui"
+  }
+}, "article-flow");
+```
+
+## Contribuyendo
+
+¡Aceptamos contribuciones! Por favor revisa nuestra [Guía de Contribución](CONTRIBUTING.md) para detalles.
+
+### Flujo de Desarrollo
+
+1. Fork del repositorio
+2. Crear rama de feature
+3. Hacer tus cambios
+4. Agregar pruebas
+5. Ejecutar linter: `npm run lint`
+6. Ejecutar pruebas: `npm test`
+7. Enviar pull request
+
+### Agregando Nuevas Funcionalidades
+
+1. **Nuevos Conceptos**: Crear en `src/concepts/`
+2. **Nuevas Sincronizaciones**: Crear en `src/syncs/`
+3. **Actualizar Pruebas**: Agregar casos de prueba
+4. **Actualizar Documentación**: Actualizar este README
+
+## Investigación
+
+Esta implementación se basa en el artículo:
+
+> **"What You See Is What It Does: A Structural Pattern for Legible Software"**
+>
+> Eagon Meng, Daniel Jackson
+>
+> [arXiv:2508.14511](https://arxiv.org/html/2508.14511v2)
+
+El patrón WYSIWYG proporciona:
+- **Legibilidad**: El comportamiento del sistema está explícitamente declarado
+- **Modularidad**: Los conceptos son independientes y reutilizables
+- **Mantenibilidad**: Los cambios están localizados a reglas específicas
+- **Capacidad de Prueba**: Cada concepto y sincronización puede probarse independientemente
 
 ## Escala de Evaluación de IA
 
-Este proyecto fue desarrollado mediante **co-creación con agentes de IA**, siguiendo el marco de la [Escala de Evaluación de IA](https://aiassessmentscale.com/).
+Este proyecto demuestra **co-creación con agentes de IA** usando el marco de la [Escala de Evaluación de IA](https://aiassessmentscale.com/).
 
 ### Nivel de Participación de IA: **4 - IA como Líder**
 
-**Cómo Contribuyó la IA:**
-- **Análisis de Investigación**: Los agentes de IA analizaron el artículo académico y extrajeron conceptos clave
-- **Diseño de Arquitectura**: Diseño completo del framework y estrategia de implementación
-- **Generación de Código**: Todo el código TypeScript, documentación y ejemplos
-- **Documentación**: Documentación completa bilingüe y guías
-- **Control de Calidad**: Revisión de código, estrategias de testing y optimización
+**Contribuciones de IA:**
+- **Síntesis de Investigación**: Analizó el artículo académico y extrajo patrones arquitectónicos
+- **Diseño de Framework**: Creó la arquitectura completa del framework LegibleSync
+- **Implementación de Código**: Generó todo el código TypeScript y ejemplos
+- **Documentación**: Produjo documentación completa bilingüe
+- **Ingeniería de Calidad**: Implementó estrategias de testing y optimización de código
 
-**Rol Humano:**
-- **Dirección Estratégica**: Mauro Stepanoski proporcionó la visión del proyecto y requisitos
-- **Experiencia en el Dominio**: Validación de decisiones técnicas y precisión de la investigación
-- **Supervisión Ética**: Garantizando la implementación responsable de los conceptos
+**Contribuciones Humanas:**
+- **Visión del Proyecto**: Mauro Stepanoski definió el alcance y objetivos del proyecto
+- **Validación de Dominio**: Aseguró precisión técnica y fidelidad a la investigación
+- **Marco Ético**: Mantuvo estándares de implementación responsable de IA
 
-**Por qué Nivel 4:**
-- La IA lideró la implementación técnica y el proceso creativo
-- El humano proporcionó supervisión esencial y conocimiento del dominio
-- Resultado: Desarrollo acelerado con resultados alineados con lo humano
+**Justificación de Evaluación:**
+- La IA impulsó el proceso de creación e implementación técnica
+- El humano proporcionó dirección estratégica y aseguramiento de calidad
+- La colaboración resultó en desarrollo acelerado con supervisión humana
 
 ## Autor y Atribución
 
@@ -134,4 +316,15 @@ Este proyecto fue desarrollado mediante **co-creación con agentes de IA**, sigu
 
 ## Licencia
 
-Licencia MIT - Copyright (c) 2025 Mauro Stepanoski
+Este proyecto está licenciado bajo la Licencia MIT - ver el archivo [LICENSE](LICENSE) para detalles.
+
+## Agradecimientos
+
+- Daniel Jackson y Eagon Meng por la investigación original
+- El MIT Software Design Group por su trabajo en patrones de arquitectura de software
+
+---
+
+**⭐ ¡Dale estrella a este repositorio si te resulta útil!**
+
+Para preguntas o discusiones, por favor [abre un issue](https://github.com/yourusername/wysiwyg-legible-software/issues).
