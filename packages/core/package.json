@@ -1,6 +1,6 @@
 {
   "name": "@legible-sync/core",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "description": "Core framework for LegibleSync - What You See Is What It Does",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
