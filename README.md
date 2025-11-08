@@ -135,6 +135,10 @@ See [CONTRIBUTING.md](./CONTRIBUTING.md) for contribution guidelines.
 
 **Original Research:** Eagon Meng and Daniel Jackson - ["What You See Is What It Does: A Structural Pattern for Legible Software"](https://arxiv.org/html/2508.14511v2)
 
+## Security
+
+See [SECURITY.md](./SECURITY.md) for security policy and best practices.
+
 ## License
 
 MIT - Copyright (c) 2025 Mauro Stepanoski
