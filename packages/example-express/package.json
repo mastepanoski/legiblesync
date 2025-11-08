@@ -8,7 +8,8 @@
     "dev": "ts-node --watch src/server.ts",
     "build": "tsc",
     "lint": "eslint src/**/*.ts",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "test": "jest"
   },
   "keywords": [
     "example",
@@ -38,8 +39,10 @@
     "@types/jest": "^29.0.0",
     "@types/jsonwebtoken": "^9.0.0",
     "@types/node": "^20.0.0",
+    "@types/supertest": "^2.0.0",
     "eslint": "^8.0.0",
     "jest": "^29.0.0",
+    "supertest": "^6.3.0",
     "ts-node": "^10.9.0",
     "typescript": "^5.0.0"
   },

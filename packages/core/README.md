@@ -98,6 +98,19 @@ const userFilterSync: SyncRule = {
 ### Engine
 Runtime that orchestrates concept execution and synchronization triggering.
 
+## Use Cases and Best Practices
+
+### Core Business Logic with Syncs
+Use syncs for primary business flows like user registration or order processing. They ensure synchronous, traceable interactions between concepts.
+
+### Side Effects and Decoupling
+For asynchronous side effects (notifications, analytics), consider integrating an event system. While syncs can trigger these, an external EventBus provides better decoupling and resilience. See the [example-eda](https://github.com/mastepanoski/legiblesync/tree/main/packages/example-eda) for an event-driven implementation.
+
+### General Guidelines
+- Keep syncs focused on business logic to maintain legibility.
+- Test syncs thoroughly due to their declarative nature.
+- For complex systems, combine syncs with event-driven patterns.
+
 ## API Reference
 
 ### LegibleEngine

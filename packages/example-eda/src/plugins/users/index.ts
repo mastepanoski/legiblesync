@@ -9,7 +9,7 @@ export const usersPlugin: Plugin = {
     User
   },
   syncs: userEventSyncs,
-  initialize: async (engine) => {
+  initialize: async (_engine) => {
     console.log('👤 Users plugin initialized');
   }
 };

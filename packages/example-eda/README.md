@@ -62,3 +62,42 @@ npm run dev
 ```
 
 This will start the EDA system and demonstrate various event flows.
+
+## Testing
+
+The example includes comprehensive test suites:
+
+### Unit Tests
+```bash
+# Run all unit tests
+npm test
+
+# Run specific test file
+npm test -- EventBus.test.ts
+
+# Run with coverage
+npm run test:coverage
+
+# Run tests in watch mode
+npm run test:watch
+```
+
+### Test Structure
+
+- **Unit Tests** (`__tests__/unit/`): Test individual components
+  - `PluginManager.test.ts`: Plugin loading and management
+  - `EventBus.test.ts`: Event publishing and subscription
+  - `concepts/User.test.ts`: User concept business logic
+
+- **Integration Tests** (`__tests__/integration/`): Test complete workflows
+  - `ecommerce-flow.test.ts`: End-to-end e-commerce scenarios
+
+### Test Coverage
+
+The test suite covers:
+- ✅ Plugin loading and initialization
+- ✅ Event publishing and subscription
+- ✅ Business logic validation
+- ✅ Cross-plugin communication
+- ✅ Error handling
+- ✅ Async operation handling

@@ -8,7 +8,7 @@ export const inventoryPlugin: Plugin = {
     Inventory
   },
   syncs: [],
-  initialize: async (engine) => {
+  initialize: async (_engine) => {
     console.log('📊 Inventory plugin initialized');
   }
 };

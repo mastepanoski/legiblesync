@@ -3,28 +3,6 @@ import { SyncRule } from '@legible-sync/core';
 
 export const registrationSyncs: SyncRule[] = [
   {
-    name: "StartRegistration",
-    when: [
-      {
-        concept: "Web",
-        action: "request",
-        input: { method: "POST", path: "/users" },
-        output: { request: "?req" }
-      }
-    ],
-    then: [
-      {
-        concept: "User",
-        action: "register",
-        input: {
-          user: "uuid()",
-          username: "?body.username",
-          email: "?body.email"
-        }
-      }
-    ]
-  },
-  {
     name: "ValidatePasswordFirst",
     when: [
       {
@@ -48,20 +26,25 @@ export const registrationSyncs: SyncRule[] = [
       {
         concept: "Web",
         action: "request",
-        output: {}
+        input: { method: "POST", path: "/users" },
+        output: { request: "?req" }
       },
       {
         concept: "Password",
         action: "validate",
-        output: { valid: true }
-      },
-      {
-        concept: "User",
-        action: "register",
-        output: { user: "?user" }
+        output: {}
       }
     ],
     then: [
+      {
+        concept: "User",
+        action: "register",
+        input: {
+          user: "uuid()",
+          username: "?body.username",
+          email: "?body.email"
+        }
+      },
       {
         concept: "Password",
         action: "set",
@@ -86,14 +69,19 @@ export const registrationSyncs: SyncRule[] = [
     ],
     then: [
       {
+        concept: "User",
+        action: "getByUsername",
+        input: { username: "?body.username" }
+      },
+      {
         concept: "Password",
         action: "verify",
-        input: { user: "?body.username", password: "?body.password" }
+        input: { user: "?user", password: "?body.password" }
       },
       {
         concept: "JWT",
         action: "generate",
-        input: { user: "?body.username" }
+        input: { user: "?user" }
       }
     ]
   }

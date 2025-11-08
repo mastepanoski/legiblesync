@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 This changelog is automatically generated using [conventional-changelog](https://github.com/conventional-changelog/conventional-changelog).
 
+## [1.1.1] - 2025-11-08
+
+### Added
+- Documentation for use cases and best practices in main README and core package README, including guidance on syncs vs EventBus for side effects and decoupling
+
 ## [1.1.0] - 2025-11-08
 
 ### Added

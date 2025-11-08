@@ -8,7 +8,8 @@
     "dev": "ts-node --watch src/index.ts",
     "build": "tsc",
     "lint": "eslint src/**/*.ts",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "test": "jest"
   },
   "keywords": [
     "example",

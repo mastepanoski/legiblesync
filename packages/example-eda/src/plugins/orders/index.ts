@@ -9,7 +9,7 @@ export const ordersPlugin: Plugin = {
     Order
   },
   syncs: orderWorkflowSyncs,
-  initialize: async (engine) => {
+  initialize: async (_engine) => {
     console.log('🛒 Orders plugin initialized');
   }
 };

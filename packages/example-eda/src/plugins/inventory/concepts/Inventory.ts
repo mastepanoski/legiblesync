@@ -36,9 +36,9 @@ export const Inventory: Concept = {
               requested: item.quantity,
               available: stock
             });
-          } else {
-            total += item.quantity * (item.price || 0);
           }
+          // Calculate total from input items (prices should be provided)
+          total += item.quantity * (item.price || 0);
         }
 
         const available = unavailable.length === 0;

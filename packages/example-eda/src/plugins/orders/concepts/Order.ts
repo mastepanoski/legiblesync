@@ -38,7 +38,7 @@ export const Order: Concept = {
           items: items.map((item: any) => ({
             productId: item.productId,
             quantity: item.quantity,
-            price: 0 // Will be set by inventory
+            price: item.price || 0
           }))
         };
 

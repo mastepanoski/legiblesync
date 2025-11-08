@@ -3,6 +3,24 @@ import { SyncRule } from '@legible-sync/core';
 
 export const articleSyncs: SyncRule[] = [
   {
+    name: "VerifyTokenForArticles",
+    when: [
+      {
+        concept: "Web",
+        action: "request",
+        input: { method: "POST", path: "/articles" },
+        output: { request: "?req" }
+      }
+    ],
+    then: [
+      {
+        concept: "JWT",
+        action: "verify",
+        input: { token: "?token" }
+      }
+    ]
+  },
+  {
     name: "CreateArticle",
     when: [
       {

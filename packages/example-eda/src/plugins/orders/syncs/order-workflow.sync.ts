@@ -2,9 +2,9 @@
 import { SyncRule } from '@legible-sync/core';
 
 export const orderWorkflowSyncs: SyncRule[] = [
-  // For demo purposes, auto-confirm orders immediately (simplified logic)
+  // After order creation, check inventory availability
   {
-    name: "AutoConfirmOrderAfterCreation",
+    name: "CheckInventoryAfterOrderCreation",
     when: [
       {
         concept: "Order",
@@ -13,11 +13,78 @@ export const orderWorkflowSyncs: SyncRule[] = [
     ],
     then: [
       {
+        concept: "Inventory",
+        action: "checkAvailability",
+        input: {
+          orderId: "?orderId",
+          items: "?order.items"
+        }
+      }
+    ]
+  },
+
+  // If inventory is available, confirm the order
+  {
+    name: "ConfirmOrderIfInventoryAvailable",
+    when: [
+      {
+        concept: "Inventory",
+        action: "checkAvailability"
+      }
+    ],
+    where: {
+      filter: (bindings) => bindings.available === true
+    },
+    then: [
+      {
         concept: "Order",
         action: "confirm",
         input: {
           orderId: "?orderId",
-          total: 199.98  // 2 items * $99.99
+          total: "?total"
+        }
+      }
+    ]
+  },
+
+  // After order confirmation, get user details for notifications
+  {
+    name: "GetUserDetailsAfterOrderConfirm",
+    when: [
+      {
+        concept: "Order",
+        action: "confirm"
+      }
+    ],
+    then: [
+      {
+        concept: "User",
+        action: "get",
+        input: {
+          userId: "?order.userId"
+        }
+      }
+    ]
+  },
+
+  // If inventory is not available, cancel the order
+  {
+    name: "CancelOrderIfInventoryUnavailable",
+    when: [
+      {
+        concept: "Inventory",
+        action: "checkAvailability"
+      }
+    ],
+    where: {
+      filter: (bindings) => bindings.available === false
+    },
+    then: [
+      {
+        concept: "Order",
+        action: "cancel",
+        input: {
+          orderId: "?orderId"
         }
       }
     ]
@@ -44,15 +111,22 @@ export const orderWorkflowSyncs: SyncRule[] = [
     ]
   },
 
-  // When order is confirmed, send confirmation notification
+  // When user details are retrieved after order confirmation, send notification
   {
     name: "SendOrderConfirmationNotification",
     when: [
       {
         concept: "Order",
         action: "confirm"
+      },
+      {
+        concept: "User",
+        action: "get"
       }
     ],
+    where: {
+      filter: (bindings) => bindings.order.userId === bindings.user.id
+    },
     then: [
       {
         concept: "Notification",
@@ -62,7 +136,7 @@ export const orderWorkflowSyncs: SyncRule[] = [
           to: "?user.email",
           template: "order-confirmation",
           data: {
-            orderId: "?orderId",
+            orderId: "?order.id",
             total: "?order.total",
             items: "?order.items"
           }

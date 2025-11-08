@@ -30,7 +30,7 @@ export const Article: Concept = {
       state.author.set(article, author);
       state.slug.set(article, slug);
 
-      return { article, slug };
+      return { articleId: article, article: { title, body, author, slug } };
     }
 
     throw new Error(`Unknown action: ${action}`);

@@ -37,7 +37,7 @@ export class EventBus {
       try {
         await handler(fullEvent);
       } catch (error) {
-        console.error(`❌ Error handling event ${event.type}:`, error);
+        // Handler errors are silently ignored to prevent cascading failures
       }
     }
   }

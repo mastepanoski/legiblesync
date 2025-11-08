@@ -9,7 +9,7 @@ export const productsPlugin: Plugin = {
     Product
   },
   syncs: productEventSyncs,
-  initialize: async (engine) => {
+  initialize: async (_engine) => {
     console.log('📦 Products plugin initialized');
   }
 };

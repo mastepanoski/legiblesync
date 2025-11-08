@@ -8,7 +8,7 @@ export const notificationsPlugin: Plugin = {
     Notification
   },
   syncs: [],
-  initialize: async (engine) => {
+  initialize: async (_engine) => {
     console.log('🔔 Notifications plugin initialized');
   }
 };

@@ -69,22 +69,29 @@ export const User: Concept = {
         return { user: updatedUser };
       }
 
-      case 'deactivate': {
-        const { userId } = input;
-        const user = state.users.get(userId);
-        if (!user) {
-          throw new Error('User not found');
-        }
+       case 'deactivate': {
+         const { userId } = input;
+         const user = state.users.get(userId);
+         if (!user) {
+           throw new Error('User not found');
+         }
 
-        user.status = 'inactive';
-        user.deactivatedAt = new Date();
-        state.users.set(userId, user);
+         user.status = 'inactive';
+         user.deactivatedAt = new Date();
+         state.users.set(userId, user);
 
-        return { user };
-      }
+         return { user };
+       }
 
-      default:
-        throw new Error(`Unknown action: ${action}`);
+       case 'reset': {
+         state.users.clear();
+         state.emails.clear();
+         state.usernames.clear();
+         return { reset: true };
+       }
+
+       default:
+         throw new Error(`Unknown action: ${action}`);
     }
   }
 };

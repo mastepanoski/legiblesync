@@ -9,7 +9,7 @@ export const analyticsPlugin: Plugin = {
     Analytics
   },
   syncs: analyticsEventSyncs,
-  initialize: async (engine) => {
+  initialize: async (_engine) => {
     console.log('📈 Analytics plugin initialized');
   }
 };

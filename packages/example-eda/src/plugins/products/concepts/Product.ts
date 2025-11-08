@@ -80,17 +80,23 @@ export const Product: Concept = {
         return { product };
       }
 
-      case 'list': {
-        const { category, status = 'active' } = input;
-        const products = Array.from(state.products.values())
-          .filter((p: any) => p.status === status)
-          .filter((p: any) => !category || p.category === category);
+       case 'list': {
+         const { category, status = 'active' } = input;
+         const products = Array.from(state.products.values())
+           .filter((p: any) => p.status === status)
+           .filter((p: any) => !category || p.category === category);
 
-        return { products };
-      }
+         return { products };
+       }
 
-      default:
-        throw new Error(`Unknown action: ${action}`);
+       case 'reset': {
+         state.products.clear();
+         state.skus.clear();
+         return { reset: true };
+       }
+
+       default:
+         throw new Error(`Unknown action: ${action}`);
     }
   }
 };

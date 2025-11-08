@@ -10,6 +10,7 @@ import { ordersPlugin } from './plugins/orders';
 import { inventoryPlugin } from './plugins/inventory';
 import { notificationsPlugin } from './plugins/notifications';
 import { analyticsPlugin } from './plugins/analytics';
+import { paymentsPlugin } from './plugins/payments';
 
 async function main() {
   console.log('🚀 Starting Event-Driven Architecture Example\n');
@@ -43,6 +44,7 @@ const eventBus = new EventBus();
     productsPlugin,
     inventoryPlugin,
     ordersPlugin,
+    paymentsPlugin,
     notificationsPlugin,
     analyticsPlugin
   ];
@@ -110,6 +112,7 @@ const eventBus = new EventBus();
     // The system should automatically:
     // - Check inventory availability
     // - Confirm the order if available
+    // - Initiate and process payment
     // - Deduct inventory
     // - Send confirmation notification
     // - Track analytics events
@@ -126,16 +129,25 @@ const eventBus = new EventBus();
     console.log('   Order status:', orderStatus.order.status);
     console.log('   Order total: $' + orderStatus.order.total);
 
-    // 6. Check inventory after order
-    console.log('\n6. 📊 Checking inventory after order...');
+    // 6. Check payment status
+    console.log('\n6. 💳 Checking payment status...');
+    const paymentStatus = await engine.invoke('Payment', 'getByOrderId', {
+      orderId: orderResult.orderId
+    }, 'payment-check-flow-1');
+
+    console.log('   Payment status:', paymentStatus.payment.status);
+    console.log('   Payment amount: $' + paymentStatus.payment.amount);
+
+    // 7. Check inventory after order
+    console.log('\n7. 📊 Checking inventory after order...');
     const inventoryStatus = await engine.invoke('Inventory', 'getStock', {
       productId: productResult.productId
     }, 'inventory-check-flow-1');
 
     console.log('   Remaining stock:', inventoryStatus.quantity, 'units');
 
-    // 7. Check analytics
-    console.log('\n7. 📈 Checking analytics...');
+    // 8. Check analytics
+    console.log('\n8. 📈 Checking analytics...');
     const analytics = await engine.invoke('Analytics', 'getMetrics', {}, 'analytics-flow-1');
     console.log('   Events tracked:', analytics.metrics);
 
@@ -143,6 +155,7 @@ const eventBus = new EventBus();
     console.log('The system automatically handled:');
     console.log('  ✓ Inventory validation');
     console.log('  ✓ Order confirmation');
+    console.log('  ✓ Payment processing');
     console.log('  ✓ Stock deduction');
     console.log('  ✓ Email notifications');
     console.log('  ✓ Analytics tracking');

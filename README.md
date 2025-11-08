@@ -80,6 +80,29 @@ The `LegibleEngine` is the heart of the framework. Its responsibilities are:
 - **Triggering Synchronizations**: After a concept executes an action, the engine checks all registered `SyncRule`s. If a rule's `when` clause matches the completed action, its `then` clause is executed.
 - **Managing State**: The engine holds the state of all registered concepts.
 
+## Use Cases and Best Practices
+
+LegibleSync is versatile for building maintainable systems. Here are key use cases and best practices:
+
+### Core Business Logic with Syncs
+- **Use Case**: Orchestrate primary business flows, such as user registration, order processing, or data validation.
+- **Best Practice**: Use syncs for direct, synchronous interactions between concepts. For example, after `User.register`, trigger `Password.set` and `JWT.generate` to complete the registration flow.
+- **Why?**: Syncs ensure explicit, traceable dependencies within the engine, making the system's behavior legible and testable.
+
+### Side Effects and Decoupling with EventBus
+- **Use Case**: Handle asynchronous side effects like notifications, analytics, logging, or integrations with external systems.
+- **Best Practice**: Use the EventBus for decoupling. Publish events after key actions (e.g., `user.registered`), and let external subscribers handle them without affecting the main flow.
+- **Why?**: Syncs can trigger side effects, but EventBus provides better decoupling, resilience, and scalability. Errors in event handlers don't break the core flow.
+- **Example**: In [`example-eda`](./packages/example-eda), syncs handle business logic (e.g., inventory checks), while EventBus publishes events for analytics and notifications. This follows an event-driven architecture, allowing plugins to subscribe to events independently.
+
+### General Guidelines
+- **Separation of Concerns**: Keep syncs focused on business logic; use EventBus for cross-cutting concerns.
+- **Testing**: Syncs are easier to unit-test due to their synchronous nature; EventBus requires integration tests for subscribers.
+- **Scalability**: For high-volume systems, offload event processing to queues or microservices.
+- **Avoid Overuse**: Don't use syncs for everything—reserve EventBus for truly decoupled effects to maintain legibility.
+
+See [`example-eda`](./packages/example-eda) for a full event-driven implementation.
+
 ## How It Works
 
 1. **Initialization**: The `LegibleEngine` is instantiated with a set of concepts and synchronization rules.

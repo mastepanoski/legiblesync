@@ -19,8 +19,8 @@ export const analyticsEventSyncs: SyncRule[] = [
           event: "user_registered",
           data: {
             userId: "?userId",
-            username: "?user.username",
-            email: "?user.email"
+            username: "?username",
+            email: "?email"
           }
         }
       }
@@ -44,9 +44,9 @@ export const analyticsEventSyncs: SyncRule[] = [
           event: "product_created",
           data: {
             productId: "?productId",
-            name: "?product.name",
-            category: "?product.category",
-            price: "?product.price"
+            name: "?name",
+            category: "?category",
+            price: "?price"
           }
         }
       }
@@ -70,8 +70,8 @@ export const analyticsEventSyncs: SyncRule[] = [
           event: "order_created",
           data: {
             orderId: "?orderId",
-            userId: "?order.userId",
-            itemCount: "?order.items.length"
+            userId: "?userId",
+            itemCount: "?items.length"
           }
         }
       }
@@ -94,7 +94,7 @@ export const analyticsEventSyncs: SyncRule[] = [
           event: "order_confirmed",
           data: {
             orderId: "?orderId",
-            total: "?order.total"
+            total: "?total"
           }
         }
       }
