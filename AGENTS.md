@@ -74,6 +74,102 @@
 - Validate all inputs and sanitize outputs
 - Never log sensitive information
 
+## Cybersecurity and Compliance Recommendations
+
+This section provides security guidelines based on OWASP Top 10 and OWASP GenAI recommendations for applications built with LegibleSync.
+
+### OWASP Top 10 Compliance
+
+#### A01:2021 - Broken Access Control
+- Implement proper authentication and authorization in Concept implementations
+- Use role-based access control (RBAC) for sync rules
+- Validate user permissions before executing actions
+
+#### A02:2021 - Cryptographic Failures
+- Use strong encryption for sensitive data storage
+- Implement HTTPS/TLS for all communications
+- Use secure key management practices
+
+#### A03:2021 - Injection
+- Validate and sanitize all user inputs in Concept execute methods
+- Use parameterized queries if interacting with databases
+- Avoid dynamic code execution
+
+#### A04:2021 - Insecure Design
+- Follow the "What You See Is What It Does" principle for transparent system behavior
+- Implement fail-safe defaults in sync rules
+- Conduct threat modeling during architecture design
+
+#### A05:2021 - Security Misconfiguration
+- Use environment variables for configuration
+- Implement proper error handling without exposing sensitive information
+- Regularly update dependencies and monitor for vulnerabilities
+
+#### A06:2021 - Vulnerable and Outdated Components
+- Keep all dependencies updated
+- Use tools like npm audit and Snyk for vulnerability scanning
+- Implement automated dependency updates in CI/CD
+
+#### A07:2021 - Identification and Authentication Failures
+- Implement multi-factor authentication where appropriate
+- Use secure session management
+- Enforce strong password policies
+
+#### A08:2021 - Software and Data Integrity Failures
+- Verify integrity of data in transit and at rest
+- Implement proper backup and recovery procedures
+- Use digital signatures for critical operations
+
+#### A09:2021 - Security Logging and Monitoring Failures
+- Implement comprehensive logging for all actions
+- Monitor sync rule executions for anomalies
+- Set up alerts for security events
+
+#### A10:2021 - Server-Side Request Forgery (SSRF)
+- Validate and restrict external resource access in Concepts
+- Implement allowlists for external URLs
+- Use safe libraries for HTTP requests
+
+### OWASP GenAI Security Recommendations
+
+#### Prompt Injection Prevention
+- Validate and sanitize inputs to AI-generated content
+- Implement prompt engineering best practices
+- Avoid exposing AI system prompts to users
+
+#### Data Privacy and Protection
+- Implement data minimization principles
+- Use differential privacy for sensitive data processing
+- Ensure compliance with data protection regulations (GDPR, CCPA)
+
+#### Model Security
+- Regularly update and patch AI models
+- Implement model validation and monitoring
+- Use trusted AI providers and frameworks
+
+#### Output Validation
+- Validate all AI-generated outputs before use
+- Implement content filtering for harmful content
+- Monitor for adversarial inputs and outputs
+
+#### Responsible AI Practices
+- Document AI decision-making processes
+- Implement explainability features where possible
+- Conduct regular AI ethics reviews
+
+### Compliance Frameworks
+- **GDPR**: Implement data subject rights, consent management, and data minimization
+- **HIPAA**: Secure health data handling (if applicable)
+- **PCI DSS**: Protect payment card information
+- **SOX**: Maintain audit trails for financial systems
+
+### Implementation Guidelines
+- Conduct regular security audits and penetration testing
+- Implement automated security scanning in CI/CD pipelines
+- Train development teams on secure coding practices
+- Maintain an incident response plan
+- Regularly review and update security policies
+
 ## Release Process
 
 - Follow [Semantic Versioning (SemVer)](https://semver.org/) for version numbers
