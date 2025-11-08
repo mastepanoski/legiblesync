@@ -7,7 +7,7 @@ This document outlines the security policy and best practices for LegibleSync, i
 If you discover a security vulnerability in LegibleSync, please report it responsibly:
 
 1. **Do not** create public issues on GitHub
-2. Email security concerns to: [security@legiblesync.dev](mailto:security@legiblesync.dev) (placeholder - update with actual contact)
+2. Contact the maintainer via: https://maurostepanoski.ar
 3. Include detailed information about the vulnerability
 4. Allow reasonable time for response and fixes
 
@@ -171,7 +171,7 @@ Security updates will be released as needed. Subscribe to security announcements
 ## Contact
 
 For security-related questions or concerns:
-- Email: security@legiblesync.dev
+- Contact: https://maurostepanoski.ar
 - GitHub Security Advisories: https://github.com/mastepanoski/legiblesync/security/advisories
 
 ## Disclaimer
