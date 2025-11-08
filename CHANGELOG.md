@@ -10,8 +10,6 @@ This changelog is automatically generated using [conventional-changelog](https:/
 ## [Unreleased]
 
 ### Added
-- Initial project structure
-- Core LegibleEngine with sync system
 - Console and Express examples
 - Jest test suite for core functionality
 

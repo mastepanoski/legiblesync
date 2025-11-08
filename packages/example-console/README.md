@@ -64,5 +64,5 @@ MIT License - Copyright (c) 2025 Mauro Stepanoski
 
 ## Links
 
-- [GitHub Repository](https://github.com/maurostepanoski/wysiwyg-legible-software)
-- [Framework Documentation](https://github.com/maurostepanoski/wysiwyg-legible-software/tree/main/packages/legible-sync)
+- [GitHub Repository](https://github.com/mastepanoski/legiblesync)
+- [Framework Documentation](https://github.com/mastepanoski/legiblesync/tree/main/packages/core)
