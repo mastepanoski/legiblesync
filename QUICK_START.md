@@ -9,13 +9,13 @@ This guide will help you get started with LegibleSync quickly.
 
 ## Installation
 
-1. Clone the repository:
+- Clone the repository:
 ```bash
 git clone https://github.com/mastepanoski/legiblesync.git
 cd legiblesync
 ```
 
-2. Install dependencies:
+- Install dependencies:
 ```bash
 npm install
 ```
@@ -99,9 +99,79 @@ const engine = new LegibleEngine();
 engine.registerConcept('myConcept', myConcept);
 engine.registerSync(mySync);
 
-// Execute an action
+// Execute an action (async)
 const result = await engine.invoke('myConcept', 'increment', {}, 'flow1');
 console.log(result);
+```
+
+### Asynchronous Actions Example
+
+Concepts can have asynchronous actions:
+
+```typescript
+const asyncConcept: ConceptImpl = {
+  state: { data: null },
+  async execute(action: string, input: any) {
+    if (action === 'fetchData') {
+      // Simulate async operation
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      this.state.data = { fetched: true, ...input };
+      return this.state.data;
+    }
+    throw new Error(`Unknown action: ${action}`);
+  }
+};
+```
+
+### Event-Driven Architecture Example
+
+Sync rules create event-driven flows. When an action executes, matching syncs automatically trigger:
+
+```typescript
+// Concept A
+const conceptA: ConceptImpl = {
+  state: {},
+  async execute(action: string, input: any) {
+    if (action === 'startProcess') {
+      console.log('Process started');
+      return { processId: '123' };
+    }
+  }
+};
+
+// Concept B
+const conceptB: ConceptImpl = {
+  state: {},
+  async execute(action: string, input: any) {
+    if (action === 'processData') {
+      console.log('Processing data:', input);
+      return { processed: true };
+    }
+  }
+};
+
+// Sync rule: When A starts process, trigger B to process data
+const eventDrivenSync: SyncRule = {
+  name: 'processFlow',
+  when: [{
+    concept: 'A',
+    action: 'startProcess',
+    output: { processId: '*' } // Match any processId
+  }],
+  then: [{
+    concept: 'B',
+    action: 'processData',
+    input: { data: '?processId' } // Pass processId as data
+  }]
+};
+
+// Register and execute
+engine.registerConcept('A', conceptA);
+engine.registerConcept('B', conceptB);
+engine.registerSync(eventDrivenSync);
+
+// This will automatically trigger B's processData after A's startProcess
+await engine.invoke('A', 'startProcess', {}, 'flow1');
 ```
 
 ## Next Steps
