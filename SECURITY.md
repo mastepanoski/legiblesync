@@ -33,7 +33,8 @@ When building applications with LegibleSync, consider the following security pra
 - Implement proper error handling without information leakage
 
 #### Secure Configuration
-- Use environment variables for sensitive configuration
+- Use environment variables for sensitive configuration (e.g., JWT_SECRET)
+- Never use hard-coded secrets or default fallbacks in production
 - Implement HTTPS/TLS for all communications
 - Regularly update dependencies
 
