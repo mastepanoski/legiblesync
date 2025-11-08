@@ -91,23 +91,16 @@ The `LegibleEngine` is the heart of the framework. Its responsibilities are:
 
 ## Project Structure
 
-The project is a Lerna monorepo with the following structure:
+The project is a Lerna monorepo with the following high-level structure:
 
 ```
-packages/
-├── core/               # The core LegibleSync framework
-│   └── src/
-│       └── engine/
-│           ├── Engine.ts   # The main LegibleEngine
-│           └── types.ts    # Core type definitions
-├── example-console/    # A command-line application example
-│   └── src/
-│       ├── concepts/   # Business logic modules for the console app
-│       └── syncs/      # Synchronization rules for the console app
-└── example-express/    # An Express.js web server example
-    └── src/
-        ├── concepts/   # Business logic modules for the web app
-        └── syncs/      # Synchronization rules for the web app
+.
+├── packages/
+│   ├── core/               # The core LegibleSync framework
+│   ├── example-console/    # A command-line application example
+│   └── example-express/    # An Express.js web server example
+├── docs/                   # Project documentation
+└── ...                     # Other configuration files and scripts
 ```
 
 ## Development
