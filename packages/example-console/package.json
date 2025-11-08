@@ -1,7 +1,7 @@
 {
   "name": "@legible-sync/example-console",
   "version": "0.1.0",
-  "description": "Console example application using LegibleSync framework",
+  "description": "Console example application using WYSIWID Legible Software framework",
   "main": "dist/index.js",
   "scripts": {
     "start": "ts-node src/index.ts",

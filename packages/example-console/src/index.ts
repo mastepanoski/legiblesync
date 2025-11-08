@@ -30,7 +30,7 @@ async function main() {
 
   const flow = "flow-1";
 
-  console.log("🚀 Starting LegibleSync Demo with Persistence\n");
+  console.log("🚀 Starting WYSIWID Legible Software Demo with Persistence\n");
 
   // Simular registro de usuario directamente (sin sincronizaciones complejas)
   console.log("📝 Registering user...");

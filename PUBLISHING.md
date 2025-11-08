@@ -1,6 +1,6 @@
 # Publishing to npm
 
-This guide explains how to publish the LegibleSync packages to npm.
+This guide explains how to publish the WYSIWID Legible Software packages to npm.
 
 ## Prerequisites
 

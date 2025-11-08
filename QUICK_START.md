@@ -1,6 +1,6 @@
 # Quick Start Guide
 
-This guide will help you get started with LegibleSync quickly.
+This guide will help you get started with WYSIWID Legible Software quickly.
 
 ## Prerequisites
 
@@ -35,7 +35,7 @@ This will start an interactive console where you can execute concepts and see sy
 
 ### Express.js Example
 
-The Express example shows how to integrate LegibleSync with a web server.
+The Express example shows how to integrate WYSIWID Legible Software with a web server.
 
 ```bash
 cd packages/example-express

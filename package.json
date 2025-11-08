@@ -1,7 +1,7 @@
 {
   "name": "@legible-sync/monorepo",
   "version": "1.0.0",
-  "description": "Monorepo for LegibleSync - What You See Is What It Does",
+  "description": "Monorepo for WYSIWID Legible Software - What You See Is What It Does",
   "private": true,
   "workspaces": [
     "packages/*"

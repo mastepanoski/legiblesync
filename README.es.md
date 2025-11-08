@@ -1,4 +1,4 @@
-# What You See Is What It Does: Un Patrón Estructural para Software Legible
+# WYSIWID: What You See Is What It Does - Un Patrón Estructural para Software Legible
 
 Este repositorio implementa el patrón arquitectónico "What You See Is What It Does" para crear sistemas de software legibles. El patrón separa la lógica de negocio en **Conceptos** independientes y **Sincronizaciones** declarativas que orquestan las interacciones entre conceptos.
 

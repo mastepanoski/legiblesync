@@ -1,4 +1,4 @@
-// LegibleSync Framework Core
+// WYSIWID Legible Software Framework Core
 export { LegibleEngine } from './engine/Engine';
 export type {
   ConceptImpl,

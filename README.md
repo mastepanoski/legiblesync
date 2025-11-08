@@ -1,4 +1,4 @@
-# LegibleSync
+# WYSIWID Legible Software
 
 What You See Is What It Does - A framework for building legible software through concepts and synchronizations.
 
