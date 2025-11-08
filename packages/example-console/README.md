@@ -5,16 +5,12 @@
 
 Console-based example application demonstrating the LegibleSync framework.
 
-## Installation
-
-```bash
-npm install @legible-sync/example-console
-```
-
 ## Running the Example
 
+From the root of the monorepo, run:
+
 ```bash
-npm start
+npm run dev:console
 ```
 
 This will demonstrate:

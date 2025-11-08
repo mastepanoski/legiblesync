@@ -5,16 +5,12 @@
 
 Express.js REST API example demonstrating the LegibleSync framework in a web application.
 
-## Installation
-
-```bash
-npm install @legible-sync/example-express
-```
-
 ## Running the Example
 
+From the root of the monorepo, run:
+
 ```bash
-npm start
+npm run dev:express
 ```
 
 The API will be available at `http://localhost:3000`

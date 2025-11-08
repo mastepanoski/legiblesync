@@ -6,140 +6,151 @@ What You See Is What It Does - A framework for building legible software through
 
 ## Overview
 
-This repository implements the "What You See Is What It Does" architectural pattern for creating legible software systems. The pattern separates business logic into independent **Concepts** and declarative **Synchronizations** that orchestrate interactions between concepts.
+This repository implements the "What You See Is What It Does" (WYSIWID) architectural pattern. The goal is to create highly legible and maintainable software systems by separating business logic into independent **Concepts** and orchestrating their interactions through declarative **Synchronizations**.
 
-## Architecture Overview
+The framework is built as a TypeScript monorepo and includes the core engine, a console example, and an Express.js example.
 
-The "What You See Is What It Does" pattern consists of:
+## Getting Started
 
-- **Concepts**: Independent modules that encapsulate state and behavior
-- **Synchronizations**: Declarative rules that trigger actions when certain conditions are met
-- **Engine**: The runtime that executes concepts and manages synchronizations
+### Prerequisites
+
+- Node.js (v18 or higher)
+- npm (v8 or higher)
+
+### Installation
+
+1. **Clone the repository:**
+    ```bash
+    git clone https://github.com/maurostepanoski/legiblesync.git
+    cd legiblesync
+    ```
+
+2. **Install dependencies:**
+    This project uses Lerna to manage the monorepo. The bootstrap command will install all dependencies and link the local packages.
+    ```bash
+    npm install
+    ```
+
+### Running the Examples
+
+You can run the included examples from the root directory:
+
+- **Console Example:**
+    ```bash
+    npm run dev:console
+    ```
+    This demonstrates a complete user registration flow, including validation, JWT generation, and state persistence, all logged to the console.
+
+- **Express.js Example:**
+    ```bash
+    npm run dev:express
+    ```
+    This starts a REST API server on `http://localhost:3000` and demonstrates how to integrate LegibleSync in a web application context.
+
+## Core Concepts
+
+The WYSIWID pattern is built on three main components:
+
+### 1. Concepts
+
+A **Concept** is a self-contained module that encapsulates a piece of business logic and its state. It's like a small, independent service focused on a single responsibility.
+
+- **State**: Each concept manages its own internal state.
+- **Actions**: Concepts expose an `execute` function that takes an `action` object. This is the only way to interact with a concept and change its state.
+
+Example concepts from the examples include `User`, `Article`, `Password`, and `JWT`.
+
+### 2. Synchronizations
+
+**Synchronizations** are declarative rules that define how concepts interact. They are the "glue" that connects the independent concepts into a functioning application.
+
+A synchronization consists of one or more `SyncRule` objects, each with two parts:
+
+- `when`: A pattern that matches against actions dispatched to the engine. It can match on `concept`, `action`, and `status`.
+- `then`: A function that receives the matched action and can dispatch new actions to other concepts.
+
+This declarative approach makes the system's behavior explicit and easy to follow. Instead of calling other services directly, a concept simply performs its action, and the synchronization rules determine what happens next.
+
+### 3. The LegibleEngine
+
+The `LegibleEngine` is the heart of the framework. Its responsibilities are:
+
+- **Registering Concepts and Synchronizations**: You tell the engine which concepts and sync rules to use.
+- **Dispatching Actions**: The engine receives an initial action and sends it to the target concept.
+- **Triggering Synchronizations**: After a concept executes an action, the engine checks all registered `SyncRule`s. If a rule's `when` clause matches the completed action, its `then` clause is executed.
+- **Managing State**: The engine holds the state of all registered concepts.
+
+## How It Works
+
+1. **Initialization**: The `LegibleEngine` is instantiated with a set of concepts and synchronization rules.
+2. **Initial Action**: An external trigger (like an HTTP request or a CLI command) creates an initial `action` object and sends it to the engine using `engine.dispatch()`.
+3. **Concept Execution**: The engine finds the concept targeted by the action (e.g., `User`) and calls its `execute` method with the action. The concept performs its logic and returns a result (e.g., `{ status: 'SUCCESS', data: newUser }`).
+4. **Synchronization Matching**: The engine takes the result of the execution and checks it against all `SyncRule`s.
+5. **Triggering New Actions**: For every matching rule, the engine executes the `then` function, which typically dispatches new actions. For example, a successful user registration might trigger actions to the `JWT` concept (to create a token) and the `Persistence` concept (to save the user).
+6. **Completion**: The flow continues until no more actions are dispatched. The engine returns the result of the last executed action.
 
 ## Project Structure
 
+The project is a Lerna monorepo with the following structure:
+
 ```
 packages/
-├── core/                    # Core framework
-│   ├── src/
-│   │   ├── engine/         # Central synchronization engine
-│   │   │   ├── Engine.ts   # Main synchronization engine
-│   │   │   └── types.ts    # TypeScript type definitions
-│   │   └── index.ts        # Main exports
-│   └── __tests__/          # Unit tests
-├── example-console/        # Console-based example
+├── core/               # The core LegibleSync framework
 │   └── src/
-│       ├── concepts/       # Business logic modules
-│       └── syncs/          # Declarative synchronization rules
-└── example-express/        # Express.js web server example
+│       └── engine/
+│           ├── Engine.ts   # The main LegibleEngine
+│           └── types.ts    # Core type definitions
+├── example-console/    # A command-line application example
+│   └── src/
+│       ├── concepts/   # Business logic modules for the console app
+│       └── syncs/      # Synchronization rules for the console app
+└── example-express/    # An Express.js web server example
     └── src/
-        ├── concepts/
-        └── syncs/
+        ├── concepts/   # Business logic modules for the web app
+        └── syncs/      # Synchronization rules for the web app
 ```
-
-## Quick Start
-
-See [QUICK_START.md](./QUICK_START.md) for a quick introduction.
-
-## Packages
-
-- [`@legible-sync/core`](./packages/core) - Core framework
-- [`@legible-sync/example-console`](./packages/example-console) - Console example
-- [`@legible-sync/example-express`](./packages/example-express) - Express.js example
-
-## Concepts
-
-Each concept is an independent module with its own state and actions:
-
-### Core Concepts (Examples)
-
-- **User**: Handles user registration and management
-- **Article**: Manages blog posts/articles with automatic slug generation
-- **Favorite**: Manages user favorites for articles
-- **Password**: Validates and stores passwords
-- **JWT**: Handles JWT token generation and verification
-- **Web**: Simulates HTTP request/response handling
-
-## Synchronizations
-
-Synchronizations are declarative rules that define when and how concepts interact:
-
-### Example Sync Rules
-
-- **Registration Sync**: Orchestrates user registration process
-- **Article Sync**: Handles article creation with authentication
 
 ## Development
 
 ### Available Scripts
 
-- `npm run build` - Compile TypeScript
-- `npm run dev` - Run with file watching
-- `npm run test` - Run tests
-- `npm run lint` - Code linting
-- `npm run typecheck` - Type checking
+These commands should be run from the root of the monorepo:
 
-### Adding New Concepts
+- `npm run build`: Build all packages.
+- `npm run test`: Run tests for all packages.
+- `npm run lint`: Lint all packages.
+- `npm run typecheck`: Run TypeScript type checking for all packages.
 
-1. Create a new file in `src/concepts/`
-2. Implement the `ConceptImpl` interface
-3. Register the concept with the engine
+### Adding a New Feature
 
-### Adding New Sync Rules
+To add a new feature to one of the examples, you would typically:
 
-1. Create a new file in `src/syncs/`
-2. Define synchronization rules using the `SyncRule` type
-3. Register the sync with the engine
+1. **Create or Modify a Concept**:
+    - Add a new file in the `packages/example-*/src/concepts/` directory.
+    - Implement the `ConceptImpl` interface from `@legible-sync/core`.
+    - Define the concept's state and the logic within its `execute` function.
+
+2. **Create or Modify a Synchronization**:
+    - Add a new file in the `packages/example-*/src/syncs/` directory.
+    - Define an array of `SyncRule`s that describe how the new feature interacts with other concepts.
+
+3. **Register with the Engine**:
+    - In the main application file (e.g., `packages/example-*/src/index.ts`), import the new concept and synchronization.
+    - Add them to the `LegibleEngine`'s configuration.
+
+## Packages
+
+- [`@legible-sync/core`](./packages/core): The core framework containing the `LegibleEngine`.
+- [`@legible-sync/example-console`](./packages/example-console): A command-line application demonstrating the framework.
+- [`@legible-sync/example-express`](./packages/example-express): An Express.js web server demonstrating the framework in a web context.
 
 ## Research Background
 
 This implementation is based on the paper ["What You See Is What It Does: A Structural Pattern for Legible Software"](https://arxiv.org/html/2508.14511v2) by Eagon Meng and Daniel Jackson.
 
-The "What You See Is What It Does" pattern aims to make software systems more legible by:
-- Separating concerns into independent concepts
-- Using declarative synchronizations instead of imperative orchestration
-- Making system behavior visible through explicit rules
-
-## AI Assessment Scale
-
-This project was developed through **co-creation with AI agents**, following the [AI Assessment Scale](https://aiassessmentscale.com/) framework.
-
-### AI Participation Level: **4 - AI as Leader**
-
-**How AI Contributed:**
-- **Research Analysis**: AI agents analyzed the academic paper and extracted key concepts
-- **Architecture Design**: Complete framework design and implementation strategy
-- **Code Generation**: All TypeScript code, documentation, and examples
-- **Documentation**: Complete bilingual documentation and guides
-- **Quality Control**: Code review, testing strategies, and optimization
-
-**Human Role:**
-- **Strategic Direction**: Mauro Stepanoski provided project vision and requirements
-- **Domain Expertise**: Validation of technical decisions and research accuracy
-- **Ethical Oversight**: Ensuring responsible implementation of concepts
-
-**Why Level 4:**
-- AI led the technical implementation and creative process
-- Human provided essential oversight and domain knowledge
-- Result: Accelerated development with human-aligned outcomes
-
-## Versioning
-
-This project follows [Semantic Versioning (SemVer)](https://semver.org/).
-
 ## Contributing
 
 See [CONTRIBUTING.md](./CONTRIBUTING.md) for contribution guidelines.
-
-## Author and Attribution
-
-**Implementation by:** [Mauro Stepanoski](https://maurostepanoski.ar) with AI co-creation
-
-**Original Research:** Eagon Meng and Daniel Jackson - ["What You See Is What It Does: A Structural Pattern for Legible Software"](https://arxiv.org/html/2508.14511v2)
-
-## Security
-
-See [SECURITY.md](./SECURITY.md) for security policy and best practices.
 
 ## License
 
