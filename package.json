@@ -15,6 +15,7 @@
     "clean": "lerna clean",
     "publish": "lerna publish",
     "dev:console": "lerna run --scope @legible-sync/example-console start",
+    "dev:eda": "lerna run --scope @legible-sync/example-eda start",
     "dev:express": "lerna run --scope @legible-sync/example-express start",
     "prepare": "husky"
   },

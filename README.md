@@ -41,6 +41,12 @@ You can run the included examples from the root directory:
     ```
     This demonstrates a complete user registration flow, including validation, JWT generation, and state persistence, all logged to the console.
 
+- **EDA Example:**
+    ```bash
+    npm run dev:eda
+    ```
+    This demonstrates an event-driven architecture with plugin-based modules for analytics, inventory, notifications, orders, payments, products, and users.
+
 - **Express.js Example:**
     ```bash
     npm run dev:express
@@ -121,6 +127,7 @@ The project is a Lerna monorepo with the following high-level structure:
 ├── packages/
 │   ├── core/               # The core LegibleSync framework
 │   ├── example-console/    # A command-line application example
+│   ├── example-eda/        # An event-driven architecture example
 │   └── example-express/    # An Express.js web server example
 ├── docs/                   # Project documentation
 └── ...                     # Other configuration files and scripts
@@ -158,6 +165,7 @@ To add a new feature to one of the examples, you would typically:
 
 - [`@legible-sync/core`](./packages/core): The core framework containing the `LegibleEngine`.
 - [`@legible-sync/example-console`](./packages/example-console): A command-line application demonstrating the framework.
+- [`@legible-sync/example-eda`](./packages/example-eda): An event-driven architecture example with plugin-based modules.
 - [`@legible-sync/example-express`](./packages/example-express): An Express.js web server demonstrating the framework in a web context.
 
 ## Research Background
