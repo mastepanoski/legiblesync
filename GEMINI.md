@@ -49,7 +49,7 @@ The project uses `npm` and `lerna` for dependency management and running scripts
 
 ### Concepts
 
-Concepts are self-contained modules that encapsulate a piece of business logic and its state. They should implement the `ConceptImpl` interface from `@legible-sync/core`. Each concept has a `state` object and an `execute` function that handles actions.
+Concepts are self-contained modules that encapsulate a piece of business logic and its state. They should implement the `Concept` interface from `@legible-sync/core`. Each concept has a `state` object and an `execute` function that handles actions.
 
 ### Synchronizations
 

@@ -47,7 +47,7 @@
 - **Functions/Methods**: camelCase (execute, registerConcept)
 - **Variables**: camelCase (userId, articleTitle)
 - **Constants**: UPPER_SNAKE_CASE (JWT_SECRET)
-- **Types/Interfaces**: PascalCase (ActionRecord, ConceptImpl)
+- **Types/Interfaces**: PascalCase (ActionRecord, Concept)
 
 ### Error Handling
 - Use async/await with try/catch blocks

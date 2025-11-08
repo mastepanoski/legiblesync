@@ -1,5 +1,5 @@
 // utils/audit.ts
-import { LegibleEngine, ActionRecord } from '@legible-sync/core';
+import { LegibleEngine } from '@legible-sync/core';
 
 export function auditFlow(engine: LegibleEngine, flow: string): void {
   const actions = engine.getActionsByFlow(flow);

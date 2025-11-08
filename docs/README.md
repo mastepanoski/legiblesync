@@ -77,7 +77,7 @@ new LegibleEngine()
 
 #### Methods
 
-##### `registerConcept(name: string, impl: ConceptImpl)`
+##### `registerConcept(name: string, impl: Concept)`
 Register a concept with the engine.
 
 ##### `registerSync(sync: SyncRule)`
@@ -95,10 +95,10 @@ Get names of all registered concepts.
 ##### `getAllSyncs(): string[]`
 Get names of all registered synchronizations.
 
-### ConceptImpl Type
+### Concept Type
 
 ```typescript
-type ConceptImpl = {
+type Concept = {
   state: ConceptState;
   execute(action: ActionName, input: Record<string, any>): Promise<Record<string, any>>;
 };
@@ -120,7 +120,7 @@ interface SyncRule {
 ### Custom Concepts
 
 ```typescript
-const MyConcept: ConceptImpl = {
+const MyConcept: Concept = {
   state: { data: new Map() },
 
   async execute(action: ActionName, input: Record<string, any>) {

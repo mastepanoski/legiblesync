@@ -1,7 +1,7 @@
 // concepts/Favorite.ts
-import { ConceptImpl } from '@legible-sync/core';
+import { Concept } from '@legible-sync/core';
 
-export const Favorite: ConceptImpl = {
+export const Favorite: Concept = {
   state: {
     favorites: new Map<string, Set<string>>(), // article -> Set<user>
   },

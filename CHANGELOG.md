@@ -12,12 +12,17 @@ This changelog is automatically generated using [conventional-changelog](https:/
 ### Added
 - Console and Express examples
 - Jest test suite for core functionality
+- Query and Invocation types for advanced sync rule filtering
+- ESLint configuration for example packages
 
 ### Changed
 - Improved sync variable extraction and loop prevention
+- Updated SyncRule to include optional where clause for query filtering
+- Enhanced Engine to support binding filtering with Query.where
 
 ### Fixed
 - Sync system infinite loop issues
+- Removed unused imports and variables in example code
 
 ## [0.1.0] - 2025-11-07
 

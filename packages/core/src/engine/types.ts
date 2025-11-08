@@ -18,19 +18,27 @@ export interface ConceptState {
   [key: string]: any;
 }
 
-export type ConceptImpl = {
+export type Concept = {
   state: ConceptState;
   execute(action: ActionName, input: Record<string, any>): Promise<Record<string, any>>;
+};
+
+export type Query = {
+  // Query logic for filtering bindings
+  filter?: (bindings: Bindings) => boolean;
+};
+
+export type Invocation = {
+  concept: ConceptName;
+  action: ActionName;
+  input: Record<string, any>; // variable names or literal values
 };
 
 export type SyncRule = {
   name: string;
   when: Pattern[];
-  then: {
-    concept: ConceptName;
-    action: ActionName;
-    input: Record<string, any>; // variable names or literal values
-  }[];
+  where?: Query;
+  then: Invocation[];
   syncEdges?: Record<string, string[]>; // for idempotency tracking
 };
 

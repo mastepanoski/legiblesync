@@ -1,5 +1,5 @@
 import { LegibleEngine } from '../src/engine/Engine';
-import { ConceptImpl, SyncRule } from '../src/engine/types';
+import { Concept, SyncRule } from '../src/engine/types';
 
 describe('LegibleEngine', () => {
   let engine: LegibleEngine;
@@ -10,7 +10,7 @@ describe('LegibleEngine', () => {
 
   describe('Concept Registration and Execution', () => {
     it('should register and execute a concept', async () => {
-      const mockConcept: ConceptImpl = {
+      const mockConcept: Concept = {
         state: {},
         execute: jest.fn().mockResolvedValue({ result: 'success' })
       };
@@ -28,7 +28,7 @@ describe('LegibleEngine', () => {
     });
 
     it('should handle concept execution errors', async () => {
-      const mockConcept: ConceptImpl = {
+      const mockConcept: Concept = {
         state: {},
         execute: jest.fn().mockRejectedValue(new Error('Execution failed'))
       };
@@ -41,12 +41,12 @@ describe('LegibleEngine', () => {
 
   describe('Sync Rules', () => {
     it('should register and trigger sync rules', async () => {
-      const triggerConcept: ConceptImpl = {
+      const triggerConcept: Concept = {
         state: {},
         execute: jest.fn().mockResolvedValue({ triggered: true })
       };
 
-      const syncConcept: ConceptImpl = {
+      const syncConcept: Concept = {
         state: {},
         execute: jest.fn().mockResolvedValue({ synced: true })
       };
@@ -76,12 +76,12 @@ describe('LegibleEngine', () => {
     });
 
     it('should extract variables from action input/output', async () => {
-      const triggerConcept: ConceptImpl = {
+      const triggerConcept: Concept = {
         state: {},
         execute: jest.fn().mockResolvedValue({ userId: 123, status: 'active' })
       };
 
-      const syncConcept: ConceptImpl = {
+      const syncConcept: Concept = {
         state: {},
         execute: jest.fn().mockResolvedValue({ processed: true })
       };
@@ -111,12 +111,12 @@ describe('LegibleEngine', () => {
     });
 
     it('should prevent infinite loops with sync triggering', async () => {
-      const conceptA: ConceptImpl = {
+      const conceptA: Concept = {
         state: {},
         execute: jest.fn().mockResolvedValue({ triggered: true })
       };
 
-      const conceptB: ConceptImpl = {
+      const conceptB: Concept = {
         state: {},
         execute: jest.fn().mockResolvedValue({ synced: true })
       };
@@ -147,12 +147,12 @@ describe('LegibleEngine', () => {
     });
 
     it('should not trigger sync multiple times for same action', async () => {
-      const triggerConcept: ConceptImpl = {
+      const triggerConcept: Concept = {
         state: {},
         execute: jest.fn().mockResolvedValue({ count: 1 })
       };
 
-      const syncConcept: ConceptImpl = {
+      const syncConcept: Concept = {
         state: {},
         execute: jest.fn().mockResolvedValue({ processed: true })
       };
@@ -175,12 +175,12 @@ describe('LegibleEngine', () => {
     });
 
     it('should handle nested variable extraction', async () => {
-      const triggerConcept: ConceptImpl = {
+      const triggerConcept: Concept = {
         state: {},
         execute: jest.fn().mockResolvedValue({ user: { id: 456, profile: { name: 'Jane' } } })
       };
 
-      const syncConcept: ConceptImpl = {
+      const syncConcept: Concept = {
         state: {},
         execute: jest.fn().mockResolvedValue({ notified: true })
       };
@@ -208,7 +208,7 @@ describe('LegibleEngine', () => {
 
   describe('Flow Management', () => {
     it('should track actions by flow', async () => {
-      const concept: ConceptImpl = {
+      const concept: Concept = {
         state: {},
         execute: jest.fn().mockResolvedValue({ done: true })
       };

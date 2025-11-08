@@ -1,8 +1,7 @@
 // concepts/User.ts
-import { ConceptImpl } from '@legible-sync/core';
-import { v4 as uuidv4 } from 'uuid';
+import { Concept } from '@legible-sync/core';
 
-export const User: ConceptImpl = {
+export const User: Concept = {
   state: {
     users: new Set<string>(),
     username: new Map<string, string>(),

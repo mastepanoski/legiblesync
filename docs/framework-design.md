@@ -28,7 +28,7 @@ Cada Concept es un módulo autocontenido con:
 ### Core Engine (TypeScript)
 
 ```typescript
-type ConceptImpl = {
+type Concept = {
   state: ConceptState;
   execute(action: ActionName, input: Record<string, any>): Promise<Record<string, any>>;
 };
@@ -41,7 +41,7 @@ interface SyncRule {
 }
 
 class LegibleEngine {
-  private concepts = new Map<string, ConceptImpl>();
+  private concepts = new Map<string, Concept>();
   private syncs: SyncRule[] = [];
   private flows = new Map<string, ActionRecord[]>();
 

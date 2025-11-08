@@ -129,9 +129,9 @@ Cada concepto es un módulo independiente con su propio estado y acciones:
 ### Creando un Nuevo Concepto
 
 ```typescript
-import { ConceptImpl } from '../engine/types';
+import { Concept } from '../engine/types';
 
-export const MyConcept: ConceptImpl = {
+export const MyConcept: Concept = {
   state: {
     myData: new Map(),
   },

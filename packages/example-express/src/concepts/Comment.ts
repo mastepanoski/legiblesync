@@ -1,8 +1,7 @@
 // concepts/Comment.ts
-import { ConceptImpl } from '@legible-sync/core';
-import { v4 as uuidv4 } from 'uuid';
+import { Concept } from '@legible-sync/core';
 
-export const Comment: ConceptImpl = {
+export const Comment: Concept = {
   state: {
     comments: new Set<string>(),
     article: new Map<string, string>(),

@@ -120,7 +120,7 @@ To add a new feature to one of the examples, you would typically:
 
 1. **Create or Modify a Concept**:
     - Add a new file in the `packages/example-*/src/concepts/` directory.
-    - Implement the `ConceptImpl` interface from `@legible-sync/core`.
+    - Implement the `Concept` interface from `@legible-sync/core`.
     - Define the concept's state and the logic within its `execute` function.
 
 2. **Create or Modify a Synchronization**:

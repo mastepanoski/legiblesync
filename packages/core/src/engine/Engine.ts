@@ -1,16 +1,16 @@
 // engine/Engine.ts
 import { v4 as uuidv4 } from 'uuid';
 import {
-  ActionRecord, ConceptImpl, SyncRule, Bindings, Pattern
+  ActionRecord, Concept, SyncRule, Bindings, Pattern
 } from './types';
 
 export class LegibleEngine {
-  private concepts: Map<string, ConceptImpl> = new Map();
+  private concepts: Map<string, Concept> = new Map();
   private actions: ActionRecord[] = [];
   private syncs: SyncRule[] = [];
   private syncTriggering = false;
 
-  registerConcept(name: string, impl: ConceptImpl) {
+  registerConcept(name: string, impl: Concept) {
     this.concepts.set(name, impl);
   }
 
@@ -84,7 +84,12 @@ export class LegibleEngine {
     );
 
     // Generate all combinations of bindings using cartesian product
-    const bindingCombinations = this.cartesianProduct(...allBindings);
+    let bindingCombinations = this.cartesianProduct(...allBindings);
+
+    // Apply where query filtering if present
+    if (sync.where?.filter) {
+      bindingCombinations = bindingCombinations.filter(sync.where.filter);
+    }
 
     let fired = false;
     for (const combination of bindingCombinations) {

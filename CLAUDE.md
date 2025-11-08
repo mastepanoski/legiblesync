@@ -73,10 +73,10 @@ Key methods:
 
 ### Concepts
 
-Concepts are independent modules implementing the `ConceptImpl` interface:
+Concepts are independent modules implementing the `Concept` interface:
 
 ```typescript
-type ConceptImpl = {
+type Concept = {
   state: ConceptState;  // Internal state (Map, Set, or plain objects)
   execute(action: string, input: Record<string, any>): Promise<Record<string, any>>;
 };
@@ -131,7 +131,7 @@ Tests use Jest with ts-jest preset:
 
 Key testing pattern from `packages/core/__tests__/Engine.test.ts`:
 ```typescript
-const mockConcept: ConceptImpl = {
+const mockConcept: Concept = {
   state: {},
   execute: jest.fn().mockResolvedValue({ result: 'success' })
 };
@@ -147,7 +147,7 @@ Husky is configured to run `lint-staged` on commit:
 ## Creating New Concepts
 
 1. Create file in `packages/example-*/src/concepts/YourConcept.ts`
-2. Implement `ConceptImpl` interface
+2. Implement `Concept` interface
 3. Define state structure (use Map/Set for uniqueness constraints)
 4. Implement `execute()` with action handling
 5. Register in main index file: `engine.registerConcept("YourConcept", YourConcept)`

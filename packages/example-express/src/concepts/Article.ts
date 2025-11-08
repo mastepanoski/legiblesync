@@ -1,12 +1,11 @@
 // concepts/Article.ts
-import { ConceptImpl } from '@legible-sync/core';
-import { v4 as uuidv4 } from 'uuid';
+import { Concept } from '@legible-sync/core';
 
 function slugify(title: string): string {
   return title.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
 }
 
-export const Article: ConceptImpl = {
+export const Article: Concept = {
   state: {
     articles: new Set<string>(),
     title: new Map<string, string>(),

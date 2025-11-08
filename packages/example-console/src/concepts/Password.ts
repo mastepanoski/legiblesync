@@ -1,8 +1,8 @@
 // concepts/Password.ts
-import { ConceptImpl } from '@legible-sync/core';
+import { Concept } from '@legible-sync/core';
 import bcrypt from 'bcrypt';
 
-export const Password: ConceptImpl = {
+export const Password: Concept = {
   state: {
     password: new Map<string, string>(),
   },

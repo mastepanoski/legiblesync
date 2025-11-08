@@ -1,7 +1,7 @@
 // concepts/Persistence.ts
-import { ConceptImpl } from '@legible-sync/core';
+import { Concept } from '@legible-sync/core';
 
-export const Persistence: ConceptImpl = {
+export const Persistence: Concept = {
   state: {
     triples: [] as Array<{subject: string, predicate: string, object: string}>,
   },
