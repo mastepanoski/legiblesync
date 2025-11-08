@@ -1,0 +1,20 @@
+{
+  "name": "@legible-sync/example-eda",
+  "version": "1.1.0",
+  "description": "Event-Driven Architecture example with plugin-based modules",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "dev": "ts-node src/index.ts",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint src/**/*.ts"
+  },
+  "dependencies": {
+    "@legible-sync/core": "^1.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "ts-node": "^10.9.0",
+    "typescript": "^5.0.0"
+  }
+}
