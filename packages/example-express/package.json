@@ -15,7 +15,7 @@
     "express",
     "rest-api",
     "legible-sync",
-    "wysiwyg",
+    "wysiwid",
     "demo"
   ],
   "author": "Mauro Stepanoski <mauro@stepanoski.ar>",
