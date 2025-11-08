@@ -172,7 +172,7 @@ Security updates will be released as needed. Subscribe to security announcements
 
 For security-related questions or concerns:
 - Contact: https://maurostepanoski.ar
-- GitHub Security Advisories: https://github.com/mastepanoski/legiblesync/security/advisories
+- GitHub Issues: https://github.com/mastepanoski/legiblesync/issues
 
 ## Disclaimer
 
