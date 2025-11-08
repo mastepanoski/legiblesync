@@ -2,7 +2,7 @@
 
 ## Visión General
 
-LegibleSync es un framework que implementa el patrón "What You See Is What It Does" propuesto en el paper de Meng y Jackson. El framework facilita la creación de software legible, modular y mantenible mediante la separación clara entre **Concepts** (lógica de negocio independiente) y **Synchronizations** (reglas declarativas de orquestación).
+LegibleSync es un framework que implementa el patrón "What You See Is What It Does" (WYSIWID) propuesto en el paper de Meng y Jackson. Nota: A menudo se confunde con WYSIWYG (What You See Is What You Get), pero este patrón es específicamente WYSIWID. El framework facilita la creación de software legible, modular y mantenible mediante la separación clara entre **Concepts** (lógica de negocio independiente) y **Synchronizations** (reglas declarativas de orquestación).
 
 ## Arquitectura Core
 

@@ -2,6 +2,8 @@
 
 What You See Is What It Does - A framework for building legible software through concepts and synchronizations.
 
+*Note: This is WYSIWID (What You See Is What It Does), not to be confused with WYSIWYG (What You See Is What You Get).*
+
 ## Overview
 
 This repository implements the "What You See Is What It Does" architectural pattern for creating legible software systems. The pattern separates business logic into independent **Concepts** and declarative **Synchronizations** that orchestrate interactions between concepts.
