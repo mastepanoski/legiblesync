@@ -1,5 +1,4 @@
 // core/EventBus.ts
-import { LegibleEngine } from '@legible-sync/core';
 
 export interface Event {
   type: string;
@@ -12,11 +11,10 @@ export interface Event {
 export type EventHandler = (event: Event) => Promise<void>;
 
 export class EventBus {
-  private engine: LegibleEngine;
   private handlers: Map<string, EventHandler[]> = new Map();
 
-  constructor(engine: LegibleEngine) {
-    this.engine = engine;
+  constructor() {
+    // EventBus is independent of the LegibleEngine
   }
 
   subscribe(eventType: string, handler: EventHandler): void {

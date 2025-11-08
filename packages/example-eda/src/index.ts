@@ -14,10 +14,10 @@ import { analyticsPlugin } from './plugins/analytics';
 async function main() {
   console.log('🚀 Starting Event-Driven Architecture Example\n');
 
-  // Initialize core systems
-  const engine = new LegibleEngine();
-  const pluginManager = new PluginManager(engine);
-  const eventBus = new EventBus(engine);
+// Initialize core systems
+const engine = new LegibleEngine();
+const pluginManager = new PluginManager(engine);
+const eventBus = new EventBus();
 
   // Register EventBus as a concept so plugins can publish events
   engine.registerConcept('EventBus', {
