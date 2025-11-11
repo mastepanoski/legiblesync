@@ -37,8 +37,8 @@ export const Order: Concept = {
           createdAt: new Date(),
           items: items.map((item: any) => ({
             productId: item.productId,
-            quantity: item.quantity,
-            price: item.price || 0
+            quantity: parseFloat(item.quantity) || 0,
+            price: parseFloat(item.price) || 0
           }))
         };
 
@@ -60,7 +60,7 @@ export const Order: Concept = {
         }
 
         order.status = 'confirmed';
-        order.total = total;
+        order.total = parseFloat(total);
         order.confirmedAt = new Date();
         state.orders.set(orderId, order);
 
@@ -109,6 +109,12 @@ export const Order: Concept = {
 
         const items = state.orderItems.get(orderId) || [];
         return { order: { ...order, items } };
+      }
+
+      case 'reset': {
+        state.orders.clear();
+        state.orderItems.clear();
+        return { reset: true };
       }
 
       default:

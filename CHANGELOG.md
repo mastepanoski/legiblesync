@@ -7,6 +7,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 This changelog is automatically generated using [conventional-changelog](https://github.com/conventional-changelog/conventional-changelog).
 
+## [1.1.2] - 2025-11-11
+
+### Fixed
+- Fixed Next.js SSE field name translation between frontend (English) and backend (Spanish) concepts
+- Added reset actions to EDA concepts (Order, Inventory, Notification, Payment) for proper test isolation
+- Fixed API route to properly map field names between frontend and backend
+- Updated SSEEmitter to emit English field names for frontend compatibility
+- Fixed CSV reading to convert Spanish field names back to English for frontend consumption
+
+### Changed
+- Updated Next.js SSE API route to translate between English and Spanish field names
+- Modified SSEEmitter concept to handle field name translation
+- Enhanced test isolation by adding reset functionality to all EDA concepts
+
 ## [1.1.1] - 2025-11-08
 
 ### Added

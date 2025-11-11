@@ -8,12 +8,17 @@ if (!JWT_SECRET) {
 }
 
 export const JWT: Concept = {
-  state: {},
+  state: {
+    tokens: new Map<string, string>()
+  },
 
   async execute(action: string, input: any) {
+    const state = this.state;
+
     if (action === 'generate') {
       const { user } = input;
       const token = jwt.sign({ user }, JWT_SECRET, { expiresIn: '24h' });
+      state.tokens.set(user, token);
       return { token };
     }
     if (action === 'verify') {
@@ -24,6 +29,10 @@ export const JWT: Concept = {
       } catch {
         throw new Error('Invalid token');
       }
+    }
+    if (action === 'reset') {
+      state.tokens.clear();
+      return { success: true };
     }
     throw new Error(`Unknown action: ${action}`);
   }

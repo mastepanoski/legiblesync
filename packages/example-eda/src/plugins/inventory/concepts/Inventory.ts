@@ -29,16 +29,21 @@ export const Inventory: Concept = {
         const unavailable: any[] = [];
 
         for (const item of items) {
+          console.log(`[Inventory.checkAvailability] Processing item: productId=${item.productId}, quantity=${item.quantity}, price=${item.price}`);
+          const parsedQuantity = parseFloat(item.quantity) || 0;
+          console.log(`[Inventory.checkAvailability] Parsed quantity: ${parsedQuantity}`);
+          const parsedPrice = parseFloat(item.price) || 0;
+          console.log(`[Inventory.checkAvailability] Parsed price: ${parsedPrice}`);
           const stock = state.stock.get(item.productId) || 0;
-          if (stock < item.quantity) {
+          if (stock < parsedQuantity) {
             unavailable.push({
               productId: item.productId,
-              requested: item.quantity,
+              requested: parsedQuantity,
               available: stock
             });
           }
           // Calculate total from input items (prices should be provided)
-          total += item.quantity * (item.price || 0);
+          total += parsedQuantity * parsedPrice;
         }
 
         const available = unavailable.length === 0;
@@ -49,12 +54,13 @@ export const Inventory: Concept = {
         const { orderId, items } = input;
 
         for (const item of items) {
+          const parsedQuantity = parseFloat(item.quantity) || 0;
           const currentStock = state.stock.get(item.productId) || 0;
-          if (currentStock < item.quantity) {
+          if (currentStock < parsedQuantity) {
             throw new Error(`Insufficient stock for product ${item.productId}`);
           }
 
-          state.stock.set(item.productId, currentStock - item.quantity);
+          state.stock.set(item.productId, currentStock - parsedQuantity);
         }
 
         return { success: true };
@@ -64,6 +70,11 @@ export const Inventory: Concept = {
         const { productId } = input;
         const quantity = state.stock.get(productId) || 0;
         return { productId, quantity };
+      }
+
+      case 'reset': {
+        state.stock.clear();
+        return { reset: true };
       }
 
       default:

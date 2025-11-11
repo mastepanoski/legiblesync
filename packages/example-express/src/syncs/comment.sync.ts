@@ -3,6 +3,24 @@ import { SyncRule } from '@legible-sync/core';
 
 export const commentSyncs: SyncRule[] = [
   {
+    name: "VerifyTokenForComments",
+    when: [
+      {
+        concept: "Web",
+        action: "request",
+        input: { method: "POST", path: "/articles/*/comments" },
+        output: { request: "?req" }
+      }
+    ],
+    then: [
+      {
+        concept: "JWT",
+        action: "verify",
+        input: { token: "?token" }
+      }
+    ]
+  },
+  {
     name: "CreateComment",
     when: [
       {
@@ -23,7 +41,7 @@ export const commentSyncs: SyncRule[] = [
         action: "create",
         input: {
           comment: "uuid()",
-          article: "?path[1]", // Extract article ID from path
+          article: "?path[2]", // Extract article ID from path
           author: "?user",
           body: "?body.body"
         }

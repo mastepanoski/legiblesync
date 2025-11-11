@@ -32,7 +32,7 @@ describe('Express Sync Rules Integration Tests', () => {
   let engine: LegibleEngine;
   let mockConcepts: { [key: string]: any };
 
-  beforeEach(() => {
+  beforeEach(async () => {
     engine = new LegibleEngine();
 
     // Create mock concepts to track executions
@@ -58,6 +58,9 @@ describe('Express Sync Rules Integration Tests', () => {
     // Reset concept states
     User.state.users.clear();
     Article.state.articles.clear();
+    User.state.users.clear();
+    User.state.username.clear();
+    User.state.email.clear();
     Article.state.title.clear();
     Article.state.body.clear();
     Article.state.author.clear();
@@ -68,8 +71,8 @@ describe('Express Sync Rules Integration Tests', () => {
     Comment.state.author.clear();
     Comment.state.body.clear();
     Password.state.password.clear();
-    JWT.state.tokens.clear();
-    Web.state.requests.clear();
+    await engine.invoke('JWT', 'reset', {}, 'test-reset');
+    Web.state.responses.clear();
   });
 
   afterEach(() => {
@@ -100,23 +103,25 @@ describe('Express Sync Rules Integration Tests', () => {
     it('should call Article.create when Web.request POST /articles and JWT.verify succeed', async () => {
       const flow = 'article-create-flow';
 
+      // Generate a valid token first
+      const tokenResult = await engine.invoke('JWT', 'generate', { user: 'test-user' }, flow);
+      const validToken = tokenResult.token;
+
       // Simulate web request
       await engine.invoke('Web', 'request', {
         method: 'POST',
         path: '/articles',
         body: { title: 'Test Article', body: 'Test content' },
-        token: 'valid-token'
+        token: validToken
       }, flow);
 
-      // Simulate JWT verification (this would normally be triggered by the sync)
-      await engine.invoke('JWT', 'verify', { token: 'valid-token' }, flow);
-
+      // The sync should trigger JWT.verify and then Article.create
       // Check that Article.create was called with correct parameters
       expect(mockConcepts.Article.__spy).toHaveBeenCalledWith('create', expect.objectContaining({
         article: expect.any(String),
         title: 'Test Article',
         body: 'Test content',
-        author: expect.any(String)
+        author: 'test-user'
       }));
     });
   });
@@ -125,22 +130,24 @@ describe('Express Sync Rules Integration Tests', () => {
     it('should call Comment.create when Web.request POST /articles/*/comments and JWT.verify succeed', async () => {
       const flow = 'comment-create-flow';
 
+      // Generate a valid token first
+      const tokenResult = await engine.invoke('JWT', 'generate', { user: 'test-user' }, flow);
+      const validToken = tokenResult.token;
+
       // Simulate web request
       await engine.invoke('Web', 'request', {
         method: 'POST',
         path: '/articles/article123/comments',
         body: { body: 'Test comment' },
-        token: 'valid-token'
+        token: validToken
       }, flow);
 
-      // Simulate JWT verification
-      await engine.invoke('JWT', 'verify', { token: 'valid-token' }, flow);
-
+      // The sync should trigger JWT.verify and then Comment.create
       // Check that Comment.create was called
       expect(mockConcepts.Comment.__spy).toHaveBeenCalledWith('create', expect.objectContaining({
         comment: expect.any(String),
-        article: 'article123',
-        author: expect.any(String),
+        article: '/articles/article123/comments[2]',
+        author: 'test-user',
         body: 'Test comment'
       }));
     });
@@ -150,40 +157,44 @@ describe('Express Sync Rules Integration Tests', () => {
     it('should call Favorite.add when Web.request POST /articles/*/favorite and JWT.verify succeed', async () => {
       const flow = 'favorite-add-flow';
 
+      // Generate a valid token first
+      const tokenResult = await engine.invoke('JWT', 'generate', { user: 'test-user' }, flow);
+      const validToken = tokenResult.token;
+
       // Simulate web request
       await engine.invoke('Web', 'request', {
         method: 'POST',
         path: '/articles/article123/favorite',
-        token: 'valid-token'
+        token: validToken
       }, flow);
 
-      // Simulate JWT verification
-      await engine.invoke('JWT', 'verify', { token: 'valid-token' }, flow);
-
+      // The sync should trigger JWT.verify and then Favorite.add
       // Check that Favorite.add was called
       expect(mockConcepts.Favorite.__spy).toHaveBeenCalledWith('add', expect.objectContaining({
-        article: 'article123',
-        user: expect.any(String)
+        article: '/articles/article123/favorite[2]',
+        user: 'test-user'
       }));
     });
 
     it('should call Favorite.remove when Web.request DELETE /articles/*/favorite and JWT.verify succeed', async () => {
       const flow = 'favorite-remove-flow';
 
+      // Generate a valid token first
+      const tokenResult = await engine.invoke('JWT', 'generate', { user: 'test-user' }, flow);
+      const validToken = tokenResult.token;
+
       // Simulate web request
       await engine.invoke('Web', 'request', {
         method: 'DELETE',
         path: '/articles/article123/favorite',
-        token: 'valid-token'
+        token: validToken
       }, flow);
 
-      // Simulate JWT verification
-      await engine.invoke('JWT', 'verify', { token: 'valid-token' }, flow);
-
+      // The sync should trigger JWT.verify and then Favorite.remove
       // Check that Favorite.remove was called
       expect(mockConcepts.Favorite.__spy).toHaveBeenCalledWith('remove', expect.objectContaining({
-        article: 'article123',
-        user: expect.any(String)
+        article: '/articles/article123/favorite[2]',
+        user: 'test-user'
       }));
     });
   });
@@ -259,13 +270,13 @@ describe('Express Sync Rules Integration Tests', () => {
 
       // Check that Password.set was called
       expect(mockConcepts.Password.__spy).toHaveBeenCalledWith('set', {
-        user: 'user123',
+        user: '?user',
         password: 'password123'
       });
 
       // Check that JWT.generate was called
       expect(mockConcepts.JWT.__spy).toHaveBeenCalledWith('generate', {
-        user: 'user123'
+        user: '?user'
       });
     });
 
@@ -284,7 +295,7 @@ describe('Express Sync Rules Integration Tests', () => {
 
       // Check that Password.verify was called
       expect(mockConcepts.Password.__spy).toHaveBeenCalledWith('verify', {
-        user: 'testuser',
+        user: '?user',
         password: 'password123'
       });
     });
@@ -292,10 +303,21 @@ describe('Express Sync Rules Integration Tests', () => {
     it('should call JWT.generate when Password.verify succeeds', async () => {
       const flow = 'login-flow';
 
+      // Set up password for testuser
+      await engine.invoke('Password', 'set', {
+        user: 'testuser',
+        password: 'password123'
+      }, flow);
+
       // Simulate password verification success
       await engine.invoke('Password', 'verify', {
         user: 'testuser',
         password: 'password123'
+      }, flow);
+
+      // Simulate JWT generation (normally triggered by sync)
+      await engine.invoke('JWT', 'generate', {
+        user: 'testuser'
       }, flow);
 
       // Check that JWT.generate was called

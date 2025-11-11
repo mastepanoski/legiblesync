@@ -1,6 +1,6 @@
 {
   "name": "@legible-sync/monorepo",
-  "version": "1.0.0",
+  "version": "1.1.2",
   "description": "Monorepo for LegibleSync - What You See Is What It Does",
   "private": true,
   "workspaces": [
@@ -8,7 +8,7 @@
   ],
   "scripts": {
     "build": "lerna run build",
-    "test": "lerna run test --scope @legible-sync/core",
+    "test": "lerna run test",
     "lint": "lerna run lint",
     "lint:md": "markdownlint '**/*.md'",
     "typecheck": "lerna run typecheck",
@@ -17,6 +17,7 @@
     "dev:console": "lerna run --scope @legible-sync/example-console start",
     "dev:eda": "lerna run --scope @legible-sync/example-eda start",
     "dev:express": "lerna run --scope @legible-sync/example-express start",
+    "dev:nextjs-sse": "lerna run --scope @legible-sync/example-nextjs-sse dev",
     "prepare": "husky"
   },
   "lint-staged": {

@@ -46,6 +46,12 @@ export const Analytics: Concept = {
         return { events: events.slice(-limit) };
       }
 
+      case 'reset': {
+        state.events.clear();
+        state.metrics.clear();
+        return { success: true };
+      }
+
       default:
         throw new Error(`Unknown action: ${action}`);
     }

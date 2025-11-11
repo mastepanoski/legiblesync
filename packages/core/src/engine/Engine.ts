@@ -115,6 +115,7 @@ export class LegibleEngine {
   ) {
     if (!syncTriggered) {
       this.invokedActions.clear();
+      this.firedSyncs.clear();
     }
 
     const id = uuidv4();
@@ -322,8 +323,13 @@ export class LegibleEngine {
   }
 
   private replaceVariables(obj: any, bindings: Bindings): any {
-    if (typeof obj === "string") {
-      // Replace variables in strings (e.g., "user_?user" -> "user_user123", "?body.password" -> nested value)
+    if (typeof obj === "string" && obj.startsWith("?")) {
+      // If the entire string is a variable reference, return the raw value (not stringified)
+      const varPath = obj.substring(1);
+      const value = this.getNestedValue(bindings, varPath);
+      return value !== undefined ? value : obj; // Return original obj if value is undefined
+    } else if (typeof obj === "string") {
+      // Replace variables within a string (e.g., "user_?user")
       return obj.replace(/\?([\w.]+)/g, (match, varPath) => {
         const value = this.getNestedValue(bindings, varPath);
         return value !== undefined ? String(value) : match;
@@ -348,5 +354,35 @@ export class LegibleEngine {
    */
   getActionsByFlow(flow: string): ActionRecord[] {
     return this.actions.filter((a) => a.flow === flow);
+  }
+
+  /**
+   * Clears all action history for a specific flow.
+   * @param flow - The flow identifier to clear.
+   */
+  clearFlow(flow: string): void {
+    // Filter out actions from the target flow
+    this.actions = this.actions.filter((a) => a.flow !== flow);
+
+    // Rebuild the index to remove actions from the cleared flow
+    this.actionIndex.clear();
+    for (const action of this.actions) {
+      const key = `${action.concept}:${action.action}`;
+      if (!this.actionIndex.has(key)) {
+        this.actionIndex.set(key, []);
+      }
+      this.actionIndex.get(key)!.push(action);
+    }
+  }
+
+  /**
+   * Resets the engine's action history completely.
+   * Note: This does not unregister concepts or sync rules.
+   */
+  reset(): void {
+    this.actions = [];
+    this.actionIndex.clear();
+    this.firedSyncs.clear();
+    this.invokedActions.clear();
   }
 }

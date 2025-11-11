@@ -1,0 +1,58 @@
+{
+  "name": "@legible-sync/example-nextjs-sse",
+  "version": "1.2.1",
+  "description": "Next.js SSE example using LegibleSync framework",
+  "main": "src/index.ts",
+  "scripts": {
+    "dev": "node server.js",
+    "build": "next build",
+    "start": "NODE_ENV=production node server.js",
+    "lint": "next lint",
+    "typecheck": "tsc --noEmit",
+    "test": "jest"
+  },
+  "keywords": [
+    "example",
+    "nextjs",
+    "sse",
+    "legible-sync",
+    "wysiwid",
+    "demo"
+  ],
+  "author": "Mauro Stepanoski (https://maurostepanoski.ar)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mastepanoski/legiblesync.git",
+    "directory": "packages/example-nextjs-sse"
+  },
+  "homepage": "https://github.com/mastepanoski/legiblesync",
+  "dependencies": {
+    "@legible-sync/core": "^1.2.0",
+    "next": "^14.0.0",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "papaparse": "^5.4.1",
+    "socket.io": "^4.7.5",
+    "socket.io-client": "^4.7.5"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.0.0",
+    "@types/node": "^20.0.0",
+    "@types/papaparse": "^5.3.14",
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
+    "eslint": "^8.0.0",
+    "eslint-config-next": "^14.0.0",
+    "jest": "^29.0.0",
+    "ts-jest": "^29.0.0",
+    "typescript": "^5.0.0"
+  },
+  "optionalDependencies": {
+    "@types/socket.io-client": "^1.4.36"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "gitHead": "0ac4e896d835d961c7efee0c7295f287d08d92a4"
+}

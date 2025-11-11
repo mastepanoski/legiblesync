@@ -273,4 +273,44 @@ describe('LegibleEngine', () => {
       expect(flow1Actions.map(a => a.action)).toEqual(['action1', 'action3']);
     });
   });
+
+  describe('State Management', () => {
+    it('should clear a specific flow', async () => {
+      const concept: Concept = {
+        state: {},
+        execute: jest.fn().mockResolvedValue({ done: true })
+      };
+      engine.registerConcept('test', concept);
+
+      await engine.invoke('test', 'action1', {}, 'flow1');
+      await engine.invoke('test', 'action2', {}, 'flow2');
+
+      expect(engine.getActionsByFlow('flow1')).toHaveLength(1);
+      expect(engine.getActionsByFlow('flow2')).toHaveLength(1);
+
+      engine.clearFlow('flow1');
+
+      expect(engine.getActionsByFlow('flow1')).toHaveLength(0);
+      expect(engine.getActionsByFlow('flow2')).toHaveLength(1);
+    });
+
+    it('should reset the engine state', async () => {
+      const concept: Concept = {
+        state: {},
+        execute: jest.fn().mockResolvedValue({ done: true })
+      };
+      engine.registerConcept('test', concept);
+
+      await engine.invoke('test', 'action1', {}, 'flow1');
+      await engine.invoke('test', 'action2', {}, 'flow2');
+
+      expect(engine.getActionsByFlow('flow1')).toHaveLength(1);
+      expect(engine.getActionsByFlow('flow2')).toHaveLength(1);
+
+      engine.reset();
+
+      expect(engine.getActionsByFlow('flow1')).toHaveLength(0);
+      expect(engine.getActionsByFlow('flow2')).toHaveLength(0);
+    });
+  });
 });

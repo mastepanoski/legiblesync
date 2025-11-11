@@ -42,6 +42,11 @@ export const Notification: Concept = {
         return { notifications: history };
       }
 
+      case 'reset': {
+        state.sent.clear();
+        return { reset: true };
+      }
+
       default:
         throw new Error(`Unknown action: ${action}`);
     }

@@ -179,6 +179,12 @@ export const Payment: Concept = {
         throw new Error('Payment not found for order');
       }
 
+      case 'reset': {
+        state.payments.clear();
+        state.transactions.clear();
+        return { reset: true };
+      }
+
       default:
         throw new Error(`Unknown action: ${action}`);
     }

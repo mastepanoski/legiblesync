@@ -49,6 +49,7 @@ describe('E-commerce Flow Integration', () => {
     // Reset concept states for test isolation
     await engine.invoke('User', 'reset', {}, 'reset');
     await engine.invoke('Product', 'reset', {}, 'reset');
+    await engine.invoke('Analytics', 'reset', {}, 'reset');
   });
 
   describe('Complete User Registration Flow', () => {
