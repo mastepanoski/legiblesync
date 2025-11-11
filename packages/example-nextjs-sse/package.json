@@ -26,11 +26,11 @@
     "url": "https://github.com/mastepanoski/legiblesync.git",
     "directory": "packages/example-nextjs-sse"
   },
-   "homepage": "https://github.com/mastepanoski/legiblesync",
-   "publishConfig": {
-     "access": "public"
-   },
-   "dependencies": {
+  "homepage": "https://github.com/mastepanoski/legiblesync",
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
     "@legible-sync/core": "^1.2.2",
     "next": "^14.0.0",
     "papaparse": "^5.4.1",
@@ -57,5 +57,5 @@
   "engines": {
     "node": ">=18.0.0"
   },
-  "gitHead": "dd7f2c1925df06732d68991a09affa12e99c5dcb"
+  "gitHead": "dd6666c2d64ab7b588b29dcee58841d7c8ee2a3f"
 }
