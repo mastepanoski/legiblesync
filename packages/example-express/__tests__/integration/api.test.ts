@@ -1,4 +1,7 @@
 import request from 'supertest';
+// Set required environment variables for tests
+process.env.JWT_SECRET = 'test-jwt-secret-for-testing-purposes-only';
+
 import express from 'express';
 import { LegibleEngine } from '@legible-sync/core';
 import { User } from '../../src/concepts/User';
@@ -13,6 +16,9 @@ import { articleSyncs } from '../../src/syncs/article.sync';
 import { favoriteSyncs } from '../../src/syncs/favorite.sync';
 import { commentSyncs } from '../../src/syncs/comment.sync';
 import { getFlowSummary } from '../../src/utils/audit';
+
+// Set required environment variables for tests
+process.env.JWT_SECRET = 'test-jwt-secret-for-testing-purposes-only';
 
 // Create test app
 function createTestApp() {

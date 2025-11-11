@@ -98,3 +98,6 @@ Thumbs.db
 
 # Jest
 jest.config.js
+
+# TMP Docs
+PENDING.md

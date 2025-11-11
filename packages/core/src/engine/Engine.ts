@@ -229,14 +229,15 @@ export class LegibleEngine {
       for (const then of sync.then) {
         const input = this.replaceVariables(then.input, mergedBinding);
 
-        try {
-          // Use the flow from the first action in the combination
-          const flow = allMatchingActions[0][0].flow;
-          await this.invoke(then.concept, then.action, input, flow, true);
-          fired = true;
-        } catch (error) {
-          console.error(`Sync ${sync.name} failed:`, error);
-        }
+         try {
+           // Use the flow from the first action in the combination
+           const flow = allMatchingActions[0][0].flow;
+           await this.invoke(then.concept, then.action, input, flow, true);
+           fired = true;
+         } catch {
+           // Sync execution failed, but don't re-throw to avoid breaking the cascade
+           // The error is logged by the individual action invoke
+         }
       }
 
       // Mark sync as fired
@@ -272,9 +273,27 @@ export class LegibleEngine {
 
   private matchRecord(obj: any, pattern: any = {}): boolean {
     for (const [k, v] of Object.entries(pattern)) {
-      if (obj[k] !== v) return false;
+      if (k === 'path' && typeof v === 'string' && typeof obj[k] === 'string') {
+        // Special handling for path matching with wildcards
+        if (!this.matchPath(obj[k], v)) return false;
+      } else if (typeof v === 'string' && v.startsWith('?')) {
+        // Variable references in patterns indicate required fields, not exact matches
+        if (!(k in obj)) return false;
+      } else if (obj[k] !== v) {
+        return false;
+      }
     }
     return true;
+  }
+
+  private matchPath(actualPath: string, patternPath: string): boolean {
+    // Convert wildcard pattern to regex
+    const regexPattern = patternPath
+      .replace(/\*/g, '[^/]+') // * matches one or more non-slash characters
+      .replace(/\//g, '\\/'); // Escape forward slashes
+
+    const regex = new RegExp(`^${regexPattern}$`);
+    return regex.test(actualPath);
   }
 
   private cartesianProduct(...arrays: any[][]): any[] {
@@ -285,13 +304,30 @@ export class LegibleEngine {
   }
 
   private getNestedValue(obj: any, path: string): any {
-    return path.split(".").reduce((current, key) => current?.[key], obj);
+    return path.split(".").reduce((current, key) => {
+      // Handle array-like access on strings (e.g., path[1])
+      if (typeof current === 'string' && key.includes('[') && key.includes(']')) {
+        const match = key.match(/(\w+)\[(\d+)\]/);
+        if (match) {
+          const [, prop, index] = match;
+          if (prop === 'path') {
+            // Split path by '/' and get the indexed part
+            const parts = current.split('/');
+            return parts[parseInt(index)];
+          }
+        }
+      }
+      return current?.[key];
+    }, obj);
   }
 
   private replaceVariables(obj: any, bindings: Bindings): any {
-    if (typeof obj === "string" && obj.startsWith("?")) {
-      const varName = obj.substring(1);
-      return bindings[varName] || this.getNestedValue(bindings, varName);
+    if (typeof obj === "string") {
+      // Replace variables in strings (e.g., "user_?user" -> "user_user123", "?body.password" -> nested value)
+      return obj.replace(/\?([\w.]+)/g, (match, varPath) => {
+        const value = this.getNestedValue(bindings, varPath);
+        return value !== undefined ? String(value) : match;
+      });
     } else if (Array.isArray(obj)) {
       return obj.map((item) => this.replaceVariables(item, bindings));
     } else if (obj !== null && typeof obj === "object") {

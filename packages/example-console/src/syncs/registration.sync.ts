@@ -46,34 +46,39 @@ export const registrationSyncs: SyncRule[] = [
       }
     ]
   },
-  {
-    name: "CompleteRegistrationAfterUser",
-    when: [
-      {
-        concept: "User",
-        action: "register"
-      }
-    ],
-    where: {
-      filter: (bindings) => {
-        // Example: Only complete registration for users with valid email
-        const email = bindings.email as string;
-        return typeof email === 'string' && email.includes('@');
-      }
-    },
-    then: [
-      {
-        concept: "Password",
-        action: "set",
-        input: { user: "?user", password: "?body.password" }
-      },
-      {
-        concept: "JWT",
-        action: "generate",
-        input: { user: "?user" }
-      }
-    ]
-  },
+   {
+     name: "CompleteRegistrationAfterUser",
+     when: [
+       {
+         concept: "Web",
+         action: "request",
+         input: { method: "POST", path: "/users" }
+       },
+       {
+         concept: "User",
+         action: "register"
+       }
+     ],
+     where: {
+       filter: (bindings) => {
+         // Only complete registration for users with valid email
+         const email = bindings.email as string;
+         return typeof email === 'string' && email.includes('@');
+       }
+     },
+     then: [
+       {
+         concept: "Password",
+         action: "set",
+         input: { user: "?user", password: "?body.password" }
+       },
+       {
+         concept: "JWT",
+         action: "generate",
+         input: { user: "?user" }
+       }
+     ]
+   },
   // Example sync rule demonstrating Query usage
   {
     name: "FilteredUserNotification",
@@ -102,23 +107,23 @@ export const registrationSyncs: SyncRule[] = [
       }
     ] as Invocation[]
   },
-  {
-    name: "HandleLogin",
-    when: [
-      {
-        concept: "Web",
-        action: "request",
-        input: { method: "POST", path: "/login" }
-      }
-    ],
-    then: [
-      {
-        concept: "Password",
-        action: "verify",
-        input: { user: "?body.username", password: "?body.password" }
-      }
-    ]
-  },
+   {
+     name: "HandleLogin",
+     when: [
+       {
+         concept: "Web",
+         action: "request",
+         input: { method: "POST", path: "/login" }
+       }
+     ],
+     then: [
+       {
+         concept: "Password",
+         action: "verify",
+         input: { user: "?body.username", password: "?body.password" }
+       }
+     ]
+   },
   {
     name: "GenerateTokenAfterLogin",
     when: [
