@@ -1,6 +1,6 @@
 {
   "name": "@legible-sync/example-nextjs-sse",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "Next.js SSE example using LegibleSync framework",
   "main": "src/index.ts",
   "scripts": {
@@ -28,11 +28,11 @@
   },
   "homepage": "https://github.com/mastepanoski/legiblesync",
   "dependencies": {
-    "@legible-sync/core": "^1.2.0",
+    "@legible-sync/core": "^1.2.2",
     "next": "^14.0.0",
+    "papaparse": "^5.4.1",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
-    "papaparse": "^5.4.1",
     "socket.io": "^4.7.5",
     "socket.io-client": "^4.7.5"
   },
