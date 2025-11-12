@@ -6,6 +6,10 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ## [1.2.2](https://github.com/mastepanoski/legiblesync/compare/v1.2.0...v1.2.2) (2025-11-11)
 
 
+### Documentation
+
+* create unified ROADMAP.md consolidating planning and DSL specification from PENDING.md and framework-design.md ([commit-hash])
+
 ### Bug Fixes
 
 * add publishConfig for EDA package to enable public publishing ([c8910cd](https://github.com/mastepanoski/legiblesync/commit/c8910cd3f6011ceeb8fecce81faa942f1c8200a3))
