@@ -8,7 +8,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Documentation
 
-* create unified ROADMAP.md consolidating planning and DSL specification from PENDING.md and framework-design.md ([commit-hash])
+* create unified ROADMAP.md consolidating planning and DSL specification from PENDING.md and framework-design.md ([41c3b3d](https://github.com/mastepanoski/legiblesync/commit/41c3b3d))
 
 ### Bug Fixes
 
