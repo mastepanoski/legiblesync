@@ -1,6 +1,6 @@
 {
   "name": "@legible-sync/example-eda",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "description": "Event-Driven Architecture example with plugin-based modules",
   "main": "dist/index.js",
   "scripts": {

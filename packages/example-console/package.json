@@ -1,6 +1,6 @@
 {
   "name": "@legible-sync/example-console",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "description": "Console example application using LegibleSync framework",
   "main": "dist/index.js",
   "scripts": {

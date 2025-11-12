@@ -1,6 +1,6 @@
 {
   "name": "@legible-sync/monorepo",
-  "version": "1.1.2",
+  "version": "1.2.3",
   "description": "Monorepo for LegibleSync - What You See Is What It Does",
   "private": true,
   "workspaces": [

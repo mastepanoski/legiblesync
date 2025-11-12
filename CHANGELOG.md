@@ -24,6 +24,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 This changelog is automatically generated using [conventional-changelog](https://github.com/conventional-changelog/conventional-changelog).
 
+## [1.2.3] - 2025-11-11
+
+### Added
+- Documentation sections on state and concurrency patterns, including flow control and race condition handling
+- Comparative table of stateless vs stateful patterns
+
+### Changed
+- Translated framework design documentation from Spanish to English
+- Updated roadmap to correctly mark YAML DSL and CLI Tools as not yet implemented
+- Clarified that development tools are planned features, not current capabilities
+
 ## [1.1.2] - 2025-11-11
 
 ### Fixed
