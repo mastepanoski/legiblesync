@@ -1,6 +1,6 @@
 {
   "name": "@legible-sync/monorepo",
-  "version": "1.1.2",
+  "version": "1.2.0",
   "description": "Monorepo for LegibleSync - What You See Is What It Does",
   "private": true,
   "workspaces": [
@@ -43,10 +43,21 @@
   },
   "homepage": "https://github.com/mastepanoski/legiblesync",
   "devDependencies": {
+    "conventional-changelog-cli": "^5.0.0",
     "husky": "^9.1.7",
     "lerna": "^9.0.0",
     "lint-staged": "^16.2.6",
     "markdownlint-cli": "^0.45.0"
+  },
+  "overrides": {
+    "js-yaml": "^3.14.2",
+    "glob": "^10.5.0",
+    "markdownlint-cli": {
+      "glob": "^11.1.0"
+    },
+    "@npmcli/package-json": {
+      "glob": "^11.1.0"
+    }
   },
   "engines": {
     "node": ">=18.0.0",

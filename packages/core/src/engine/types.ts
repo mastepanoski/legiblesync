@@ -21,6 +21,7 @@ export interface ConceptState {
 export type Concept = {
   state: ConceptState;
   execute(action: ActionName, input: Record<string, any>): Promise<Record<string, any>>;
+  rollback?(action: ActionName, input: Record<string, any>, output: Record<string, any>): Promise<void>;
 };
 
 export type Query = {

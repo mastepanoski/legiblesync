@@ -8,7 +8,7 @@ export const articleSyncs: SyncRule[] = [
       {
         concept: "Web",
         action: "request",
-        input: { method: "POST", path: "/articles" },
+        input: { method: "POST", path: "/articles", token: "?token" },
         output: { request: "?req" }
       }
     ],
@@ -26,7 +26,7 @@ export const articleSyncs: SyncRule[] = [
       {
         concept: "Web",
         action: "request",
-        input: { method: "POST", path: "/articles" },
+        input: { method: "POST", path: "/articles", token: "?token" },
         output: { request: "?req" }
       },
       {

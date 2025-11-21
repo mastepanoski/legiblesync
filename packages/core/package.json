@@ -4,6 +4,9 @@
   "description": "Core framework for LegibleSync - What You See Is What It Does",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "bin": {
+    "legiblesync": "dist/cli.js"
+  },
   "scripts": {
     "build": "tsc",
     "dev": "tsc --watch",
@@ -47,11 +50,15 @@
     },
     "rdflib": {
       "optional": true
+    },
+    "sqlite3": {
+      "optional": true
     }
   },
   "devDependencies": {
     "@types/jest": "^29.0.0",
     "@types/node": "^20.0.0",
+    "@types/sqlite3": "^3.1.8",
     "@types/uuid": "^9.0.0",
     "@typescript-eslint/eslint-plugin": "^8.46.3",
     "@typescript-eslint/parser": "^8.46.3",
@@ -68,5 +75,8 @@
   "engines": {
     "node": ">=18.0.0"
   },
-  "gitHead": "dd7f2c1925df06732d68991a09affa12e99c5dcb"
+  "gitHead": "dd7f2c1925df06732d68991a09affa12e99c5dcb",
+  "optionalDependencies": {
+    "sqlite3": "^5.1.7"
+  }
 }

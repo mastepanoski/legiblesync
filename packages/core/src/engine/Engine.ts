@@ -1,6 +1,9 @@
 // engine/Engine.ts
 import { v4 as uuidv4 } from "uuid";
 import { ActionRecord, Concept, SyncRule, Bindings, Pattern } from "./types";
+import { Queue } from "../queues/Queue";
+import { parseSyncDSL } from "../parser";
+import { readFileSync } from "fs";
 
 /**
  * The core engine for LegibleSync, managing concepts, actions, and synchronization rules.
@@ -12,33 +15,86 @@ export class LegibleEngine {
   private syncs: SyncRule[] = [];
   private syncTriggering = false;
   private firedSyncs: Set<string> = new Set();
-  private invokedActions: Set<string> = new Set();
+  private invokedActions: string[] = [];
   private syncGraph: Map<string, Set<string>> = new Map();
   private actionIndex: Map<string, ActionRecord[]> = new Map();
+  private queue?: Queue;
 
-  /**
-   * Registers a concept implementation.
-   * @param name - The name of the concept.
-   * @param impl - The concept implementation.
-   */
-  registerConcept(name: string, impl: Concept) {
-    this.concepts.set(name, impl);
+  constructor(queue?: Queue) {
+    this.queue = queue;
   }
 
   /**
-   * Registers a synchronization rule and checks for cycles in the sync graph.
-   * @param sync - The sync rule to register.
-   */
-  registerSync(sync: SyncRule) {
-    this.syncs.push(sync);
-    this.updateGraph(sync);
-    const cycles = this.detectCycles();
-    if (cycles.length > 0) {
-      console.warn(
-        `Cycle detected in sync graph involving: ${cycles.join(", ")}`,
-      );
-    }
-  }
+    * Registers a concept implementation.
+    * @param name - The name of the concept.
+    * @param impl - The concept implementation.
+    */
+   registerConcept(name: string, impl: Concept) {
+     this.concepts.set(name, impl);
+   }
+
+  /**
+    * Processes one message from the queue (for distributed execution).
+    * @returns Promise<boolean> - true if a message was processed, false if queue is empty
+    */
+   async processQueueMessage(): Promise<boolean> {
+     if (!this.queue) {
+       throw new Error('No queue configured for processing');
+     }
+
+     const message = await this.queue.dequeue();
+     if (!message) {
+       return false;
+     }
+
+     const { type, concept, action, input, flowId, fromSync } = message.payload;
+
+     if (type === 'invoke') {
+       try {
+         await this.invoke(concept, action, input, flowId, fromSync);
+       } catch (error) {
+         console.error(`Error processing queued message ${message.id}:`, error);
+         // In distributed mode, we might want to re-queue or handle errors differently
+       }
+     }
+
+     return true;
+   }
+
+  /**
+    * Registers a synchronization rule and checks for cycles in the sync graph.
+    * @param sync - The sync rule to register.
+    */
+   registerSync(sync: SyncRule) {
+     this.syncs.push(sync);
+     this.updateGraph(sync);
+     const cycles = this.detectCycles();
+     if (cycles.length > 0) {
+       console.warn(
+         `Cycle detected in sync graph involving: ${cycles.join(", ")}`,
+       );
+     }
+   }
+
+  /**
+    * Loads and registers sync rules from a DSL string.
+    * @param dsl - The DSL string containing sync rules.
+    */
+   loadSyncDSL(dsl: string) {
+     const rules = parseSyncDSL(dsl);
+     for (const rule of rules) {
+       this.registerSync(rule);
+     }
+   }
+
+  /**
+    * Loads and registers sync rules from a .sync file.
+    * @param filePath - The path to the .sync file.
+    */
+   loadSyncFile(filePath: string) {
+     const dsl = readFileSync(filePath, 'utf8');
+     this.loadSyncDSL(dsl);
+   }
 
   private updateGraph(sync: SyncRule) {
     if (!this.syncGraph.has(sync.name)) {
@@ -114,7 +170,7 @@ export class LegibleEngine {
     syncTriggered = false,
   ) {
     if (!syncTriggered) {
-      this.invokedActions.clear();
+      this.invokedActions.length = 0;
       this.firedSyncs.clear();
     }
 
@@ -144,11 +200,15 @@ export class LegibleEngine {
     const actionKey = `${concept}:${action}:${JSON.stringify(input)}`;
 
     // Prevent loops: if we've already invoked this action in this cascade, skip
-    if (this.invokedActions.has(actionKey)) {
+    // In distributed mode (with queue), loops are prevented by flow isolation
+    if (!this.queue && this.invokedActions.includes(actionKey)) {
       return { skipped: true }; // Return a dummy result to avoid errors
     }
 
-    this.invokedActions.add(actionKey);
+    if (!this.queue) {
+      this.invokedActions.push(actionKey);
+      if (this.invokedActions.length > 1000) this.invokedActions.shift();
+    }
 
     try {
       const output = await impl.execute(action, input);
@@ -170,7 +230,7 @@ export class LegibleEngine {
   private async triggerSyncs() {
     this.syncTriggering = true;
     // Keep firedSyncs across the cascade to prevent duplicate firings
-    // Keep invokedActions across the cascade to prevent loops
+    // Keep invokedActions across the cascade to prevent loops (only in local mode)
     try {
       // Run syncs, relying on syncEdges to prevent infinite loops
       for (const sync of this.syncs) {
@@ -227,18 +287,50 @@ export class LegibleEngine {
           ? { ...combination }
           : {};
 
+      const executed: { concept: string; action: string; input: any; output: any }[] = [];
+
       for (const then of sync.then) {
         const input = this.replaceVariables(then.input, mergedBinding);
+          try {
+            // Use the flow from the first action in the combination
+            const flow = allMatchingActions[0][0].flow;
 
-         try {
-           // Use the flow from the first action in the combination
-           const flow = allMatchingActions[0][0].flow;
-           await this.invoke(then.concept, then.action, input, flow, true);
-           fired = true;
-         } catch {
-           // Sync execution failed, but don't re-throw to avoid breaking the cascade
-           // The error is logged by the individual action invoke
-         }
+            let output;
+            if (this.queue) {
+              // In distributed mode, enqueue the action for processing by workers
+              await this.queue.enqueue({
+                id: uuidv4(),
+                payload: {
+                  type: 'invoke',
+                  concept: then.concept,
+                  action: then.action,
+                  input,
+                  flowId: flow,
+                  fromSync: true
+                },
+                timestamp: Date.now()
+              });
+              // For rollback, assume success in queue mode for now
+              output = {};
+            } else {
+              output = await this.invoke(then.concept, then.action, input, flow, true);
+            }
+            executed.push({ concept: then.concept, action: then.action, input, output });
+            fired = true;
+          } catch {
+            // Rollback successful actions
+            for (const exec of executed.reverse()) {
+              const impl = this.concepts.get(exec.concept);
+              if (impl?.rollback) {
+                try {
+                  await impl.rollback(exec.action, exec.input, exec.output);
+                } catch (rollbackErr) {
+                  console.error(`Rollback failed for ${exec.concept}/${exec.action}:`, rollbackErr);
+                }
+              }
+            }
+            break; // Stop executing further actions in this sync
+          }
       }
 
       // Mark sync as fired
@@ -305,21 +397,25 @@ export class LegibleEngine {
   }
 
   private getNestedValue(obj: any, path: string): any {
-    return path.split(".").reduce((current, key) => {
-      // Handle array-like access on strings (e.g., path[1])
-      if (typeof current === 'string' && key.includes('[') && key.includes(']')) {
-        const match = key.match(/(\w+)\[(\d+)\]/);
+    const parts = path.split('.');
+    let current = obj;
+    for (const part of parts) {
+      if (part.includes('[') && part.includes(']')) {
+        const match = part.match(/(\w+)\[(\d+)\]/);
         if (match) {
           const [, prop, index] = match;
-          if (prop === 'path') {
+          const value = current?.[prop];
+          if (typeof value === 'string' && prop === 'path') {
             // Split path by '/' and get the indexed part
-            const parts = current.split('/');
-            return parts[parseInt(index)];
+            const pathParts = value.split('/');
+            current = pathParts[parseInt(index)];
+            continue;
           }
         }
       }
-      return current?.[key];
-    }, obj);
+      current = current?.[part];
+    }
+    return current;
   }
 
   private replaceVariables(obj: any, bindings: Bindings): any {
@@ -330,7 +426,7 @@ export class LegibleEngine {
       return value !== undefined ? value : obj; // Return original obj if value is undefined
     } else if (typeof obj === "string") {
       // Replace variables within a string (e.g., "user_?user")
-      return obj.replace(/\?([\w.]+)/g, (match, varPath) => {
+      return obj.replace(/\?([a-zA-Z0-9_.[\]])+/g, (match, varPath) => {
         const value = this.getNestedValue(bindings, varPath);
         return value !== undefined ? String(value) : match;
       });
@@ -383,6 +479,6 @@ export class LegibleEngine {
     this.actions = [];
     this.actionIndex.clear();
     this.firedSyncs.clear();
-    this.invokedActions.clear();
+    this.invokedActions.length = 0;
   }
 }

@@ -1,0 +1,3963 @@
+
+> @legible-sync/example-eda@1.2.2 test
+> jest __tests__/integration/syncs.test.ts
+
+watchman warning:  Recrawled this watch 1 time, most recently because:
+MustScanSubDirs UserDroppedTo resolve, please review the information on
+https://facebook.github.io/watchman/docs/troubleshooting.html#recrawl
+To clear this warning, run:
+`watchman watch-del '/Users/mastepanoski/projects/web/ai/legible-sync' ; watchman watch-project '/Users/mastepanoski/projects/web/ai/legible-sync'`
+
+  console.log
+    🔌 Loading plugin: users
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:20:13)
+
+  console.log
+      ✓ Registered concept: User
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:25:15)
+
+  console.log
+      ✓ Registered sync: PublishUserRegisteredEvent
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: PublishUserUpdatedEvent
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: PublishUserDeactivatedEvent
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+    👤 Users plugin initialized
+
+      at Object.initialize (src/plugins/users/index.ts:13:13)
+
+  console.log
+      ✓ Initialized plugin: users
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:37:15)
+
+  console.log
+    ✅ Plugin users loaded successfully
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:41:13)
+
+  console.log
+    🔌 Loading plugin: products
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:20:13)
+
+  console.log
+      ✓ Registered concept: Product
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:25:15)
+
+  console.log
+      ✓ Registered sync: PublishProductCreatedEvent
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: PublishProductUpdatedEvent
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: PublishProductDeactivatedEvent
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+    📦 Products plugin initialized
+
+      at Object.initialize (src/plugins/products/index.ts:13:13)
+
+  console.log
+      ✓ Initialized plugin: products
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:37:15)
+
+  console.log
+    ✅ Plugin products loaded successfully
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:41:13)
+
+  console.log
+    🔌 Loading plugin: inventory
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:20:13)
+
+  console.log
+      ✓ Registered concept: Inventory
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:25:15)
+
+  console.log
+    📊 Inventory plugin initialized
+
+      at Object.initialize (src/plugins/inventory/index.ts:12:13)
+
+  console.log
+      ✓ Initialized plugin: inventory
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:37:15)
+
+  console.log
+    ✅ Plugin inventory loaded successfully
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:41:13)
+
+  console.log
+    🔌 Loading plugin: orders
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:20:13)
+
+  console.log
+      ✓ Registered concept: Order
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:25:15)
+
+  console.log
+      ✓ Registered sync: CheckInventoryAfterOrderCreation
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: ConfirmOrderIfInventoryAvailable
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: GetUserDetailsAfterOrderConfirm
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: CancelOrderIfInventoryUnavailable
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: DeductInventoryOnOrderConfirm
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: SendOrderConfirmationNotification
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: SendShippingNotification
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+    🛒 Orders plugin initialized
+
+      at Object.initialize (src/plugins/orders/index.ts:13:13)
+
+  console.log
+      ✓ Initialized plugin: orders
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:37:15)
+
+  console.log
+    ✅ Plugin orders loaded successfully
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:41:13)
+
+  console.log
+    🔌 Loading plugin: payments
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:20:13)
+
+  console.log
+      ✓ Registered concept: Payment
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:25:15)
+
+  console.log
+      ✓ Registered sync: InitiatePaymentOnOrderConfirm
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: AutoProcessPayment
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: AutoConfirmPayment
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: GetOrderDetailsAfterPaymentConfirm
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: GetUserDetailsAfterPaymentConfirm
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: SendPaymentSuccessNotification
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: GetOrderDetailsAfterPaymentFail
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: GetUserDetailsAfterPaymentFail
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: SendPaymentFailureNotification
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: GetOrderDetailsAfterRefund
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: GetUserDetailsAfterRefund
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: SendRefundNotification
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+    💳 Payments plugin initialized
+
+      at Object.initialize (src/plugins/payments/index.ts:13:13)
+
+  console.log
+      ✓ Initialized plugin: payments
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:37:15)
+
+  console.log
+    ✅ Plugin payments loaded successfully
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:41:13)
+
+  console.log
+    🔌 Loading plugin: notifications
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:20:13)
+
+  console.log
+      ✓ Registered concept: Notification
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:25:15)
+
+  console.log
+    🔔 Notifications plugin initialized
+
+      at Object.initialize (src/plugins/notifications/index.ts:12:13)
+
+  console.log
+      ✓ Initialized plugin: notifications
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:37:15)
+
+  console.log
+    ✅ Plugin notifications loaded successfully
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:41:13)
+
+  console.log
+    🔌 Loading plugin: analytics
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:20:13)
+
+  console.log
+      ✓ Registered concept: Analytics
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:25:15)
+
+  console.log
+      ✓ Registered sync: TrackUserRegistration
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: TrackProductCreation
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: TrackOrderCreation
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: TrackOrderConfirmation
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+    📈 Analytics plugin initialized
+
+      at Object.initialize (src/plugins/analytics/index.ts:13:13)
+
+  console.log
+      ✓ Initialized plugin: analytics
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:37:15)
+
+  console.log
+    ✅ Plugin analytics loaded successfully
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:41:13)
+
+  console.log
+    📢 Event: user.registered from system {
+      userId: 'cfe6c382-88a1-4d81-a805-f01786824ba1',
+      username: 'johndoe',
+      email: 'john@example.com'
+    }
+
+      at EventBus.publish (src/core/EventBus.ts:33:13)
+
+  console.log
+    📊 Tracked: user_registered {
+      userId: 'cfe6c382-88a1-4d81-a805-f01786824ba1',
+      username: 'johndoe',
+      email: 'john@example.com'
+    }
+
+      at Object.execute (src/plugins/analytics/concepts/Analytics.ts:33:17)
+
+  console.log
+    🔌 Loading plugin: users
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:20:13)
+
+  console.log
+      ✓ Registered concept: User
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:25:15)
+
+  console.log
+      ✓ Registered sync: PublishUserRegisteredEvent
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: PublishUserUpdatedEvent
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: PublishUserDeactivatedEvent
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+    👤 Users plugin initialized
+
+      at Object.initialize (src/plugins/users/index.ts:13:13)
+
+  console.log
+      ✓ Initialized plugin: users
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:37:15)
+
+  console.log
+    ✅ Plugin users loaded successfully
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:41:13)
+
+  console.log
+    🔌 Loading plugin: products
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:20:13)
+
+  console.log
+      ✓ Registered concept: Product
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:25:15)
+
+  console.log
+      ✓ Registered sync: PublishProductCreatedEvent
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: PublishProductUpdatedEvent
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: PublishProductDeactivatedEvent
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+    📦 Products plugin initialized
+
+      at Object.initialize (src/plugins/products/index.ts:13:13)
+
+  console.log
+      ✓ Initialized plugin: products
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:37:15)
+
+  console.log
+    ✅ Plugin products loaded successfully
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:41:13)
+
+  console.log
+    🔌 Loading plugin: inventory
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:20:13)
+
+  console.log
+      ✓ Registered concept: Inventory
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:25:15)
+
+  console.log
+    📊 Inventory plugin initialized
+
+      at Object.initialize (src/plugins/inventory/index.ts:12:13)
+
+  console.log
+      ✓ Initialized plugin: inventory
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:37:15)
+
+  console.log
+    ✅ Plugin inventory loaded successfully
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:41:13)
+
+  console.log
+    🔌 Loading plugin: orders
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:20:13)
+
+  console.log
+      ✓ Registered concept: Order
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:25:15)
+
+  console.log
+      ✓ Registered sync: CheckInventoryAfterOrderCreation
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: ConfirmOrderIfInventoryAvailable
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: GetUserDetailsAfterOrderConfirm
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: CancelOrderIfInventoryUnavailable
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: DeductInventoryOnOrderConfirm
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: SendOrderConfirmationNotification
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: SendShippingNotification
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+    🛒 Orders plugin initialized
+
+      at Object.initialize (src/plugins/orders/index.ts:13:13)
+
+  console.log
+      ✓ Initialized plugin: orders
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:37:15)
+
+  console.log
+    ✅ Plugin orders loaded successfully
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:41:13)
+
+  console.log
+    🔌 Loading plugin: payments
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:20:13)
+
+  console.log
+      ✓ Registered concept: Payment
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:25:15)
+
+  console.log
+      ✓ Registered sync: InitiatePaymentOnOrderConfirm
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: AutoProcessPayment
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: AutoConfirmPayment
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: GetOrderDetailsAfterPaymentConfirm
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: GetUserDetailsAfterPaymentConfirm
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: SendPaymentSuccessNotification
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: GetOrderDetailsAfterPaymentFail
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: GetUserDetailsAfterPaymentFail
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: SendPaymentFailureNotification
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: GetOrderDetailsAfterRefund
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: GetUserDetailsAfterRefund
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: SendRefundNotification
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+    💳 Payments plugin initialized
+
+      at Object.initialize (src/plugins/payments/index.ts:13:13)
+
+  console.log
+      ✓ Initialized plugin: payments
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:37:15)
+
+  console.log
+    ✅ Plugin payments loaded successfully
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:41:13)
+
+  console.log
+    🔌 Loading plugin: notifications
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:20:13)
+
+  console.log
+      ✓ Registered concept: Notification
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:25:15)
+
+  console.log
+    🔔 Notifications plugin initialized
+
+      at Object.initialize (src/plugins/notifications/index.ts:12:13)
+
+  console.log
+      ✓ Initialized plugin: notifications
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:37:15)
+
+  console.log
+    ✅ Plugin notifications loaded successfully
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:41:13)
+
+  console.log
+    🔌 Loading plugin: analytics
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:20:13)
+
+  console.log
+      ✓ Registered concept: Analytics
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:25:15)
+
+  console.log
+      ✓ Registered sync: TrackUserRegistration
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: TrackProductCreation
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: TrackOrderCreation
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: TrackOrderConfirmation
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+    📈 Analytics plugin initialized
+
+      at Object.initialize (src/plugins/analytics/index.ts:13:13)
+
+  console.log
+      ✓ Initialized plugin: analytics
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:37:15)
+
+  console.log
+    ✅ Plugin analytics loaded successfully
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:41:13)
+
+  console.log
+    📢 Event: product.created from system {
+      productId: 'd35f5989-a9aa-40c3-8800-1818cae62873',
+      name: 'Test Product',
+      sku: 'TEST-001',
+      price: 29.99,
+      category: 'test'
+    }
+
+      at EventBus.publish (src/core/EventBus.ts:33:13)
+
+  console.log
+    📊 Tracked: product_created {
+      productId: 'd35f5989-a9aa-40c3-8800-1818cae62873',
+      name: 'Test Product',
+      category: 'test',
+      price: 29.99
+    }
+
+      at Object.execute (src/plugins/analytics/concepts/Analytics.ts:33:17)
+
+  console.log
+    🔌 Loading plugin: users
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:20:13)
+
+  console.log
+      ✓ Registered concept: User
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:25:15)
+
+  console.log
+      ✓ Registered sync: PublishUserRegisteredEvent
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: PublishUserUpdatedEvent
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: PublishUserDeactivatedEvent
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+    👤 Users plugin initialized
+
+      at Object.initialize (src/plugins/users/index.ts:13:13)
+
+  console.log
+      ✓ Initialized plugin: users
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:37:15)
+
+  console.log
+    ✅ Plugin users loaded successfully
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:41:13)
+
+  console.log
+    🔌 Loading plugin: products
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:20:13)
+
+  console.log
+      ✓ Registered concept: Product
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:25:15)
+
+  console.log
+      ✓ Registered sync: PublishProductCreatedEvent
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: PublishProductUpdatedEvent
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: PublishProductDeactivatedEvent
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+    📦 Products plugin initialized
+
+      at Object.initialize (src/plugins/products/index.ts:13:13)
+
+  console.log
+      ✓ Initialized plugin: products
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:37:15)
+
+  console.log
+    ✅ Plugin products loaded successfully
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:41:13)
+
+  console.log
+    🔌 Loading plugin: inventory
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:20:13)
+
+  console.log
+      ✓ Registered concept: Inventory
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:25:15)
+
+  console.log
+    📊 Inventory plugin initialized
+
+      at Object.initialize (src/plugins/inventory/index.ts:12:13)
+
+  console.log
+      ✓ Initialized plugin: inventory
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:37:15)
+
+  console.log
+    ✅ Plugin inventory loaded successfully
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:41:13)
+
+  console.log
+    🔌 Loading plugin: orders
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:20:13)
+
+  console.log
+      ✓ Registered concept: Order
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:25:15)
+
+  console.log
+      ✓ Registered sync: CheckInventoryAfterOrderCreation
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: ConfirmOrderIfInventoryAvailable
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: GetUserDetailsAfterOrderConfirm
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: CancelOrderIfInventoryUnavailable
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: DeductInventoryOnOrderConfirm
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: SendOrderConfirmationNotification
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: SendShippingNotification
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+    🛒 Orders plugin initialized
+
+      at Object.initialize (src/plugins/orders/index.ts:13:13)
+
+  console.log
+      ✓ Initialized plugin: orders
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:37:15)
+
+  console.log
+    ✅ Plugin orders loaded successfully
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:41:13)
+
+  console.log
+    🔌 Loading plugin: payments
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:20:13)
+
+  console.log
+      ✓ Registered concept: Payment
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:25:15)
+
+  console.log
+      ✓ Registered sync: InitiatePaymentOnOrderConfirm
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: AutoProcessPayment
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: AutoConfirmPayment
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: GetOrderDetailsAfterPaymentConfirm
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: GetUserDetailsAfterPaymentConfirm
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: SendPaymentSuccessNotification
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: GetOrderDetailsAfterPaymentFail
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: GetUserDetailsAfterPaymentFail
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: SendPaymentFailureNotification
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: GetOrderDetailsAfterRefund
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: GetUserDetailsAfterRefund
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: SendRefundNotification
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+    💳 Payments plugin initialized
+
+      at Object.initialize (src/plugins/payments/index.ts:13:13)
+
+  console.log
+      ✓ Initialized plugin: payments
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:37:15)
+
+  console.log
+    ✅ Plugin payments loaded successfully
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:41:13)
+
+  console.log
+    🔌 Loading plugin: notifications
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:20:13)
+
+  console.log
+      ✓ Registered concept: Notification
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:25:15)
+
+  console.log
+    🔔 Notifications plugin initialized
+
+      at Object.initialize (src/plugins/notifications/index.ts:12:13)
+
+  console.log
+      ✓ Initialized plugin: notifications
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:37:15)
+
+  console.log
+    ✅ Plugin notifications loaded successfully
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:41:13)
+
+  console.log
+    🔌 Loading plugin: analytics
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:20:13)
+
+  console.log
+      ✓ Registered concept: Analytics
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:25:15)
+
+  console.log
+      ✓ Registered sync: TrackUserRegistration
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: TrackProductCreation
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: TrackOrderCreation
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: TrackOrderConfirmation
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+    📈 Analytics plugin initialized
+
+      at Object.initialize (src/plugins/analytics/index.ts:13:13)
+
+  console.log
+      ✓ Initialized plugin: analytics
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:37:15)
+
+  console.log
+    ✅ Plugin analytics loaded successfully
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:41:13)
+
+  console.log
+    📢 Event: user.registered from system {
+      userId: 'a863eff2-5f97-49fe-a81c-48d87fc32345',
+      username: 'testuser',
+      email: 'test@example.com'
+    }
+
+      at EventBus.publish (src/core/EventBus.ts:33:13)
+
+  console.log
+    📊 Tracked: user_registered {
+      userId: 'a863eff2-5f97-49fe-a81c-48d87fc32345',
+      username: 'testuser',
+      email: 'test@example.com'
+    }
+
+      at Object.execute (src/plugins/analytics/concepts/Analytics.ts:33:17)
+
+  console.log
+    📢 Event: product.created from system {
+      productId: '17a18392-c172-4b23-a6b6-094dc7900ddf',
+      name: 'Test Product',
+      sku: 'TEST-001',
+      price: 29.99,
+      category: 'test'
+    }
+
+      at EventBus.publish (src/core/EventBus.ts:33:13)
+
+  console.log
+    📊 Tracked: product_created {
+      productId: '17a18392-c172-4b23-a6b6-094dc7900ddf',
+      name: 'Test Product',
+      category: 'test',
+      price: 29.99
+    }
+
+      at Object.execute (src/plugins/analytics/concepts/Analytics.ts:33:17)
+
+  console.log
+    [Inventory.checkAvailability] Processing item: productId=17a18392-c172-4b23-a6b6-094dc7900ddf, quantity=2, price=29.99
+
+      at Object.execute (src/plugins/inventory/concepts/Inventory.ts:32:19)
+
+  console.log
+    [Inventory.checkAvailability] Parsed quantity: 2
+
+      at Object.execute (src/plugins/inventory/concepts/Inventory.ts:34:19)
+
+  console.log
+    [Inventory.checkAvailability] Parsed price: 29.99
+
+      at Object.execute (src/plugins/inventory/concepts/Inventory.ts:36:19)
+
+  console.log
+    📧 EMAIL sent to test@example.com: order-confirmation
+
+      at Object.execute (src/plugins/notifications/concepts/Notification.ts:34:17)
+
+  console.log
+    📧 EMAIL sent to test@example.com: payment-success
+
+      at Object.execute (src/plugins/notifications/concepts/Notification.ts:34:17)
+
+  console.log
+    📧 EMAIL sent to ?user.email: payment-success
+
+      at Object.execute (src/plugins/notifications/concepts/Notification.ts:34:17)
+
+  console.log
+    📧 EMAIL sent to test@example.com: payment-failed
+
+      at Object.execute (src/plugins/notifications/concepts/Notification.ts:34:17)
+
+  console.log
+    📧 EMAIL sent to ?user.email: payment-failed
+
+      at Object.execute (src/plugins/notifications/concepts/Notification.ts:34:17)
+
+  console.log
+    📧 EMAIL sent to test@example.com: payment-refund
+
+      at Object.execute (src/plugins/notifications/concepts/Notification.ts:34:17)
+
+  console.log
+    📧 EMAIL sent to ?user.email: payment-refund
+
+      at Object.execute (src/plugins/notifications/concepts/Notification.ts:34:17)
+
+  console.log
+    📊 Tracked: order_created {
+      orderId: '2f98006d-ca0d-491d-ba74-d0025994a0ba',
+      userId: 'a863eff2-5f97-49fe-a81c-48d87fc32345',
+      itemCount: 1
+    }
+
+      at Object.execute (src/plugins/analytics/concepts/Analytics.ts:33:17)
+
+  console.log
+    📊 Tracked: order_confirmed { orderId: '2f98006d-ca0d-491d-ba74-d0025994a0ba', total: 59.98 }
+
+      at Object.execute (src/plugins/analytics/concepts/Analytics.ts:33:17)
+
+  console.log
+    🔌 Loading plugin: users
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:20:13)
+
+  console.log
+      ✓ Registered concept: User
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:25:15)
+
+  console.log
+      ✓ Registered sync: PublishUserRegisteredEvent
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: PublishUserUpdatedEvent
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: PublishUserDeactivatedEvent
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+    👤 Users plugin initialized
+
+      at Object.initialize (src/plugins/users/index.ts:13:13)
+
+  console.log
+      ✓ Initialized plugin: users
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:37:15)
+
+  console.log
+    ✅ Plugin users loaded successfully
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:41:13)
+
+  console.log
+    🔌 Loading plugin: products
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:20:13)
+
+  console.log
+      ✓ Registered concept: Product
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:25:15)
+
+  console.log
+      ✓ Registered sync: PublishProductCreatedEvent
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: PublishProductUpdatedEvent
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: PublishProductDeactivatedEvent
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+    📦 Products plugin initialized
+
+      at Object.initialize (src/plugins/products/index.ts:13:13)
+
+  console.log
+      ✓ Initialized plugin: products
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:37:15)
+
+  console.log
+    ✅ Plugin products loaded successfully
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:41:13)
+
+  console.log
+    🔌 Loading plugin: inventory
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:20:13)
+
+  console.log
+      ✓ Registered concept: Inventory
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:25:15)
+
+  console.log
+    📊 Inventory plugin initialized
+
+      at Object.initialize (src/plugins/inventory/index.ts:12:13)
+
+  console.log
+      ✓ Initialized plugin: inventory
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:37:15)
+
+  console.log
+    ✅ Plugin inventory loaded successfully
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:41:13)
+
+  console.log
+    🔌 Loading plugin: orders
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:20:13)
+
+  console.log
+      ✓ Registered concept: Order
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:25:15)
+
+  console.log
+      ✓ Registered sync: CheckInventoryAfterOrderCreation
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: ConfirmOrderIfInventoryAvailable
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: GetUserDetailsAfterOrderConfirm
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: CancelOrderIfInventoryUnavailable
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: DeductInventoryOnOrderConfirm
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: SendOrderConfirmationNotification
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: SendShippingNotification
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+    🛒 Orders plugin initialized
+
+      at Object.initialize (src/plugins/orders/index.ts:13:13)
+
+  console.log
+      ✓ Initialized plugin: orders
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:37:15)
+
+  console.log
+    ✅ Plugin orders loaded successfully
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:41:13)
+
+  console.log
+    🔌 Loading plugin: payments
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:20:13)
+
+  console.log
+      ✓ Registered concept: Payment
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:25:15)
+
+  console.log
+      ✓ Registered sync: InitiatePaymentOnOrderConfirm
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: AutoProcessPayment
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: AutoConfirmPayment
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: GetOrderDetailsAfterPaymentConfirm
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: GetUserDetailsAfterPaymentConfirm
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: SendPaymentSuccessNotification
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: GetOrderDetailsAfterPaymentFail
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: GetUserDetailsAfterPaymentFail
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: SendPaymentFailureNotification
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: GetOrderDetailsAfterRefund
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: GetUserDetailsAfterRefund
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: SendRefundNotification
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+    💳 Payments plugin initialized
+
+      at Object.initialize (src/plugins/payments/index.ts:13:13)
+
+  console.log
+      ✓ Initialized plugin: payments
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:37:15)
+
+  console.log
+    ✅ Plugin payments loaded successfully
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:41:13)
+
+  console.log
+    🔌 Loading plugin: notifications
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:20:13)
+
+  console.log
+      ✓ Registered concept: Notification
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:25:15)
+
+  console.log
+    🔔 Notifications plugin initialized
+
+      at Object.initialize (src/plugins/notifications/index.ts:12:13)
+
+  console.log
+      ✓ Initialized plugin: notifications
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:37:15)
+
+  console.log
+    ✅ Plugin notifications loaded successfully
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:41:13)
+
+  console.log
+    🔌 Loading plugin: analytics
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:20:13)
+
+  console.log
+      ✓ Registered concept: Analytics
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:25:15)
+
+  console.log
+      ✓ Registered sync: TrackUserRegistration
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: TrackProductCreation
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: TrackOrderCreation
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: TrackOrderConfirmation
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+    📈 Analytics plugin initialized
+
+      at Object.initialize (src/plugins/analytics/index.ts:13:13)
+
+  console.log
+      ✓ Initialized plugin: analytics
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:37:15)
+
+  console.log
+    ✅ Plugin analytics loaded successfully
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:41:13)
+
+  console.log
+    📢 Event: user.registered from system {
+      userId: '9504015a-bd50-4ea2-90d3-5968b6acddc2',
+      username: 'testuser',
+      email: 'test@example.com'
+    }
+
+      at EventBus.publish (src/core/EventBus.ts:33:13)
+
+  console.log
+    📊 Tracked: user_registered {
+      userId: '9504015a-bd50-4ea2-90d3-5968b6acddc2',
+      username: 'testuser',
+      email: 'test@example.com'
+    }
+
+      at Object.execute (src/plugins/analytics/concepts/Analytics.ts:33:17)
+
+  console.log
+    📢 Event: product.created from system {
+      productId: '64cd5bc1-d2b0-4c63-bcec-0bce8cdce6ca',
+      name: 'Test Product',
+      sku: 'TEST-001',
+      price: 29.99,
+      category: 'test'
+    }
+
+      at EventBus.publish (src/core/EventBus.ts:33:13)
+
+  console.log
+    📊 Tracked: product_created {
+      productId: '64cd5bc1-d2b0-4c63-bcec-0bce8cdce6ca',
+      name: 'Test Product',
+      category: 'test',
+      price: 29.99
+    }
+
+      at Object.execute (src/plugins/analytics/concepts/Analytics.ts:33:17)
+
+  console.log
+    [Inventory.checkAvailability] Processing item: productId=64cd5bc1-d2b0-4c63-bcec-0bce8cdce6ca, quantity=1, price=29.99
+
+      at Object.execute (src/plugins/inventory/concepts/Inventory.ts:32:19)
+
+  console.log
+    [Inventory.checkAvailability] Parsed quantity: 1
+
+      at Object.execute (src/plugins/inventory/concepts/Inventory.ts:34:19)
+
+  console.log
+    [Inventory.checkAvailability] Parsed price: 29.99
+
+      at Object.execute (src/plugins/inventory/concepts/Inventory.ts:36:19)
+
+  console.log
+    📧 EMAIL sent to test@example.com: order-confirmation
+
+      at Object.execute (src/plugins/notifications/concepts/Notification.ts:34:17)
+
+  console.log
+    📧 EMAIL sent to test@example.com: payment-success
+
+      at Object.execute (src/plugins/notifications/concepts/Notification.ts:34:17)
+
+  console.log
+    📧 EMAIL sent to ?user.email: payment-success
+
+      at Object.execute (src/plugins/notifications/concepts/Notification.ts:34:17)
+
+  console.log
+    📧 EMAIL sent to test@example.com: payment-failed
+
+      at Object.execute (src/plugins/notifications/concepts/Notification.ts:34:17)
+
+  console.log
+    📧 EMAIL sent to ?user.email: payment-failed
+
+      at Object.execute (src/plugins/notifications/concepts/Notification.ts:34:17)
+
+  console.log
+    📧 EMAIL sent to test@example.com: payment-refund
+
+      at Object.execute (src/plugins/notifications/concepts/Notification.ts:34:17)
+
+  console.log
+    📧 EMAIL sent to ?user.email: payment-refund
+
+      at Object.execute (src/plugins/notifications/concepts/Notification.ts:34:17)
+
+  console.log
+    📊 Tracked: order_created {
+      orderId: '4b421c5b-b15d-4dfc-901a-9ef0a113340c',
+      userId: '9504015a-bd50-4ea2-90d3-5968b6acddc2',
+      itemCount: 1
+    }
+
+      at Object.execute (src/plugins/analytics/concepts/Analytics.ts:33:17)
+
+  console.log
+    📊 Tracked: order_confirmed { orderId: '4b421c5b-b15d-4dfc-901a-9ef0a113340c', total: 29.99 }
+
+      at Object.execute (src/plugins/analytics/concepts/Analytics.ts:33:17)
+
+  console.log
+    🔌 Loading plugin: users
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:20:13)
+
+  console.log
+      ✓ Registered concept: User
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:25:15)
+
+  console.log
+      ✓ Registered sync: PublishUserRegisteredEvent
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: PublishUserUpdatedEvent
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: PublishUserDeactivatedEvent
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+    👤 Users plugin initialized
+
+      at Object.initialize (src/plugins/users/index.ts:13:13)
+
+  console.log
+      ✓ Initialized plugin: users
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:37:15)
+
+  console.log
+    ✅ Plugin users loaded successfully
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:41:13)
+
+  console.log
+    🔌 Loading plugin: products
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:20:13)
+
+  console.log
+      ✓ Registered concept: Product
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:25:15)
+
+  console.log
+      ✓ Registered sync: PublishProductCreatedEvent
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: PublishProductUpdatedEvent
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: PublishProductDeactivatedEvent
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+    📦 Products plugin initialized
+
+      at Object.initialize (src/plugins/products/index.ts:13:13)
+
+  console.log
+      ✓ Initialized plugin: products
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:37:15)
+
+  console.log
+    ✅ Plugin products loaded successfully
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:41:13)
+
+  console.log
+    🔌 Loading plugin: inventory
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:20:13)
+
+  console.log
+      ✓ Registered concept: Inventory
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:25:15)
+
+  console.log
+    📊 Inventory plugin initialized
+
+      at Object.initialize (src/plugins/inventory/index.ts:12:13)
+
+  console.log
+      ✓ Initialized plugin: inventory
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:37:15)
+
+  console.log
+    ✅ Plugin inventory loaded successfully
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:41:13)
+
+  console.log
+    🔌 Loading plugin: orders
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:20:13)
+
+  console.log
+      ✓ Registered concept: Order
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:25:15)
+
+  console.log
+      ✓ Registered sync: CheckInventoryAfterOrderCreation
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: ConfirmOrderIfInventoryAvailable
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: GetUserDetailsAfterOrderConfirm
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: CancelOrderIfInventoryUnavailable
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: DeductInventoryOnOrderConfirm
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: SendOrderConfirmationNotification
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: SendShippingNotification
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+    🛒 Orders plugin initialized
+
+      at Object.initialize (src/plugins/orders/index.ts:13:13)
+
+  console.log
+      ✓ Initialized plugin: orders
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:37:15)
+
+  console.log
+    ✅ Plugin orders loaded successfully
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:41:13)
+
+  console.log
+    🔌 Loading plugin: payments
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:20:13)
+
+  console.log
+      ✓ Registered concept: Payment
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:25:15)
+
+  console.log
+      ✓ Registered sync: InitiatePaymentOnOrderConfirm
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: AutoProcessPayment
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: AutoConfirmPayment
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: GetOrderDetailsAfterPaymentConfirm
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: GetUserDetailsAfterPaymentConfirm
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: SendPaymentSuccessNotification
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: GetOrderDetailsAfterPaymentFail
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: GetUserDetailsAfterPaymentFail
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: SendPaymentFailureNotification
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: GetOrderDetailsAfterRefund
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: GetUserDetailsAfterRefund
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: SendRefundNotification
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+    💳 Payments plugin initialized
+
+      at Object.initialize (src/plugins/payments/index.ts:13:13)
+
+  console.log
+      ✓ Initialized plugin: payments
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:37:15)
+
+  console.log
+    ✅ Plugin payments loaded successfully
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:41:13)
+
+  console.log
+    🔌 Loading plugin: notifications
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:20:13)
+
+  console.log
+      ✓ Registered concept: Notification
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:25:15)
+
+  console.log
+    🔔 Notifications plugin initialized
+
+      at Object.initialize (src/plugins/notifications/index.ts:12:13)
+
+  console.log
+      ✓ Initialized plugin: notifications
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:37:15)
+
+  console.log
+    ✅ Plugin notifications loaded successfully
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:41:13)
+
+  console.log
+    🔌 Loading plugin: analytics
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:20:13)
+
+  console.log
+      ✓ Registered concept: Analytics
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:25:15)
+
+  console.log
+      ✓ Registered sync: TrackUserRegistration
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: TrackProductCreation
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: TrackOrderCreation
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: TrackOrderConfirmation
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+    📈 Analytics plugin initialized
+
+      at Object.initialize (src/plugins/analytics/index.ts:13:13)
+
+  console.log
+      ✓ Initialized plugin: analytics
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:37:15)
+
+  console.log
+    ✅ Plugin analytics loaded successfully
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:41:13)
+
+  console.log
+    📢 Event: user.registered from system {
+      userId: 'da5eb120-37f3-405f-898c-b2ee24280441',
+      username: 'testuser',
+      email: 'test@example.com'
+    }
+
+      at EventBus.publish (src/core/EventBus.ts:33:13)
+
+  console.log
+    📊 Tracked: user_registered {
+      userId: 'da5eb120-37f3-405f-898c-b2ee24280441',
+      username: 'testuser',
+      email: 'test@example.com'
+    }
+
+      at Object.execute (src/plugins/analytics/concepts/Analytics.ts:33:17)
+
+  console.log
+    📢 Event: product.created from system {
+      productId: 'c5838d9c-559e-4987-927f-08f2464ecf84',
+      name: 'Test Product',
+      sku: 'TEST-001',
+      price: 29.99,
+      category: 'test'
+    }
+
+      at EventBus.publish (src/core/EventBus.ts:33:13)
+
+  console.log
+    📊 Tracked: product_created {
+      productId: 'c5838d9c-559e-4987-927f-08f2464ecf84',
+      name: 'Test Product',
+      category: 'test',
+      price: 29.99
+    }
+
+      at Object.execute (src/plugins/analytics/concepts/Analytics.ts:33:17)
+
+  console.log
+    [Inventory.checkAvailability] Processing item: productId=c5838d9c-559e-4987-927f-08f2464ecf84, quantity=1, price=29.99
+
+      at Object.execute (src/plugins/inventory/concepts/Inventory.ts:32:19)
+
+  console.log
+    [Inventory.checkAvailability] Parsed quantity: 1
+
+      at Object.execute (src/plugins/inventory/concepts/Inventory.ts:34:19)
+
+  console.log
+    [Inventory.checkAvailability] Parsed price: 29.99
+
+      at Object.execute (src/plugins/inventory/concepts/Inventory.ts:36:19)
+
+  console.log
+    📧 EMAIL sent to test@example.com: order-confirmation
+
+      at Object.execute (src/plugins/notifications/concepts/Notification.ts:34:17)
+
+  console.log
+    📧 EMAIL sent to test@example.com: payment-success
+
+      at Object.execute (src/plugins/notifications/concepts/Notification.ts:34:17)
+
+  console.log
+    📧 EMAIL sent to ?user.email: payment-success
+
+      at Object.execute (src/plugins/notifications/concepts/Notification.ts:34:17)
+
+  console.log
+    📧 EMAIL sent to test@example.com: payment-failed
+
+      at Object.execute (src/plugins/notifications/concepts/Notification.ts:34:17)
+
+  console.log
+    📧 EMAIL sent to ?user.email: payment-failed
+
+      at Object.execute (src/plugins/notifications/concepts/Notification.ts:34:17)
+
+  console.log
+    📧 EMAIL sent to test@example.com: payment-refund
+
+      at Object.execute (src/plugins/notifications/concepts/Notification.ts:34:17)
+
+  console.log
+    📧 EMAIL sent to ?user.email: payment-refund
+
+      at Object.execute (src/plugins/notifications/concepts/Notification.ts:34:17)
+
+  console.log
+    📊 Tracked: order_created {
+      orderId: 'a7b888d6-612b-4fe8-84b1-67abf09ea45f',
+      userId: 'da5eb120-37f3-405f-898c-b2ee24280441',
+      itemCount: 1
+    }
+
+      at Object.execute (src/plugins/analytics/concepts/Analytics.ts:33:17)
+
+  console.log
+    📊 Tracked: order_confirmed { orderId: 'a7b888d6-612b-4fe8-84b1-67abf09ea45f', total: 29.99 }
+
+      at Object.execute (src/plugins/analytics/concepts/Analytics.ts:33:17)
+
+  console.log
+    🔌 Loading plugin: users
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:20:13)
+
+  console.log
+      ✓ Registered concept: User
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:25:15)
+
+  console.log
+      ✓ Registered sync: PublishUserRegisteredEvent
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: PublishUserUpdatedEvent
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: PublishUserDeactivatedEvent
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+    👤 Users plugin initialized
+
+      at Object.initialize (src/plugins/users/index.ts:13:13)
+
+  console.log
+      ✓ Initialized plugin: users
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:37:15)
+
+  console.log
+    ✅ Plugin users loaded successfully
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:41:13)
+
+  console.log
+    🔌 Loading plugin: products
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:20:13)
+
+  console.log
+      ✓ Registered concept: Product
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:25:15)
+
+  console.log
+      ✓ Registered sync: PublishProductCreatedEvent
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: PublishProductUpdatedEvent
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: PublishProductDeactivatedEvent
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+    📦 Products plugin initialized
+
+      at Object.initialize (src/plugins/products/index.ts:13:13)
+
+  console.log
+      ✓ Initialized plugin: products
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:37:15)
+
+  console.log
+    ✅ Plugin products loaded successfully
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:41:13)
+
+  console.log
+    🔌 Loading plugin: inventory
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:20:13)
+
+  console.log
+      ✓ Registered concept: Inventory
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:25:15)
+
+  console.log
+    📊 Inventory plugin initialized
+
+      at Object.initialize (src/plugins/inventory/index.ts:12:13)
+
+  console.log
+      ✓ Initialized plugin: inventory
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:37:15)
+
+  console.log
+    ✅ Plugin inventory loaded successfully
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:41:13)
+
+  console.log
+    🔌 Loading plugin: orders
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:20:13)
+
+  console.log
+      ✓ Registered concept: Order
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:25:15)
+
+  console.log
+      ✓ Registered sync: CheckInventoryAfterOrderCreation
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: ConfirmOrderIfInventoryAvailable
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: GetUserDetailsAfterOrderConfirm
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: CancelOrderIfInventoryUnavailable
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: DeductInventoryOnOrderConfirm
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: SendOrderConfirmationNotification
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: SendShippingNotification
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+    🛒 Orders plugin initialized
+
+      at Object.initialize (src/plugins/orders/index.ts:13:13)
+
+  console.log
+      ✓ Initialized plugin: orders
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:37:15)
+
+  console.log
+    ✅ Plugin orders loaded successfully
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:41:13)
+
+  console.log
+    🔌 Loading plugin: payments
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:20:13)
+
+  console.log
+      ✓ Registered concept: Payment
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:25:15)
+
+  console.log
+      ✓ Registered sync: InitiatePaymentOnOrderConfirm
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: AutoProcessPayment
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: AutoConfirmPayment
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: GetOrderDetailsAfterPaymentConfirm
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: GetUserDetailsAfterPaymentConfirm
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: SendPaymentSuccessNotification
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: GetOrderDetailsAfterPaymentFail
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: GetUserDetailsAfterPaymentFail
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: SendPaymentFailureNotification
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: GetOrderDetailsAfterRefund
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: GetUserDetailsAfterRefund
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: SendRefundNotification
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+    💳 Payments plugin initialized
+
+      at Object.initialize (src/plugins/payments/index.ts:13:13)
+
+  console.log
+      ✓ Initialized plugin: payments
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:37:15)
+
+  console.log
+    ✅ Plugin payments loaded successfully
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:41:13)
+
+  console.log
+    🔌 Loading plugin: notifications
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:20:13)
+
+  console.log
+      ✓ Registered concept: Notification
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:25:15)
+
+  console.log
+    🔔 Notifications plugin initialized
+
+      at Object.initialize (src/plugins/notifications/index.ts:12:13)
+
+  console.log
+      ✓ Initialized plugin: notifications
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:37:15)
+
+  console.log
+    ✅ Plugin notifications loaded successfully
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:41:13)
+
+  console.log
+    🔌 Loading plugin: analytics
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:20:13)
+
+  console.log
+      ✓ Registered concept: Analytics
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:25:15)
+
+  console.log
+      ✓ Registered sync: TrackUserRegistration
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: TrackProductCreation
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: TrackOrderCreation
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: TrackOrderConfirmation
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+    📈 Analytics plugin initialized
+
+      at Object.initialize (src/plugins/analytics/index.ts:13:13)
+
+  console.log
+      ✓ Initialized plugin: analytics
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:37:15)
+
+  console.log
+    ✅ Plugin analytics loaded successfully
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:41:13)
+
+  console.log
+    📢 Event: user.registered from system {
+      userId: '2de98254-00b8-49f3-96a9-62d6093fb048',
+      username: 'testuser',
+      email: 'test@example.com'
+    }
+
+      at EventBus.publish (src/core/EventBus.ts:33:13)
+
+  console.log
+    📊 Tracked: user_registered {
+      userId: '2de98254-00b8-49f3-96a9-62d6093fb048',
+      username: 'testuser',
+      email: 'test@example.com'
+    }
+
+      at Object.execute (src/plugins/analytics/concepts/Analytics.ts:33:17)
+
+  console.log
+    📢 Event: product.created from system {
+      productId: 'b7df700a-87e5-4666-8b9d-bbd9b2a3b322',
+      name: 'Test Product',
+      sku: 'TEST-001',
+      price: 29.99,
+      category: 'test'
+    }
+
+      at EventBus.publish (src/core/EventBus.ts:33:13)
+
+  console.log
+    📊 Tracked: product_created {
+      productId: 'b7df700a-87e5-4666-8b9d-bbd9b2a3b322',
+      name: 'Test Product',
+      category: 'test',
+      price: 29.99
+    }
+
+      at Object.execute (src/plugins/analytics/concepts/Analytics.ts:33:17)
+
+  console.log
+    [Inventory.checkAvailability] Processing item: productId=b7df700a-87e5-4666-8b9d-bbd9b2a3b322, quantity=1, price=29.99
+
+      at Object.execute (src/plugins/inventory/concepts/Inventory.ts:32:19)
+
+  console.log
+    [Inventory.checkAvailability] Parsed quantity: 1
+
+      at Object.execute (src/plugins/inventory/concepts/Inventory.ts:34:19)
+
+  console.log
+    [Inventory.checkAvailability] Parsed price: 29.99
+
+      at Object.execute (src/plugins/inventory/concepts/Inventory.ts:36:19)
+
+  console.log
+    📧 EMAIL sent to test@example.com: order-confirmation
+
+      at Object.execute (src/plugins/notifications/concepts/Notification.ts:34:17)
+
+  console.log
+    📧 EMAIL sent to test@example.com: payment-success
+
+      at Object.execute (src/plugins/notifications/concepts/Notification.ts:34:17)
+
+  console.log
+    📧 EMAIL sent to ?user.email: payment-success
+
+      at Object.execute (src/plugins/notifications/concepts/Notification.ts:34:17)
+
+  console.log
+    📧 EMAIL sent to test@example.com: payment-failed
+
+      at Object.execute (src/plugins/notifications/concepts/Notification.ts:34:17)
+
+  console.log
+    📧 EMAIL sent to ?user.email: payment-failed
+
+      at Object.execute (src/plugins/notifications/concepts/Notification.ts:34:17)
+
+  console.log
+    📧 EMAIL sent to test@example.com: payment-refund
+
+      at Object.execute (src/plugins/notifications/concepts/Notification.ts:34:17)
+
+  console.log
+    📧 EMAIL sent to ?user.email: payment-refund
+
+      at Object.execute (src/plugins/notifications/concepts/Notification.ts:34:17)
+
+  console.log
+    📊 Tracked: order_created {
+      orderId: 'b222e0c0-8ae5-4aaa-9fbd-b7d7eb736702',
+      userId: '2de98254-00b8-49f3-96a9-62d6093fb048',
+      itemCount: 1
+    }
+
+      at Object.execute (src/plugins/analytics/concepts/Analytics.ts:33:17)
+
+  console.log
+    📊 Tracked: order_confirmed { orderId: 'b222e0c0-8ae5-4aaa-9fbd-b7d7eb736702', total: 29.99 }
+
+      at Object.execute (src/plugins/analytics/concepts/Analytics.ts:33:17)
+
+  console.log
+    🔌 Loading plugin: users
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:20:13)
+
+  console.log
+      ✓ Registered concept: User
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:25:15)
+
+  console.log
+      ✓ Registered sync: PublishUserRegisteredEvent
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: PublishUserUpdatedEvent
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: PublishUserDeactivatedEvent
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+    👤 Users plugin initialized
+
+      at Object.initialize (src/plugins/users/index.ts:13:13)
+
+  console.log
+      ✓ Initialized plugin: users
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:37:15)
+
+  console.log
+    ✅ Plugin users loaded successfully
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:41:13)
+
+  console.log
+    🔌 Loading plugin: products
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:20:13)
+
+  console.log
+      ✓ Registered concept: Product
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:25:15)
+
+  console.log
+      ✓ Registered sync: PublishProductCreatedEvent
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: PublishProductUpdatedEvent
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: PublishProductDeactivatedEvent
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+    📦 Products plugin initialized
+
+      at Object.initialize (src/plugins/products/index.ts:13:13)
+
+  console.log
+      ✓ Initialized plugin: products
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:37:15)
+
+  console.log
+    ✅ Plugin products loaded successfully
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:41:13)
+
+  console.log
+    🔌 Loading plugin: inventory
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:20:13)
+
+  console.log
+      ✓ Registered concept: Inventory
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:25:15)
+
+  console.log
+    📊 Inventory plugin initialized
+
+      at Object.initialize (src/plugins/inventory/index.ts:12:13)
+
+  console.log
+      ✓ Initialized plugin: inventory
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:37:15)
+
+  console.log
+    ✅ Plugin inventory loaded successfully
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:41:13)
+
+  console.log
+    🔌 Loading plugin: orders
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:20:13)
+
+  console.log
+      ✓ Registered concept: Order
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:25:15)
+
+  console.log
+      ✓ Registered sync: CheckInventoryAfterOrderCreation
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: ConfirmOrderIfInventoryAvailable
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: GetUserDetailsAfterOrderConfirm
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: CancelOrderIfInventoryUnavailable
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: DeductInventoryOnOrderConfirm
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: SendOrderConfirmationNotification
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: SendShippingNotification
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+    🛒 Orders plugin initialized
+
+      at Object.initialize (src/plugins/orders/index.ts:13:13)
+
+  console.log
+      ✓ Initialized plugin: orders
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:37:15)
+
+  console.log
+    ✅ Plugin orders loaded successfully
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:41:13)
+
+  console.log
+    🔌 Loading plugin: payments
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:20:13)
+
+  console.log
+      ✓ Registered concept: Payment
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:25:15)
+
+  console.log
+      ✓ Registered sync: InitiatePaymentOnOrderConfirm
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: AutoProcessPayment
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: AutoConfirmPayment
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: GetOrderDetailsAfterPaymentConfirm
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: GetUserDetailsAfterPaymentConfirm
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: SendPaymentSuccessNotification
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: GetOrderDetailsAfterPaymentFail
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: GetUserDetailsAfterPaymentFail
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: SendPaymentFailureNotification
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: GetOrderDetailsAfterRefund
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: GetUserDetailsAfterRefund
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: SendRefundNotification
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+    💳 Payments plugin initialized
+
+      at Object.initialize (src/plugins/payments/index.ts:13:13)
+
+  console.log
+      ✓ Initialized plugin: payments
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:37:15)
+
+  console.log
+    ✅ Plugin payments loaded successfully
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:41:13)
+
+  console.log
+    🔌 Loading plugin: notifications
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:20:13)
+
+  console.log
+      ✓ Registered concept: Notification
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:25:15)
+
+  console.log
+    🔔 Notifications plugin initialized
+
+      at Object.initialize (src/plugins/notifications/index.ts:12:13)
+
+  console.log
+      ✓ Initialized plugin: notifications
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:37:15)
+
+  console.log
+    ✅ Plugin notifications loaded successfully
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:41:13)
+
+  console.log
+    🔌 Loading plugin: analytics
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:20:13)
+
+  console.log
+      ✓ Registered concept: Analytics
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:25:15)
+
+  console.log
+      ✓ Registered sync: TrackUserRegistration
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: TrackProductCreation
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: TrackOrderCreation
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: TrackOrderConfirmation
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+    📈 Analytics plugin initialized
+
+      at Object.initialize (src/plugins/analytics/index.ts:13:13)
+
+  console.log
+      ✓ Initialized plugin: analytics
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:37:15)
+
+  console.log
+    ✅ Plugin analytics loaded successfully
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:41:13)
+
+  console.log
+    📢 Event: user.registered from system {
+      userId: 'ba504553-0c85-4031-b41f-c164ea43ee31',
+      username: 'testuser',
+      email: 'test@example.com'
+    }
+
+      at EventBus.publish (src/core/EventBus.ts:33:13)
+
+  console.log
+    📊 Tracked: user_registered {
+      userId: 'ba504553-0c85-4031-b41f-c164ea43ee31',
+      username: 'testuser',
+      email: 'test@example.com'
+    }
+
+      at Object.execute (src/plugins/analytics/concepts/Analytics.ts:33:17)
+
+  console.log
+    📢 Event: product.created from system {
+      productId: '41450453-a041-40b1-b8e6-a0406f7e7af8',
+      name: 'Test Product',
+      sku: 'TEST-001',
+      price: 29.99,
+      category: 'test'
+    }
+
+      at EventBus.publish (src/core/EventBus.ts:33:13)
+
+  console.log
+    📊 Tracked: product_created {
+      productId: '41450453-a041-40b1-b8e6-a0406f7e7af8',
+      name: 'Test Product',
+      category: 'test',
+      price: 29.99
+    }
+
+      at Object.execute (src/plugins/analytics/concepts/Analytics.ts:33:17)
+
+  console.log
+    [Inventory.checkAvailability] Processing item: productId=41450453-a041-40b1-b8e6-a0406f7e7af8, quantity=1, price=29.99
+
+      at Object.execute (src/plugins/inventory/concepts/Inventory.ts:32:19)
+
+  console.log
+    [Inventory.checkAvailability] Parsed quantity: 1
+
+      at Object.execute (src/plugins/inventory/concepts/Inventory.ts:34:19)
+
+  console.log
+    [Inventory.checkAvailability] Parsed price: 29.99
+
+      at Object.execute (src/plugins/inventory/concepts/Inventory.ts:36:19)
+
+  console.log
+    📧 EMAIL sent to test@example.com: order-confirmation
+
+      at Object.execute (src/plugins/notifications/concepts/Notification.ts:34:17)
+
+  console.log
+    📧 EMAIL sent to test@example.com: payment-success
+
+      at Object.execute (src/plugins/notifications/concepts/Notification.ts:34:17)
+
+  console.log
+    📧 EMAIL sent to ?user.email: payment-success
+
+      at Object.execute (src/plugins/notifications/concepts/Notification.ts:34:17)
+
+  console.log
+    📧 EMAIL sent to test@example.com: payment-failed
+
+      at Object.execute (src/plugins/notifications/concepts/Notification.ts:34:17)
+
+  console.log
+    📧 EMAIL sent to ?user.email: payment-failed
+
+      at Object.execute (src/plugins/notifications/concepts/Notification.ts:34:17)
+
+  console.log
+    📧 EMAIL sent to test@example.com: payment-refund
+
+      at Object.execute (src/plugins/notifications/concepts/Notification.ts:34:17)
+
+  console.log
+    📧 EMAIL sent to ?user.email: payment-refund
+
+      at Object.execute (src/plugins/notifications/concepts/Notification.ts:34:17)
+
+  console.log
+    📊 Tracked: order_created {
+      orderId: 'a38b9c76-54ed-4f7c-bc64-5a01d8f8cc99',
+      userId: 'ba504553-0c85-4031-b41f-c164ea43ee31',
+      itemCount: 1
+    }
+
+      at Object.execute (src/plugins/analytics/concepts/Analytics.ts:33:17)
+
+  console.log
+    📊 Tracked: order_confirmed { orderId: 'a38b9c76-54ed-4f7c-bc64-5a01d8f8cc99', total: 29.99 }
+
+      at Object.execute (src/plugins/analytics/concepts/Analytics.ts:33:17)
+
+  console.log
+    🔌 Loading plugin: users
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:20:13)
+
+  console.log
+      ✓ Registered concept: User
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:25:15)
+
+  console.log
+      ✓ Registered sync: PublishUserRegisteredEvent
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: PublishUserUpdatedEvent
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: PublishUserDeactivatedEvent
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+    👤 Users plugin initialized
+
+      at Object.initialize (src/plugins/users/index.ts:13:13)
+
+  console.log
+      ✓ Initialized plugin: users
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:37:15)
+
+  console.log
+    ✅ Plugin users loaded successfully
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:41:13)
+
+  console.log
+    🔌 Loading plugin: products
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:20:13)
+
+  console.log
+      ✓ Registered concept: Product
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:25:15)
+
+  console.log
+      ✓ Registered sync: PublishProductCreatedEvent
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: PublishProductUpdatedEvent
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: PublishProductDeactivatedEvent
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+    📦 Products plugin initialized
+
+      at Object.initialize (src/plugins/products/index.ts:13:13)
+
+  console.log
+      ✓ Initialized plugin: products
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:37:15)
+
+  console.log
+    ✅ Plugin products loaded successfully
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:41:13)
+
+  console.log
+    🔌 Loading plugin: inventory
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:20:13)
+
+  console.log
+      ✓ Registered concept: Inventory
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:25:15)
+
+  console.log
+    📊 Inventory plugin initialized
+
+      at Object.initialize (src/plugins/inventory/index.ts:12:13)
+
+  console.log
+      ✓ Initialized plugin: inventory
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:37:15)
+
+  console.log
+    ✅ Plugin inventory loaded successfully
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:41:13)
+
+  console.log
+    🔌 Loading plugin: orders
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:20:13)
+
+  console.log
+      ✓ Registered concept: Order
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:25:15)
+
+  console.log
+      ✓ Registered sync: CheckInventoryAfterOrderCreation
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: ConfirmOrderIfInventoryAvailable
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: GetUserDetailsAfterOrderConfirm
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: CancelOrderIfInventoryUnavailable
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: DeductInventoryOnOrderConfirm
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: SendOrderConfirmationNotification
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: SendShippingNotification
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+    🛒 Orders plugin initialized
+
+      at Object.initialize (src/plugins/orders/index.ts:13:13)
+
+  console.log
+      ✓ Initialized plugin: orders
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:37:15)
+
+  console.log
+    ✅ Plugin orders loaded successfully
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:41:13)
+
+  console.log
+    🔌 Loading plugin: payments
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:20:13)
+
+  console.log
+      ✓ Registered concept: Payment
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:25:15)
+
+  console.log
+      ✓ Registered sync: InitiatePaymentOnOrderConfirm
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: AutoProcessPayment
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: AutoConfirmPayment
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: GetOrderDetailsAfterPaymentConfirm
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: GetUserDetailsAfterPaymentConfirm
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: SendPaymentSuccessNotification
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: GetOrderDetailsAfterPaymentFail
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: GetUserDetailsAfterPaymentFail
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: SendPaymentFailureNotification
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: GetOrderDetailsAfterRefund
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: GetUserDetailsAfterRefund
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: SendRefundNotification
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+    💳 Payments plugin initialized
+
+      at Object.initialize (src/plugins/payments/index.ts:13:13)
+
+  console.log
+      ✓ Initialized plugin: payments
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:37:15)
+
+  console.log
+    ✅ Plugin payments loaded successfully
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:41:13)
+
+  console.log
+    🔌 Loading plugin: notifications
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:20:13)
+
+  console.log
+      ✓ Registered concept: Notification
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:25:15)
+
+  console.log
+    🔔 Notifications plugin initialized
+
+      at Object.initialize (src/plugins/notifications/index.ts:12:13)
+
+  console.log
+      ✓ Initialized plugin: notifications
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:37:15)
+
+  console.log
+    ✅ Plugin notifications loaded successfully
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:41:13)
+
+  console.log
+    🔌 Loading plugin: analytics
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:20:13)
+
+  console.log
+      ✓ Registered concept: Analytics
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:25:15)
+
+  console.log
+      ✓ Registered sync: TrackUserRegistration
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: TrackProductCreation
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: TrackOrderCreation
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: TrackOrderConfirmation
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+    📈 Analytics plugin initialized
+
+      at Object.initialize (src/plugins/analytics/index.ts:13:13)
+
+  console.log
+      ✓ Initialized plugin: analytics
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:37:15)
+
+  console.log
+    ✅ Plugin analytics loaded successfully
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:41:13)
+
+  console.log
+    📢 Event: user.registered from system {
+      userId: 'ad68433a-021c-4be0-a039-cddd6428c852',
+      username: 'johndoe',
+      email: 'john@example.com'
+    }
+
+      at EventBus.publish (src/core/EventBus.ts:33:13)
+
+  console.log
+    📊 Tracked: user_registered {
+      userId: 'ad68433a-021c-4be0-a039-cddd6428c852',
+      username: 'johndoe',
+      email: 'john@example.com'
+    }
+
+      at Object.execute (src/plugins/analytics/concepts/Analytics.ts:33:17)
+
+  console.log
+    🔌 Loading plugin: users
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:20:13)
+
+  console.log
+      ✓ Registered concept: User
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:25:15)
+
+  console.log
+      ✓ Registered sync: PublishUserRegisteredEvent
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: PublishUserUpdatedEvent
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: PublishUserDeactivatedEvent
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+    👤 Users plugin initialized
+
+      at Object.initialize (src/plugins/users/index.ts:13:13)
+
+  console.log
+      ✓ Initialized plugin: users
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:37:15)
+
+  console.log
+    ✅ Plugin users loaded successfully
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:41:13)
+
+  console.log
+    🔌 Loading plugin: products
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:20:13)
+
+  console.log
+      ✓ Registered concept: Product
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:25:15)
+
+  console.log
+      ✓ Registered sync: PublishProductCreatedEvent
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: PublishProductUpdatedEvent
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: PublishProductDeactivatedEvent
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+    📦 Products plugin initialized
+
+      at Object.initialize (src/plugins/products/index.ts:13:13)
+
+  console.log
+      ✓ Initialized plugin: products
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:37:15)
+
+  console.log
+    ✅ Plugin products loaded successfully
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:41:13)
+
+  console.log
+    🔌 Loading plugin: inventory
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:20:13)
+
+  console.log
+      ✓ Registered concept: Inventory
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:25:15)
+
+  console.log
+    📊 Inventory plugin initialized
+
+      at Object.initialize (src/plugins/inventory/index.ts:12:13)
+
+  console.log
+      ✓ Initialized plugin: inventory
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:37:15)
+
+  console.log
+    ✅ Plugin inventory loaded successfully
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:41:13)
+
+  console.log
+    🔌 Loading plugin: orders
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:20:13)
+
+  console.log
+      ✓ Registered concept: Order
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:25:15)
+
+  console.log
+      ✓ Registered sync: CheckInventoryAfterOrderCreation
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: ConfirmOrderIfInventoryAvailable
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: GetUserDetailsAfterOrderConfirm
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: CancelOrderIfInventoryUnavailable
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: DeductInventoryOnOrderConfirm
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: SendOrderConfirmationNotification
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: SendShippingNotification
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+    🛒 Orders plugin initialized
+
+      at Object.initialize (src/plugins/orders/index.ts:13:13)
+
+  console.log
+      ✓ Initialized plugin: orders
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:37:15)
+
+  console.log
+    ✅ Plugin orders loaded successfully
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:41:13)
+
+  console.log
+    🔌 Loading plugin: payments
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:20:13)
+
+  console.log
+      ✓ Registered concept: Payment
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:25:15)
+
+  console.log
+      ✓ Registered sync: InitiatePaymentOnOrderConfirm
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: AutoProcessPayment
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: AutoConfirmPayment
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: GetOrderDetailsAfterPaymentConfirm
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: GetUserDetailsAfterPaymentConfirm
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: SendPaymentSuccessNotification
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: GetOrderDetailsAfterPaymentFail
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: GetUserDetailsAfterPaymentFail
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: SendPaymentFailureNotification
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: GetOrderDetailsAfterRefund
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: GetUserDetailsAfterRefund
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: SendRefundNotification
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+    💳 Payments plugin initialized
+
+      at Object.initialize (src/plugins/payments/index.ts:13:13)
+
+  console.log
+      ✓ Initialized plugin: payments
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:37:15)
+
+  console.log
+    ✅ Plugin payments loaded successfully
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:41:13)
+
+  console.log
+    🔌 Loading plugin: notifications
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:20:13)
+
+  console.log
+      ✓ Registered concept: Notification
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:25:15)
+
+  console.log
+    🔔 Notifications plugin initialized
+
+      at Object.initialize (src/plugins/notifications/index.ts:12:13)
+
+  console.log
+      ✓ Initialized plugin: notifications
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:37:15)
+
+  console.log
+    ✅ Plugin notifications loaded successfully
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:41:13)
+
+  console.log
+    🔌 Loading plugin: analytics
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:20:13)
+
+  console.log
+      ✓ Registered concept: Analytics
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:25:15)
+
+  console.log
+      ✓ Registered sync: TrackUserRegistration
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: TrackProductCreation
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: TrackOrderCreation
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: TrackOrderConfirmation
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+    📈 Analytics plugin initialized
+
+      at Object.initialize (src/plugins/analytics/index.ts:13:13)
+
+  console.log
+      ✓ Initialized plugin: analytics
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:37:15)
+
+  console.log
+    ✅ Plugin analytics loaded successfully
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:41:13)
+
+  console.log
+    📢 Event: product.created from system {
+      productId: '9822abf4-8e82-4b8c-9f55-db60685bf850',
+      name: 'Test Product',
+      sku: 'TEST-001',
+      price: 29.99,
+      category: 'test'
+    }
+
+      at EventBus.publish (src/core/EventBus.ts:33:13)
+
+  console.log
+    📊 Tracked: product_created {
+      productId: '9822abf4-8e82-4b8c-9f55-db60685bf850',
+      name: 'Test Product',
+      category: 'test',
+      price: 29.99
+    }
+
+      at Object.execute (src/plugins/analytics/concepts/Analytics.ts:33:17)
+
+  console.log
+    🔌 Loading plugin: users
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:20:13)
+
+  console.log
+      ✓ Registered concept: User
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:25:15)
+
+  console.log
+      ✓ Registered sync: PublishUserRegisteredEvent
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: PublishUserUpdatedEvent
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: PublishUserDeactivatedEvent
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+    👤 Users plugin initialized
+
+      at Object.initialize (src/plugins/users/index.ts:13:13)
+
+  console.log
+      ✓ Initialized plugin: users
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:37:15)
+
+  console.log
+    ✅ Plugin users loaded successfully
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:41:13)
+
+  console.log
+    🔌 Loading plugin: products
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:20:13)
+
+  console.log
+      ✓ Registered concept: Product
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:25:15)
+
+  console.log
+      ✓ Registered sync: PublishProductCreatedEvent
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: PublishProductUpdatedEvent
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: PublishProductDeactivatedEvent
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+    📦 Products plugin initialized
+
+      at Object.initialize (src/plugins/products/index.ts:13:13)
+
+  console.log
+      ✓ Initialized plugin: products
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:37:15)
+
+  console.log
+    ✅ Plugin products loaded successfully
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:41:13)
+
+  console.log
+    🔌 Loading plugin: inventory
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:20:13)
+
+  console.log
+      ✓ Registered concept: Inventory
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:25:15)
+
+  console.log
+    📊 Inventory plugin initialized
+
+      at Object.initialize (src/plugins/inventory/index.ts:12:13)
+
+  console.log
+      ✓ Initialized plugin: inventory
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:37:15)
+
+  console.log
+    ✅ Plugin inventory loaded successfully
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:41:13)
+
+  console.log
+    🔌 Loading plugin: orders
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:20:13)
+
+  console.log
+      ✓ Registered concept: Order
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:25:15)
+
+  console.log
+      ✓ Registered sync: CheckInventoryAfterOrderCreation
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: ConfirmOrderIfInventoryAvailable
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: GetUserDetailsAfterOrderConfirm
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: CancelOrderIfInventoryUnavailable
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: DeductInventoryOnOrderConfirm
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: SendOrderConfirmationNotification
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: SendShippingNotification
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+    🛒 Orders plugin initialized
+
+      at Object.initialize (src/plugins/orders/index.ts:13:13)
+
+  console.log
+      ✓ Initialized plugin: orders
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:37:15)
+
+  console.log
+    ✅ Plugin orders loaded successfully
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:41:13)
+
+  console.log
+    🔌 Loading plugin: payments
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:20:13)
+
+  console.log
+      ✓ Registered concept: Payment
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:25:15)
+
+  console.log
+      ✓ Registered sync: InitiatePaymentOnOrderConfirm
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: AutoProcessPayment
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: AutoConfirmPayment
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: GetOrderDetailsAfterPaymentConfirm
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: GetUserDetailsAfterPaymentConfirm
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: SendPaymentSuccessNotification
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: GetOrderDetailsAfterPaymentFail
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: GetUserDetailsAfterPaymentFail
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: SendPaymentFailureNotification
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: GetOrderDetailsAfterRefund
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: GetUserDetailsAfterRefund
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: SendRefundNotification
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+    💳 Payments plugin initialized
+
+      at Object.initialize (src/plugins/payments/index.ts:13:13)
+
+  console.log
+      ✓ Initialized plugin: payments
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:37:15)
+
+  console.log
+    ✅ Plugin payments loaded successfully
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:41:13)
+
+  console.log
+    🔌 Loading plugin: notifications
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:20:13)
+
+  console.log
+      ✓ Registered concept: Notification
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:25:15)
+
+  console.log
+    🔔 Notifications plugin initialized
+
+      at Object.initialize (src/plugins/notifications/index.ts:12:13)
+
+  console.log
+      ✓ Initialized plugin: notifications
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:37:15)
+
+  console.log
+    ✅ Plugin notifications loaded successfully
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:41:13)
+
+  console.log
+    🔌 Loading plugin: analytics
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:20:13)
+
+  console.log
+      ✓ Registered concept: Analytics
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:25:15)
+
+  console.log
+      ✓ Registered sync: TrackUserRegistration
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: TrackProductCreation
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: TrackOrderCreation
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+      ✓ Registered sync: TrackOrderConfirmation
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:31:15)
+
+  console.log
+    📈 Analytics plugin initialized
+
+      at Object.initialize (src/plugins/analytics/index.ts:13:13)
+
+  console.log
+      ✓ Initialized plugin: analytics
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:37:15)
+
+  console.log
+    ✅ Plugin analytics loaded successfully
+
+      at PluginManager.loadPlugin (src/core/PluginManager.ts:41:13)
+
+  console.log
+    📢 Event: user.registered from system {
+      userId: '108cbc6d-e417-4cf3-b9a2-dc6920fda890',
+      username: 'testuser',
+      email: 'test@example.com'
+    }
+
+      at EventBus.publish (src/core/EventBus.ts:33:13)
+
+  console.log
+    📊 Tracked: user_registered {
+      userId: '108cbc6d-e417-4cf3-b9a2-dc6920fda890',
+      username: 'testuser',
+      email: 'test@example.com'
+    }
+
+      at Object.execute (src/plugins/analytics/concepts/Analytics.ts:33:17)
+
+  console.log
+    📢 Event: product.created from system {
+      productId: 'f9c1b124-2350-4b3d-a032-aac4eda2ebd4',
+      name: 'Test Product',
+      sku: 'TEST-001',
+      price: 29.99,
+      category: 'test'
+    }
+
+      at EventBus.publish (src/core/EventBus.ts:33:13)
+
+  console.log
+    📊 Tracked: product_created {
+      productId: 'f9c1b124-2350-4b3d-a032-aac4eda2ebd4',
+      name: 'Test Product',
+      category: 'test',
+      price: 29.99
+    }
+
+      at Object.execute (src/plugins/analytics/concepts/Analytics.ts:33:17)
+
+  console.log
+    [Inventory.checkAvailability] Processing item: productId=f9c1b124-2350-4b3d-a032-aac4eda2ebd4, quantity=1, price=29.99
+
+      at Object.execute (src/plugins/inventory/concepts/Inventory.ts:32:19)
+
+  console.log
+    [Inventory.checkAvailability] Parsed quantity: 1
+
+      at Object.execute (src/plugins/inventory/concepts/Inventory.ts:34:19)
+
+  console.log
+    [Inventory.checkAvailability] Parsed price: 29.99
+
+      at Object.execute (src/plugins/inventory/concepts/Inventory.ts:36:19)
+
+  console.log
+    📧 EMAIL sent to test@example.com: order-confirmation
+
+      at Object.execute (src/plugins/notifications/concepts/Notification.ts:34:17)
+
+  console.log
+    📧 EMAIL sent to test@example.com: payment-success
+
+      at Object.execute (src/plugins/notifications/concepts/Notification.ts:34:17)
+
+  console.log
+    📧 EMAIL sent to ?user.email: payment-success
+
+      at Object.execute (src/plugins/notifications/concepts/Notification.ts:34:17)
+
+  console.log
+    📧 EMAIL sent to test@example.com: payment-failed
+
+      at Object.execute (src/plugins/notifications/concepts/Notification.ts:34:17)
+
+  console.log
+    📧 EMAIL sent to ?user.email: payment-failed
+
+      at Object.execute (src/plugins/notifications/concepts/Notification.ts:34:17)
+
+  console.log
+    📧 EMAIL sent to test@example.com: payment-refund
+
+      at Object.execute (src/plugins/notifications/concepts/Notification.ts:34:17)
+
+  console.log
+    📧 EMAIL sent to ?user.email: payment-refund
+
+      at Object.execute (src/plugins/notifications/concepts/Notification.ts:34:17)
+
+  console.log
+    📊 Tracked: order_created {
+      orderId: '2f02ac17-2d38-464b-9a94-f11b1262070f',
+      userId: '108cbc6d-e417-4cf3-b9a2-dc6920fda890',
+      itemCount: 1
+    }
+
+      at Object.execute (src/plugins/analytics/concepts/Analytics.ts:33:17)
+
+  console.log
+    📊 Tracked: order_confirmed { orderId: '2f02ac17-2d38-464b-9a94-f11b1262070f', total: 29.99 }
+
+      at Object.execute (src/plugins/analytics/concepts/Analytics.ts:33:17)
+
+FAIL __tests__/integration/syncs.test.ts
+  EDA Sync Rules Integration Tests
+    User Event Syncs
+      ✓ should call EventBus.publish when User.register succeeds (20 ms)
+    Product Event Syncs
+      ✓ should call EventBus.publish when Product.create succeeds (8 ms)
+    Order Workflow Syncs
+      ✓ should call Inventory.checkAvailability when Order.create succeeds (62 ms)
+      ✓ should call Order.confirm when Inventory.checkAvailability returns available=true (60 ms)
+      ✓ should call User.get when Order.confirm succeeds (112 ms)
+      ✓ should call Inventory.deduct when Order.confirm succeeds (114 ms)
+      ✓ should call Notification.send when Order.confirm and User.get succeed (118 ms)
+    Analytics Event Syncs
+      ✓ should call Analytics.track when User.register succeeds (66 ms)
+      ✕ should call Analytics.track when Product.create succeeds (72 ms)
+      ✓ should call Analytics.track when Order.create succeeds (113 ms)
+
+  ● EDA Sync Rules Integration Tests › Analytics Event Syncs › should call Analytics.track when Product.create succeeds
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 0
+
+    @@ -2,9 +2,8 @@
+        "data": Object {
+          "category": "test",
+          "name": "Test Product",
+          "price": 29.99,
+          "productId": Any<String>,
+    -     "sku": "TEST-001",
+        },
+        "event": "product_created",
+      }
+
+      367 |       );
+      368 |       expect(analyticsAction).toBeDefined();
+    > 369 |       expect(analyticsAction!.input).toEqual({
+          |                                      ^
+      370 |         event: 'product_created',
+      371 |         data: {
+      372 |           productId: expect.any(String),
+
+      at Object.<anonymous> (__tests__/integration/syncs.test.ts:369:38)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 9 passed, 10 total
+Snapshots:   0 total
+Time:        1.24 s, estimated 2 s
+Ran all test suites matching /__tests__\/integration\/syncs.test.ts/i.
+npm error Lifecycle script `test` failed with error:
+npm error code 1
+npm error path /Users/mastepanoski/projects/web/ai/legible-sync/packages/example-eda
+npm error workspace @legible-sync/example-eda@1.2.2
+npm error location /Users/mastepanoski/projects/web/ai/legible-sync/packages/example-eda
+npm error command failed
+npm error command sh -c jest __tests__/integration/syncs.test.ts

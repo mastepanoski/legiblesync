@@ -53,6 +53,7 @@ interface Concept {
   name: string;
   state: Record<string, any>;
   execute(action: string, input: any): Promise<any>;
+  rollback?(action: string, input: any, output: any): Promise<void>; // Optional for rollback support
 }
 ```
 
@@ -67,6 +68,20 @@ interface SyncRule {
   then: Invocation[];
 }
 ```
+
+#### Rollback on Failure
+If a sync's `then` action fails, the engine automatically rolls back successful previous actions in the same sync by calling their `rollback` method (if implemented). This ensures atomicity within sync executions.
+
+```typescript
+interface Concept {
+  name: string;
+  state: Record<string, any>;
+  execute(action: string, input: any): Promise<any>;
+  rollback?(action: string, input: any, output: any): Promise<void>; // Optional rollback
+}
+```
+
+Example: If a sync has three `then` actions and the second fails, the first is rolled back, and the third is not executed.
 
 #### Query Example
 ```typescript

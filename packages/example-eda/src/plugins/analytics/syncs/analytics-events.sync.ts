@@ -46,7 +46,8 @@ export const analyticsEventSyncs: SyncRule[] = [
             productId: "?productId",
             name: "?name",
             category: "?category",
-            price: "?price"
+            price: "?price",
+            sku: "?sku"
           }
         }
       }

@@ -72,7 +72,7 @@ describe('Sync Rules Integration Tests', () => {
 
     // Reset engine state
     engine['firedSyncs'].clear();
-    engine['invokedActions'].clear();
+    engine['invokedActions'].length = 0;
     engine['actions'].length = 0;
     engine['actionIndex'].clear();
   });

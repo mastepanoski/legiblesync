@@ -1,5 +1,6 @@
 import { LegibleEngine } from '../src/engine/Engine';
 import { Concept, SyncRule } from '../src/engine/types';
+import { QueueFactory } from '../src/queues/QueueFactory';
 
 describe('LegibleEngine', () => {
   let engine: LegibleEngine;
@@ -250,6 +251,68 @@ describe('LegibleEngine', () => {
       // The sync should not have triggered for the free user, so still 1 call
       expect(syncConcept.execute).toHaveBeenCalledTimes(1);
     });
+
+    it('should rollback successful actions when a sync then action fails', async () => {
+      const successConcept: Concept = {
+        state: {},
+        execute: jest.fn().mockResolvedValue({ success: true }),
+        rollback: jest.fn().mockResolvedValue(undefined)
+      };
+
+      const failConcept: Concept = {
+        state: {},
+        execute: jest.fn().mockRejectedValue(new Error('Action failed'))
+      };
+
+      engine.registerConcept('success', successConcept);
+      engine.registerConcept('fail', failConcept);
+
+      const syncRule: SyncRule = {
+        name: 'rollbackTest',
+        when: [{
+          concept: 'trigger',
+          action: 'start'
+        }],
+        then: [
+          {
+            concept: 'success',
+            action: 'first',
+            input: { step: 1 }
+          },
+          {
+            concept: 'fail',
+            action: 'second',
+            input: { step: 2 }
+          },
+          {
+            concept: 'success',
+            action: 'third',
+            input: { step: 3 }
+          }
+        ]
+      };
+
+      engine.registerSync(syncRule);
+
+      const triggerConcept: Concept = {
+        state: {},
+        execute: jest.fn().mockResolvedValue({ started: true })
+      };
+      engine.registerConcept('trigger', triggerConcept);
+
+      // Invoke the trigger
+      await engine.invoke('trigger', 'start', {}, 'flow1');
+
+      // Check that first action was executed and rolled back
+      expect(successConcept.execute).toHaveBeenCalledWith('first', { step: 1 });
+      expect(successConcept.rollback).toHaveBeenCalledWith('first', { step: 1 }, { success: true });
+
+      // Check that second action was executed but not rolled back (it failed)
+      expect(failConcept.execute).toHaveBeenCalledWith('second', { step: 2 });
+
+      // Check that third action was not executed
+      expect(successConcept.execute).not.toHaveBeenCalledWith('third', { step: 3 });
+    });
   });
 
   describe('Flow Management', () => {
@@ -311,6 +374,62 @@ describe('LegibleEngine', () => {
 
       expect(engine.getActionsByFlow('flow1')).toHaveLength(0);
       expect(engine.getActionsByFlow('flow2')).toHaveLength(0);
+    });
+  });
+
+  describe('Queue Integration', () => {
+    it('should accept a queue in constructor', () => {
+      const queue = QueueFactory.create({ backend: 'sqlite' });
+      const engineWithQueue = new LegibleEngine(queue);
+      expect(engineWithQueue).toBeDefined();
+      queue.close();
+    });
+
+    it('should work without queue', () => {
+      const engineNoQueue = new LegibleEngine();
+      expect(engineNoQueue).toBeDefined();
+    });
+
+    it('should process queue messages', async () => {
+      const queue = QueueFactory.create({ backend: 'sqlite' });
+      const engineWithQueue = new LegibleEngine(queue);
+
+      const mockConcept: Concept = {
+        state: {},
+        execute: jest.fn().mockResolvedValue({ processed: true })
+      };
+
+      engineWithQueue.registerConcept('test', mockConcept);
+
+      // Enqueue a message
+      await queue.enqueue({
+        id: 'msg-1',
+        payload: {
+          type: 'invoke',
+          concept: 'test',
+          action: 'testAction',
+          input: { data: 'test' },
+          flowId: 'flow1',
+          fromSync: false
+        },
+        timestamp: Date.now()
+      });
+
+      // Process the message
+      const processed = await engineWithQueue.processQueueMessage();
+      expect(processed).toBe(true);
+      expect(mockConcept.execute).toHaveBeenCalledWith('testAction', { data: 'test' });
+
+      // Queue should be empty now
+      const empty = await engineWithQueue.processQueueMessage();
+      expect(empty).toBe(false);
+
+      await queue.close();
+    });
+
+    it('should throw error when processing queue without queue configured', async () => {
+      const engineNoQueue = new LegibleEngine();
+      await expect(engineNoQueue.processQueueMessage()).rejects.toThrow('No queue configured for processing');
     });
   });
 });

@@ -8,7 +8,7 @@ export const favoriteSyncs: SyncRule[] = [
       {
         concept: "Web",
         action: "request",
-        input: { method: "POST", path: "/articles/*/favorite" },
+        input: { method: "POST", path: "/articles/*/favorite", token: "?token" },
         output: { request: "?req" }
       }
     ],
@@ -26,7 +26,7 @@ export const favoriteSyncs: SyncRule[] = [
       {
         concept: "Web",
         action: "request",
-        input: { method: "POST", path: "/articles/*/favorite" },
+        input: { method: "POST", path: "/articles/*/favorite", token: "?token" },
         output: { request: "?req" }
       },
       {
@@ -52,7 +52,7 @@ export const favoriteSyncs: SyncRule[] = [
       {
         concept: "Web",
         action: "request",
-        input: { method: "DELETE", path: "/articles/*/favorite" },
+        input: { method: "DELETE", path: "/articles/*/favorite", token: "?token" },
         output: { request: "?req" }
       }
     ],
@@ -70,7 +70,7 @@ export const favoriteSyncs: SyncRule[] = [
       {
         concept: "Web",
         action: "request",
-        input: { method: "DELETE", path: "/articles/*/favorite" },
+        input: { method: "DELETE", path: "/articles/*/favorite", token: "?token" },
         output: { request: "?req" }
       },
       {

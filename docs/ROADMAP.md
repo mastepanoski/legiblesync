@@ -26,17 +26,20 @@ This document consolidates the LegibleSync framework roadmap, including pending 
 ### Phase 1 (MVP) - 🚧 In Progress
 - [x] Core Engine
 - [x] Basic Concepts (Web, Auth, Storage)
+- [x] DSL Example (`test.sync`)
+- [x] Complete documentation from sync files (`SYNC_DOCS.md`)
 - [ ] YAML DSL
 - [ ] CLI Tools
 - [ ] Complete DSL parser in TypeScript
 - [ ] CLI for sync validation
 
 ### Phase 2 (Enterprise) - 📋 Planned
-- [ ] Distributed Execution
+- [x] Distributed Execution (Queue support added: SQLite in-memory, configurable backends, loop prevention for scalability)
+- [x] Documentation generation (manual `SYNC_DOCS.md` created)
 - [ ] Advanced Queries (SPARQL integration)
 - [ ] Plugin System
 - [ ] Monitoring/Dashboard
-- [ ] Automatic documentation generation
+- [ ] Automatic documentation generation from DSL
 
 ### Phase 3 (AI-First) - 📋 Planned
 - [ ] LLM Code Generation
@@ -51,7 +54,7 @@ This document consolidates the LegibleSync framework roadmap, including pending 
 ```text
 sync <Name>
 when { <action-patterns> }
-where { <state-queries> | bind(...) }
+where { <state-queries> | bind(...) | filter(...) }
 then { <action-invocations> }
 ```
 
@@ -68,12 +71,13 @@ block     ::= "when" "{" pattern+ "}"
             | "where" "{" query+ "}"
             | "then" "{" invocation+ "}"
 
-pattern   ::= CONCEPT "/" ACTION ":" "[" args? "]" "=>" "[" results? "]"
+pattern   ::= CONCEPT "/" ACTION ":" "{" args? "}" "=>" "{" results? "}"
 query     ::= CONCEPT ":" "{" bindings "}"
             | "bind" "(" expr "as" VARIABLE ")"
+            | "filter" "(" expr ")"
             | "optional" "{" query+ "}"
 
-invocation ::= CONCEPT "/" ACTION ":" "[" inputs? "]"
+invocation ::= CONCEPT "/" ACTION ":" "{" inputs? "}"
 ```
 
 ### Built-in Functions for `bind()`
@@ -89,10 +93,11 @@ env("KEY")       → environment variable
 ### Key Features
 - **Variables (`?var`)**: Automatic scoping throughout the sync
 - **`bind()`**: Pure calculations
+- **`filter()`**: Conditional logic for state queries
 - **`optional {}`**: Optional JOINs (LEFT JOIN)
 - **Partial Pattern Matching**: Only specify what's needed
 - **Multi-Action `when`**: Waits for multiple actions in the same flow
-- **Error Handling**: Match on `=> [ error: ?msg ]`
+- **Error Handling**: Match on `=> { error: ?msg }`
 - **No Transactions**: Atomicity through order + idempotency
 
 ## LLM Integration
@@ -112,13 +117,21 @@ Use concepts: Web, User, Password, JWT, Profile
 ### Future Extension: Sync Macros
 ```sync
 macro Authenticated(?method, ?path, ?action)
-→ when { Web/request: [ method: ?method ; path: ?path ; token: ?token ] => [ request: ?req ]
-         JWT/verify: [ token: ?token ] => [ user: ?user ] }
+→ when { Web/request: { method: ?method, path: ?path, token: ?token } => { request: ?req }
+         JWT/verify: { token: ?token } => { user: ?user } }
   then { ?action }
 
 sync CreateArticle
-use Authenticated("POST", "/articles", Article/create: [ ... ])
+use Authenticated("POST", "/articles", Article/create: { ... })
 ```
+
+## Queue Support
+
+- **Configurable Backends**: Support for SQLite (in-memory/file), Valkey, PostgreSQL
+- **Queue Interface**: Standardized interface for enqueue/dequeue operations
+- **Engine Integration**: Optional queue support in LegibleEngine for distributed processing
+- **Scalability Improvements**: Loop prevention adapted for distributed environments (invokedActions bypassed when queue is present)
+- **Message Processing**: processQueueMessage() method for worker nodes to consume and execute queued actions
 
 ## Future Development Tools
 

@@ -3,6 +3,36 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>1.2.0 (2025-11-21)</small>
+
+### Security
+
+* **deps**: update `js-yaml` to safe version (^3.14.2) to fix prototype pollution vulnerability
+* **deps**: update `glob` to safe versions (^10.5.0 and ^11.1.0) to fix command injection vulnerability via CLI
+* **deps**: implement npm overrides with nested configuration for dependency version enforcement
+
+### Bug Fixes
+
+* **example-eda**: add missing `sku` field to `TrackProductCreation` sync rule
+* **example-express**: fix Web mock to return `{ request: 'req-id' }` for proper sync pattern matching
+* **example-express**: update JWT.verify mock to accept both 'valid-token' and 'generated-token'
+* **tests**: all test suites now passing (5 packages, 56 tests total)
+
+### Documentation
+
+* **sync-docs**: create comprehensive `docs/SYNC_DOCS.md` with table of contents and package organization
+* **sync-docs**: add JSON code blocks for all sync rule specifications
+* **sync-docs**: include file links to source files for easy navigation
+* **dsl**: enhance `docs/test.sync` with explanatory comments about DSL syntax
+* **roadmap**: update `docs/ROADMAP.md` to mark completed items (DSL example, documentation generation)
+* **structure**: move documentation files from root to `docs/` directory
+
+### Chores
+
+* **cleanup**: remove `REVIEW_SEC.md` after security fixes verification
+
+---
+
 ## <small>1.1.2 (2025-11-21)</small>
 
 * feat: add CI workflow for GitHub Actions ([4288652](https://github.com/mastepanoski/legiblesync/commit/4288652))

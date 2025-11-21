@@ -8,7 +8,7 @@ export const commentSyncs: SyncRule[] = [
       {
         concept: "Web",
         action: "request",
-        input: { method: "POST", path: "/articles/*/comments" },
+        input: { method: "POST", path: "/articles/*/comments", token: "?token" },
         output: { request: "?req" }
       }
     ],
@@ -26,7 +26,7 @@ export const commentSyncs: SyncRule[] = [
       {
         concept: "Web",
         action: "request",
-        input: { method: "POST", path: "/articles/*/comments" },
+        input: { method: "POST", path: "/articles/*/comments", token: "?token" },
         output: { request: "?req" }
       },
       {
@@ -39,12 +39,12 @@ export const commentSyncs: SyncRule[] = [
       {
         concept: "Comment",
         action: "create",
-        input: {
-          comment: "uuid()",
-          article: "?path[2]", // Extract article ID from path
-          author: "?user",
-          body: "?body.body"
-        }
+         input: {
+           comment: "uuid()",
+           article: "?path[2]", // Extract article ID from path
+           author: "?user",
+           body: "?body.body"
+         }
       }
     ]
   }

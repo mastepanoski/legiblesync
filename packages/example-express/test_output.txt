@@ -1,0 +1,957 @@
+
+> @legible-sync/example-express@1.2.2 test
+> jest
+
+watchman warning:  Recrawled this watch 1 time, most recently because:
+MustScanSubDirs UserDroppedTo resolve, please review the information on
+https://facebook.github.io/watchman/docs/troubleshooting.html#recrawl
+To clear this warning, run:
+`watchman watch-del '/Users/mastepanoski/projects/web/ai/legible-sync' ; watchman watch-project '/Users/mastepanoski/projects/web/ai/legible-sync'`
+
+FAIL __tests__/integration/syncs.test.ts
+  ● Express Sync Rules Integration Tests › Article Syncs › should call JWT.verify when Web.request POST /articles
+
+    expect(jest.fn()).toHaveBeenCalledWith(...expected)
+
+    - Expected
+    + Received
+
+    - "verify",
+    + "reset",
+    - Object {
+    -   "token": "valid-token",
+    - }
+    + Object {},
+
+    Number of calls: 1
+
+      130 |
+      131 |       // Check that JWT.verify was called
+    > 132 |       expect(mockConcepts.JWT.__spy).toHaveBeenCalledWith('verify', {
+          |                                      ^
+      133 |         token: 'valid-token'
+      134 |       });
+      135 |     });
+
+      at Object.<anonymous> (__tests__/integration/syncs.test.ts:132:38)
+
+  ● Express Sync Rules Integration Tests › Article Syncs › should call Article.create when Web.request POST /articles and JWT.verify succeed
+
+    expect(jest.fn()).toHaveBeenCalledWith(...expected)
+
+    Expected: "create", ObjectContaining {"article": Any<String>, "author": "test-user", "body": "Test content", "title": "Test Article"}
+
+    Number of calls: 0
+
+      152 |       // The sync should trigger JWT.verify and then Article.create
+      153 |       // Check that Article.create was called with correct parameters
+    > 154 |       expect(mockConcepts.Article.__spy).toHaveBeenCalledWith('create', expect.objectContaining({
+          |                                          ^
+      155 |         article: expect.any(String),
+      156 |         title: 'Test Article',
+      157 |         body: 'Test content',
+
+      at Object.<anonymous> (__tests__/integration/syncs.test.ts:154:42)
+
+  ● Express Sync Rules Integration Tests › Comment Syncs › should call Comment.create when Web.request POST /articles/*/comments and JWT.verify succeed
+
+    expect(jest.fn()).toHaveBeenCalledWith(...expected)
+
+    Expected: "create", ObjectContaining {"article": "article123", "author": "test-user", "body": "Test comment", "comment": Any<String>}
+
+    Number of calls: 0
+
+      179 |       // The sync should trigger JWT.verify and then Comment.create
+      180 |       // Check that Comment.create was called
+    > 181 |       expect(mockConcepts.Comment.__spy).toHaveBeenCalledWith('create', expect.objectContaining({
+          |                                          ^
+      182 |         comment: expect.any(String),
+      183 |         article: 'article123',
+      184 |         author: 'test-user',
+
+      at Object.<anonymous> (__tests__/integration/syncs.test.ts:181:42)
+
+  ● Express Sync Rules Integration Tests › Favorite Syncs › should call Favorite.add when Web.request POST /articles/*/favorite and JWT.verify succeed
+
+    expect(jest.fn()).toHaveBeenCalledWith(...expected)
+
+    Expected: "add", ObjectContaining {"article": "article123", "user": "test-user"}
+
+    Number of calls: 0
+
+      205 |       // The sync should trigger JWT.verify and then Favorite.add
+      206 |       // Check that Favorite.add was called
+    > 207 |       expect(mockConcepts.Favorite.__spy).toHaveBeenCalledWith('add', expect.objectContaining({
+          |                                           ^
+      208 |         article: 'article123',
+      209 |         user: 'test-user'
+      210 |       }));
+
+      at Object.<anonymous> (__tests__/integration/syncs.test.ts:207:43)
+
+  ● Express Sync Rules Integration Tests › Favorite Syncs › should call Favorite.remove when Web.request DELETE /articles/*/favorite and JWT.verify succeed
+
+    expect(jest.fn()).toHaveBeenCalledWith(...expected)
+
+    Expected: "remove", ObjectContaining {"article": "article123", "user": "test-user"}
+
+    Number of calls: 0
+
+      227 |       // The sync should trigger JWT.verify and then Favorite.remove
+      228 |       // Check that Favorite.remove was called
+    > 229 |       expect(mockConcepts.Favorite.__spy).toHaveBeenCalledWith('remove', expect.objectContaining({
+          |                                           ^
+      230 |         article: 'article123',
+      231 |         user: 'test-user'
+      232 |       }));
+
+      at Object.<anonymous> (__tests__/integration/syncs.test.ts:229:43)
+
+  ● Express Sync Rules Integration Tests › Registration Syncs › should call Password.validate when Web.request POST /users
+
+    expect(jest.fn()).toHaveBeenCalledWith(...expected)
+
+    Expected: "validate", {"password": "password123"}
+
+    Number of calls: 0
+
+      250 |
+      251 |       // Check that Password.validate was called
+    > 252 |       expect(mockConcepts.Password.__spy).toHaveBeenCalledWith('validate', {
+          |                                           ^
+      253 |         password: 'password123'
+      254 |       });
+      255 |     });
+
+      at Object.<anonymous> (__tests__/integration/syncs.test.ts:252:43)
+
+  ● Express Sync Rules Integration Tests › Registration Syncs › should call User.register when Password.validate succeeds with valid=true
+
+    expect(jest.fn()).toHaveBeenCalledWith(...expected)
+
+    Expected: "register", ObjectContaining {"email": "test@example.com", "user": Any<String>, "username": "testuser"}
+
+    Number of calls: 0
+
+      275 |
+      276 |       // Check that User.register was called
+    > 277 |       expect(mockConcepts.User.__spy).toHaveBeenCalledWith('register', expect.objectContaining({
+          |                                       ^
+      278 |         user: expect.any(String),
+      279 |         username: 'testuser',
+      280 |         email: 'test@example.com'
+
+      at Object.<anonymous> (__tests__/integration/syncs.test.ts:277:39)
+
+  ● Express Sync Rules Integration Tests › Registration Syncs › should call Password.set and JWT.generate when User.register succeeds with valid email
+
+    expect(jest.fn()).toHaveBeenCalledWith(...expected)
+
+    Expected: "set", Any<Object>
+
+    Number of calls: 0
+
+      304 |
+      305 |       // Check that Password.set was called
+    > 306 |       expect(mockConcepts.Password.__spy).toHaveBeenCalledWith('set', expect.any(Object));
+          |                                           ^
+      307 |
+      308 |       // Check that JWT.generate was called
+      309 |       expect(mockConcepts.JWT.__spy).toHaveBeenCalledWith('generate', expect.any(Object));
+
+      at Object.<anonymous> (__tests__/integration/syncs.test.ts:306:43)
+
+  ● Express Sync Rules Integration Tests › Registration Syncs › should call Password.verify when Web.request POST /login
+
+    expect(jest.fn()).toHaveBeenCalledWith(...expected)
+
+    Expected: "verify", Any<Object>
+
+    Number of calls: 0
+
+      324 |
+      325 |       // Check that Password.verify was called
+    > 326 |       expect(mockConcepts.Password.__spy).toHaveBeenCalledWith('verify', expect.any(Object));
+          |                                           ^
+      327 |     });
+      328 |
+      329 |     it('should call JWT.generate when Password.verify succeeds', async () => {
+
+      at Object.<anonymous> (__tests__/integration/syncs.test.ts:326:43)
+
+PASS __tests__/integration/api.test.ts
+  ● Console
+
+    console.log
+      [HTTP] POST /users
+
+      at Object.execute (src/concepts/Web.ts:14:15)
+
+    console.log
+      [POST /users] All actions in flow: [
+        {
+          id: 'ed7c0d69-4aed-47f6-9f2e-22adfbb56357',
+          concept: 'Web',
+          action: 'request',
+          input: { method: 'POST', path: '/users', body: [Object], token: null },
+          flow: 'flow-1763759661056',
+          syncEdges: {
+            ValidatePasswordFirst: [Array],
+            RegisterOnValidPassword: [Array]
+          },
+          syncTriggered: false,
+          output: { request: '0af213c6-adb6-404b-a570-7d47e046ad0b' }
+        },
+        {
+          id: '27afb112-2cfb-4841-bff8-301537849a51',
+          concept: 'Password',
+          action: 'validate',
+          input: { password: 'password123' },
+          flow: 'flow-1763759661056',
+          syncEdges: { RegisterOnValidPassword: [Array] },
+          syncTriggered: true,
+          output: { valid: true }
+        },
+        {
+          id: '469c306f-6f09-4cef-9366-17e5ab2bffc8',
+          concept: 'User',
+          action: 'register',
+          input: { user: 'uuid()', username: 'testuser', email: 'test@example.com' },
+          flow: 'flow-1763759661056',
+          syncEdges: {},
+          syncTriggered: true,
+          output: { user: 'uuid()' }
+        },
+        {
+          id: 'd19b0671-a55c-4fc5-a90c-29223aae8c08',
+          concept: 'Password',
+          action: 'set',
+          input: { user: '?user', password: 'password123' },
+          flow: 'flow-1763759661056',
+          syncEdges: {},
+          syncTriggered: true,
+          output: { user: '?user' }
+        },
+        {
+          id: '91d22adc-55c8-4fbe-bd97-da81b7d4c9d5',
+          concept: 'JWT',
+          action: 'generate',
+          input: { user: '?user' },
+          flow: 'flow-1763759661056',
+          syncEdges: {},
+          syncTriggered: true,
+          output: {
+            token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiP3VzZXIiLCJpYXQiOjE3NjM3NTk2NjEsImV4cCI6MTc2Mzg0NjA2MX0.uduMpZAgxq9s0QqrcsrH05U5lBrzZfw2dcBTIaLPytw'
+          }
+        }
+      ]
+
+      at src/server.ts:56:13
+
+    console.log
+      [POST /users] User.register action: {
+        id: '469c306f-6f09-4cef-9366-17e5ab2bffc8',
+        concept: 'User',
+        action: 'register',
+        input: { user: 'uuid()', username: 'testuser', email: 'test@example.com' },
+        flow: 'flow-1763759661056',
+        syncEdges: {},
+        syncTriggered: true,
+        output: { user: 'uuid()' }
+      }
+
+      at src/server.ts:58:13
+
+    console.log
+      [HTTP] POST /users
+
+      at Object.execute (src/concepts/Web.ts:14:15)
+
+    console.log
+      [POST /users] All actions in flow: [
+        {
+          id: '48f6d8f8-976b-4659-a161-0ab9c1ea335c',
+          concept: 'Web',
+          action: 'request',
+          input: { method: 'POST', path: '/users', body: [Object], token: null },
+          flow: 'flow-1763759661113',
+          syncEdges: {
+            ValidatePasswordFirst: [Array],
+            RegisterOnValidPassword: [Array]
+          },
+          syncTriggered: false,
+          output: { request: '43d0a125-44e9-4bdc-8b3b-a9c86f6a9d8d' }
+        },
+        {
+          id: '3f14f366-73b7-48aa-881e-bfb370cd4839',
+          concept: 'Password',
+          action: 'validate',
+          input: { password: '123' },
+          flow: 'flow-1763759661113',
+          syncEdges: { RegisterOnValidPassword: [Array] },
+          syncTriggered: true,
+          output: { error: 'Password too short' }
+        },
+        {
+          id: '896563ef-99cc-4eaf-85ff-72a0f93adc58',
+          concept: 'User',
+          action: 'register',
+          input: { user: 'uuid()', username: '', email: 'invalid-email' },
+          flow: 'flow-1763759661113',
+          syncEdges: {},
+          syncTriggered: true,
+          output: { error: 'Username required' }
+        }
+      ]
+
+      at src/server.ts:56:13
+
+    console.log
+      [POST /users] User.register action: {
+        id: '896563ef-99cc-4eaf-85ff-72a0f93adc58',
+        concept: 'User',
+        action: 'register',
+        input: { user: 'uuid()', username: '', email: 'invalid-email' },
+        flow: 'flow-1763759661113',
+        syncEdges: {},
+        syncTriggered: true,
+        output: { error: 'Username required' }
+      }
+
+      at src/server.ts:58:13
+
+    console.log
+      [HTTP] POST /users
+
+      at Object.execute (src/concepts/Web.ts:14:15)
+
+    console.log
+      [POST /users] All actions in flow: [
+        {
+          id: 'ef9421a5-6c23-4b2f-8e36-5a834268e56e',
+          concept: 'Web',
+          action: 'request',
+          input: { method: 'POST', path: '/users', body: [Object], token: null },
+          flow: 'flow-1763759661115',
+          syncEdges: {
+            ValidatePasswordFirst: [Array],
+            RegisterOnValidPassword: [Array]
+          },
+          syncTriggered: false,
+          output: { request: 'bc371d97-dbe1-46eb-93a5-248e3ae9dcd8' }
+        },
+        {
+          id: 'd51dd884-ccf8-40b6-822e-e061f4c5b252',
+          concept: 'Password',
+          action: 'validate',
+          input: { password: 'password123' },
+          flow: 'flow-1763759661115',
+          syncEdges: { RegisterOnValidPassword: [Array] },
+          syncTriggered: true,
+          output: { valid: true }
+        },
+        {
+          id: '952e1dd6-289c-48b9-ae2e-9591c4f6b69a',
+          concept: 'User',
+          action: 'register',
+          input: { user: 'uuid()', username: 'testuser', email: 'test@example.com' },
+          flow: 'flow-1763759661115',
+          syncEdges: {},
+          syncTriggered: true,
+          output: { user: 'uuid()' }
+        },
+        {
+          id: 'e2b783df-8fcd-45a7-a28c-ec1d0250dae3',
+          concept: 'Password',
+          action: 'set',
+          input: { user: '?user', password: 'password123' },
+          flow: 'flow-1763759661115',
+          syncEdges: {},
+          syncTriggered: true,
+          output: { user: '?user' }
+        },
+        {
+          id: 'af74eea1-4bd3-498c-8113-dbb1bbe7f754',
+          concept: 'JWT',
+          action: 'generate',
+          input: { user: '?user' },
+          flow: 'flow-1763759661115',
+          syncEdges: {},
+          syncTriggered: true,
+          output: {
+            token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiP3VzZXIiLCJpYXQiOjE3NjM3NTk2NjEsImV4cCI6MTc2Mzg0NjA2MX0.uduMpZAgxq9s0QqrcsrH05U5lBrzZfw2dcBTIaLPytw'
+          }
+        }
+      ]
+
+      at src/server.ts:56:13
+
+    console.log
+      [POST /users] User.register action: {
+        id: '952e1dd6-289c-48b9-ae2e-9591c4f6b69a',
+        concept: 'User',
+        action: 'register',
+        input: { user: 'uuid()', username: 'testuser', email: 'test@example.com' },
+        flow: 'flow-1763759661115',
+        syncEdges: {},
+        syncTriggered: true,
+        output: { user: 'uuid()' }
+      }
+
+      at src/server.ts:58:13
+
+    console.log
+      [HTTP] POST /login
+
+      at Object.execute (src/concepts/Web.ts:14:15)
+
+    console.log
+      [POST /login] All actions in flow: [
+        {
+          id: '21b230e2-fed0-45c2-ad98-f33f322e8420',
+          concept: 'Web',
+          action: 'request',
+          input: { method: 'POST', path: '/login', body: [Object], token: null },
+          flow: 'flow-1763759661157',
+          syncEdges: { LoginUser: [Array] },
+          syncTriggered: false,
+          output: { request: 'd5a1380c-bf3d-4e77-85a4-f9c5ec390910' }
+        },
+        {
+          id: 'b1e43ffc-1384-4fe5-9e92-f586f2a045b7',
+          concept: 'User',
+          action: 'getByUsername',
+          input: { username: 'testuser' },
+          flow: 'flow-1763759661157',
+          syncEdges: {},
+          syncTriggered: true,
+          output: { user: 'uuid()', username: 'testuser', email: 'test@example.com' }
+        },
+        {
+          id: 'd044450f-3caa-4ccb-9139-22989bc138da',
+          concept: 'Password',
+          action: 'verify',
+          input: { user: '?user', password: 'password123' },
+          flow: 'flow-1763759661157',
+          syncEdges: {},
+          syncTriggered: true,
+          output: { user: '?user' }
+        },
+        {
+          id: '63a7e55c-dcbc-492c-bb28-c586de7a769b',
+          concept: 'JWT',
+          action: 'generate',
+          input: { user: '?user' },
+          flow: 'flow-1763759661157',
+          syncEdges: {},
+          syncTriggered: true,
+          output: {
+            token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiP3VzZXIiLCJpYXQiOjE3NjM3NTk2NjEsImV4cCI6MTc2Mzg0NjA2MX0.uduMpZAgxq9s0QqrcsrH05U5lBrzZfw2dcBTIaLPytw'
+          }
+        }
+      ]
+
+      at src/server.ts:100:13
+
+    console.log
+      [POST /login] Password.verify action: {
+        id: 'd044450f-3caa-4ccb-9139-22989bc138da',
+        concept: 'Password',
+        action: 'verify',
+        input: { user: '?user', password: 'password123' },
+        flow: 'flow-1763759661157',
+        syncEdges: {},
+        syncTriggered: true,
+        output: { user: '?user' }
+      }
+
+      at src/server.ts:102:13
+
+    console.log
+      [HTTP] POST /users
+
+      at Object.execute (src/concepts/Web.ts:14:15)
+
+    console.log
+      [POST /users] All actions in flow: [
+        {
+          id: '3bf52aa8-a18e-40e0-a6f1-f11a88ad9ce0',
+          concept: 'Web',
+          action: 'request',
+          input: { method: 'POST', path: '/users', body: [Object], token: null },
+          flow: 'flow-1763759661200',
+          syncEdges: {
+            ValidatePasswordFirst: [Array],
+            RegisterOnValidPassword: [Array]
+          },
+          syncTriggered: false,
+          output: { request: '664b2af5-281d-45ab-ab57-4f9ccd560319' }
+        },
+        {
+          id: 'a0252132-87ae-4625-89f4-b8ed9eb2a7a5',
+          concept: 'Password',
+          action: 'validate',
+          input: { password: 'password123' },
+          flow: 'flow-1763759661200',
+          syncEdges: { RegisterOnValidPassword: [Array] },
+          syncTriggered: true,
+          output: { valid: true }
+        },
+        {
+          id: 'c92ccff3-45ec-4d10-95db-0457c32a223d',
+          concept: 'User',
+          action: 'register',
+          input: { user: 'uuid()', username: 'testuser', email: 'test@example.com' },
+          flow: 'flow-1763759661200',
+          syncEdges: {},
+          syncTriggered: true,
+          output: { user: 'uuid()' }
+        },
+        {
+          id: 'bce2714c-6a9a-409e-a2d7-0313d6b05616',
+          concept: 'Password',
+          action: 'set',
+          input: { user: '?user', password: 'password123' },
+          flow: 'flow-1763759661200',
+          syncEdges: {},
+          syncTriggered: true,
+          output: { user: '?user' }
+        },
+        {
+          id: '39214676-c4a9-4f7a-98ea-2a827dd44555',
+          concept: 'JWT',
+          action: 'generate',
+          input: { user: '?user' },
+          flow: 'flow-1763759661200',
+          syncEdges: {},
+          syncTriggered: true,
+          output: {
+            token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiP3VzZXIiLCJpYXQiOjE3NjM3NTk2NjEsImV4cCI6MTc2Mzg0NjA2MX0.uduMpZAgxq9s0QqrcsrH05U5lBrzZfw2dcBTIaLPytw'
+          }
+        }
+      ]
+
+      at src/server.ts:56:13
+
+    console.log
+      [POST /users] User.register action: {
+        id: 'c92ccff3-45ec-4d10-95db-0457c32a223d',
+        concept: 'User',
+        action: 'register',
+        input: { user: 'uuid()', username: 'testuser', email: 'test@example.com' },
+        flow: 'flow-1763759661200',
+        syncEdges: {},
+        syncTriggered: true,
+        output: { user: 'uuid()' }
+      }
+
+      at src/server.ts:58:13
+
+    console.log
+      [HTTP] POST /login
+
+      at Object.execute (src/concepts/Web.ts:14:15)
+
+    console.log
+      [POST /login] All actions in flow: [
+        {
+          id: 'c4ed34cd-da64-4089-98d5-62708e36f5d6',
+          concept: 'Web',
+          action: 'request',
+          input: { method: 'POST', path: '/login', body: [Object], token: null },
+          flow: 'flow-1763759661243',
+          syncEdges: { LoginUser: [Array] },
+          syncTriggered: false,
+          output: { request: 'def813d0-aa82-4cb9-b18d-39b267ca9394' }
+        },
+        {
+          id: 'c970bf87-996d-4f24-8848-17d9e6f3064d',
+          concept: 'User',
+          action: 'getByUsername',
+          input: { username: 'testuser' },
+          flow: 'flow-1763759661243',
+          syncEdges: {},
+          syncTriggered: true,
+          output: { user: 'uuid()', username: 'testuser', email: 'test@example.com' }
+        },
+        {
+          id: 'c3864d32-499d-47c9-a953-a351780d5abe',
+          concept: 'Password',
+          action: 'verify',
+          input: { user: '?user', password: 'wrongpassword' },
+          flow: 'flow-1763759661243',
+          syncEdges: {},
+          syncTriggered: true,
+          output: { error: 'Invalid password' }
+        }
+      ]
+
+      at src/server.ts:100:13
+
+    console.log
+      [POST /login] Password.verify action: {
+        id: 'c3864d32-499d-47c9-a953-a351780d5abe',
+        concept: 'Password',
+        action: 'verify',
+        input: { user: '?user', password: 'wrongpassword' },
+        flow: 'flow-1763759661243',
+        syncEdges: {},
+        syncTriggered: true,
+        output: { error: 'Invalid password' }
+      }
+
+      at src/server.ts:102:13
+
+    console.log
+      [HTTP] POST /users
+
+      at Object.execute (src/concepts/Web.ts:14:15)
+
+    console.log
+      [POST /users] All actions in flow: [
+        {
+          id: 'cff46f61-24a3-4018-aefd-e8471217dd51',
+          concept: 'Web',
+          action: 'request',
+          input: { method: 'POST', path: '/users', body: [Object], token: null },
+          flow: 'flow-1763759661286',
+          syncEdges: {
+            ValidatePasswordFirst: [Array],
+            RegisterOnValidPassword: [Array]
+          },
+          syncTriggered: false,
+          output: { request: '7b695a58-23a9-4f46-acb7-be82ee590fac' }
+        },
+        {
+          id: 'f6bf9164-a25f-461f-9a96-eb0253da27eb',
+          concept: 'Password',
+          action: 'validate',
+          input: { password: 'password123' },
+          flow: 'flow-1763759661286',
+          syncEdges: { RegisterOnValidPassword: [Array] },
+          syncTriggered: true,
+          output: { valid: true }
+        },
+        {
+          id: '09fb05b6-0f56-4dd0-a0e8-33f48858a5a7',
+          concept: 'User',
+          action: 'register',
+          input: { user: 'uuid()', username: 'testuser', email: 'test@example.com' },
+          flow: 'flow-1763759661286',
+          syncEdges: {},
+          syncTriggered: true,
+          output: { user: 'uuid()' }
+        },
+        {
+          id: '4e60e04e-d548-4e32-a25d-2a1376ab5935',
+          concept: 'Password',
+          action: 'set',
+          input: { user: '?user', password: 'password123' },
+          flow: 'flow-1763759661286',
+          syncEdges: {},
+          syncTriggered: true,
+          output: { user: '?user' }
+        },
+        {
+          id: 'b9788f01-744a-4ad2-97aa-7e3874b4c714',
+          concept: 'JWT',
+          action: 'generate',
+          input: { user: '?user' },
+          flow: 'flow-1763759661286',
+          syncEdges: {},
+          syncTriggered: true,
+          output: {
+            token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiP3VzZXIiLCJpYXQiOjE3NjM3NTk2NjEsImV4cCI6MTc2Mzg0NjA2MX0.uduMpZAgxq9s0QqrcsrH05U5lBrzZfw2dcBTIaLPytw'
+          }
+        }
+      ]
+
+      at src/server.ts:56:13
+
+    console.log
+      [POST /users] User.register action: {
+        id: '09fb05b6-0f56-4dd0-a0e8-33f48858a5a7',
+        concept: 'User',
+        action: 'register',
+        input: { user: 'uuid()', username: 'testuser', email: 'test@example.com' },
+        flow: 'flow-1763759661286',
+        syncEdges: {},
+        syncTriggered: true,
+        output: { user: 'uuid()' }
+      }
+
+      at src/server.ts:58:13
+
+    console.log
+      [HTTP] POST /articles
+
+      at Object.execute (src/concepts/Web.ts:14:15)
+
+    console.log
+      [HTTP] POST /users
+
+      at Object.execute (src/concepts/Web.ts:14:15)
+
+    console.log
+      [POST /users] All actions in flow: [
+        {
+          id: '9319286d-32af-4d14-9319-2646e9f1b21f',
+          concept: 'Web',
+          action: 'request',
+          input: { method: 'POST', path: '/users', body: [Object], token: null },
+          flow: 'flow-1763759661331',
+          syncEdges: {
+            ValidatePasswordFirst: [Array],
+            RegisterOnValidPassword: [Array]
+          },
+          syncTriggered: false,
+          output: { request: '5b9d3c03-cf92-4301-81ad-2e20f1380d71' }
+        },
+        {
+          id: '2a55f8b5-8daf-4f9b-b827-a66ee4a81119',
+          concept: 'Password',
+          action: 'validate',
+          input: { password: 'password123' },
+          flow: 'flow-1763759661331',
+          syncEdges: { RegisterOnValidPassword: [Array] },
+          syncTriggered: true,
+          output: { valid: true }
+        },
+        {
+          id: '50e266b8-f73e-42c6-98d7-88c1707dee35',
+          concept: 'User',
+          action: 'register',
+          input: { user: 'uuid()', username: 'testuser', email: 'test@example.com' },
+          flow: 'flow-1763759661331',
+          syncEdges: {},
+          syncTriggered: true,
+          output: { user: 'uuid()' }
+        },
+        {
+          id: 'df93f204-8e5f-40c5-b713-b43b6a0706e3',
+          concept: 'Password',
+          action: 'set',
+          input: { user: '?user', password: 'password123' },
+          flow: 'flow-1763759661331',
+          syncEdges: {},
+          syncTriggered: true,
+          output: { user: '?user' }
+        },
+        {
+          id: '35c333e6-085b-4daa-96b4-4a147a67161e',
+          concept: 'JWT',
+          action: 'generate',
+          input: { user: '?user' },
+          flow: 'flow-1763759661331',
+          syncEdges: {},
+          syncTriggered: true,
+          output: {
+            token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiP3VzZXIiLCJpYXQiOjE3NjM3NTk2NjEsImV4cCI6MTc2Mzg0NjA2MX0.uduMpZAgxq9s0QqrcsrH05U5lBrzZfw2dcBTIaLPytw'
+          }
+        }
+      ]
+
+      at src/server.ts:56:13
+
+    console.log
+      [POST /users] User.register action: {
+        id: '50e266b8-f73e-42c6-98d7-88c1707dee35',
+        concept: 'User',
+        action: 'register',
+        input: { user: 'uuid()', username: 'testuser', email: 'test@example.com' },
+        flow: 'flow-1763759661331',
+        syncEdges: {},
+        syncTriggered: true,
+        output: { user: 'uuid()' }
+      }
+
+      at src/server.ts:58:13
+
+    console.log
+      [HTTP] POST /users
+
+      at Object.execute (src/concepts/Web.ts:14:15)
+
+    console.log
+      [POST /users] All actions in flow: [
+        {
+          id: '349b1cff-9b61-42ef-9960-7ed7fc391711',
+          concept: 'Web',
+          action: 'request',
+          input: { method: 'POST', path: '/users', body: [Object], token: null },
+          flow: 'flow-1763759661373',
+          syncEdges: {
+            ValidatePasswordFirst: [Array],
+            RegisterOnValidPassword: [Array]
+          },
+          syncTriggered: false,
+          output: { request: 'c00bb10b-cd57-4628-bc46-fb9708e98907' }
+        },
+        {
+          id: '2d7f9fae-de4f-4f01-9be8-76450b016fb0',
+          concept: 'Password',
+          action: 'validate',
+          input: { password: 'password123' },
+          flow: 'flow-1763759661373',
+          syncEdges: { RegisterOnValidPassword: [Array] },
+          syncTriggered: true,
+          output: { valid: true }
+        },
+        {
+          id: '7768344b-ccb0-4bf3-9309-7325c8096cde',
+          concept: 'User',
+          action: 'register',
+          input: { user: 'uuid()', username: 'testuser', email: 'test@example.com' },
+          flow: 'flow-1763759661373',
+          syncEdges: {},
+          syncTriggered: true,
+          output: { user: 'uuid()' }
+        },
+        {
+          id: '1bc298df-0d0e-4e05-a8e1-3b26a2453578',
+          concept: 'Password',
+          action: 'set',
+          input: { user: '?user', password: 'password123' },
+          flow: 'flow-1763759661373',
+          syncEdges: {},
+          syncTriggered: true,
+          output: { user: '?user' }
+        },
+        {
+          id: '09323634-7c36-4fb6-96ab-d6578ccb04c0',
+          concept: 'JWT',
+          action: 'generate',
+          input: { user: '?user' },
+          flow: 'flow-1763759661373',
+          syncEdges: {},
+          syncTriggered: true,
+          output: {
+            token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiP3VzZXIiLCJpYXQiOjE3NjM3NTk2NjEsImV4cCI6MTc2Mzg0NjA2MX0.uduMpZAgxq9s0QqrcsrH05U5lBrzZfw2dcBTIaLPytw'
+          }
+        }
+      ]
+
+      at src/server.ts:56:13
+
+    console.log
+      [POST /users] User.register action: {
+        id: '7768344b-ccb0-4bf3-9309-7325c8096cde',
+        concept: 'User',
+        action: 'register',
+        input: { user: 'uuid()', username: 'testuser', email: 'test@example.com' },
+        flow: 'flow-1763759661373',
+        syncEdges: {},
+        syncTriggered: true,
+        output: { user: 'uuid()' }
+      }
+
+      at src/server.ts:58:13
+
+    console.log
+      [HTTP] POST /articles
+
+      at Object.execute (src/concepts/Web.ts:14:15)
+
+    console.log
+      [HTTP] POST /articles/uuid()/favorite
+
+      at Object.execute (src/concepts/Web.ts:14:15)
+
+    console.log
+      [HTTP] POST /users
+
+      at Object.execute (src/concepts/Web.ts:14:15)
+
+    console.log
+      [POST /users] All actions in flow: [
+        {
+          id: 'aae76766-f948-4f0d-8980-3f72e79aa9db',
+          concept: 'Web',
+          action: 'request',
+          input: { method: 'POST', path: '/users', body: [Object], token: null },
+          flow: 'flow-1763759661416',
+          syncEdges: {
+            ValidatePasswordFirst: [Array],
+            RegisterOnValidPassword: [Array]
+          },
+          syncTriggered: false,
+          output: { request: '228c79ea-321d-45b5-9371-25f358c25e3f' }
+        },
+        {
+          id: '857dbacd-d9f8-456e-8528-d00876ff27d5',
+          concept: 'Password',
+          action: 'validate',
+          input: { password: 'password123' },
+          flow: 'flow-1763759661416',
+          syncEdges: { RegisterOnValidPassword: [Array] },
+          syncTriggered: true,
+          output: { valid: true }
+        },
+        {
+          id: '54001898-240b-4dd4-847a-16341a871e52',
+          concept: 'User',
+          action: 'register',
+          input: { user: 'uuid()', username: 'testuser', email: 'test@example.com' },
+          flow: 'flow-1763759661416',
+          syncEdges: {},
+          syncTriggered: true,
+          output: { user: 'uuid()' }
+        },
+        {
+          id: 'f38f062a-3f54-496a-987a-4e2660423551',
+          concept: 'Password',
+          action: 'set',
+          input: { user: '?user', password: 'password123' },
+          flow: 'flow-1763759661416',
+          syncEdges: {},
+          syncTriggered: true,
+          output: { user: '?user' }
+        },
+        {
+          id: '97dece8b-b7ba-4a35-ba8e-7bc3456b5f43',
+          concept: 'JWT',
+          action: 'generate',
+          input: { user: '?user' },
+          flow: 'flow-1763759661416',
+          syncEdges: {},
+          syncTriggered: true,
+          output: {
+            token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiP3VzZXIiLCJpYXQiOjE3NjM3NTk2NjEsImV4cCI6MTc2Mzg0NjA2MX0.uduMpZAgxq9s0QqrcsrH05U5lBrzZfw2dcBTIaLPytw'
+          }
+        }
+      ]
+
+      at src/server.ts:56:13
+
+    console.log
+      [POST /users] User.register action: {
+        id: '54001898-240b-4dd4-847a-16341a871e52',
+        concept: 'User',
+        action: 'register',
+        input: { user: 'uuid()', username: 'testuser', email: 'test@example.com' },
+        flow: 'flow-1763759661416',
+        syncEdges: {},
+        syncTriggered: true,
+        output: { user: 'uuid()' }
+      }
+
+      at src/server.ts:58:13
+
+    console.log
+      [HTTP] POST /articles
+
+      at Object.execute (src/concepts/Web.ts:14:15)
+
+
+Test Suites: 1 failed, 1 passed, 2 total
+Tests:       9 failed, 10 passed, 19 total
+Snapshots:   0 total
+Time:        1.027 s
+Ran all test suites.
+npm error Lifecycle script `test` failed with error:
+npm error code 1
+npm error path /Users/mastepanoski/projects/web/ai/legible-sync/packages/example-express
+npm error workspace @legible-sync/example-express@1.2.2
+npm error location /Users/mastepanoski/projects/web/ai/legible-sync/packages/example-express
+npm error command failed
+npm error command sh -c jest
