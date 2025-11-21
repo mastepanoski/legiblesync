@@ -1,6 +1,6 @@
 {
   "name": "@legible-sync/monorepo",
-  "version": "1.2.0",
+  "version": "1.2.3",
   "description": "Monorepo for LegibleSync - What You See Is What It Does",
   "private": true,
   "workspaces": [
@@ -47,7 +47,7 @@
     "husky": "^9.1.7",
     "lerna": "^9.0.0",
     "lint-staged": "^16.2.6",
-    "markdownlint-cli": "^0.45.0"
+    "markdownlint-cli": "^0.46.0"
   },
   "overrides": {
     "js-yaml": "^3.14.2",

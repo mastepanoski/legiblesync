@@ -1,6 +1,6 @@
 {
   "name": "@legible-sync/example-nextjs-sse",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "description": "Next.js SSE example using LegibleSync framework",
   "main": "src/index.ts",
   "scripts": {
