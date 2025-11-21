@@ -1,6 +1,6 @@
 {
   "name": "@legible-sync/example-eda",
-  "version": "1.3.0",
+  "version": "1.3.1",
   "description": "Event-Driven Architecture example with plugin-based modules",
   "main": "dist/index.js",
   "scripts": {
@@ -14,7 +14,7 @@
     "test:coverage": "jest --coverage"
   },
   "dependencies": {
-    "@legible-sync/core": "^1.3.0"
+    "@legible-sync/core": "^1.3.1"
   },
   "repository": {
     "type": "git",
